@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cynthia Rico Cook | Websites and web tools for your business</title>
+<meta name="description" content="I build websites and web tools for your business. English y español. Twin Cities, Minnesota.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap">
+<style>
+/* Layout: the same editorial language as ricocynthia.github.io. Giant stacked headline with one italic line, mono labels, her own nature photos, a scrolling band. Light only. */
+:root{
+  --paper:#F4EFE5; --bone:#EDE7DC; --ink:#0E1410; --char:#1A2018; --moss:#2F4A37; --leaf:#3F6B47; --sage:#7E9C7A; --stone:#6E6557; --rust:#7A4628;
+  --line:rgba(14,20,16,.14);
+  --display:'Bricolage Grotesque','Arial Black',sans-serif; --serif:'Lora',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; --mono:'DM Mono','Courier New',monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bone);color:var(--ink);font:16px/1.7 var(--sans);margin:0;overflow-x:hidden}
+h1,h2,h3,p{margin:0}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--rust);outline-offset:4px}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.it{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--moss)}
+.pad{padding-inline:clamp(20px,3.2vw,40px)}
+
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:calc(18px + env(safe-area-inset-top,0px)) 0;color:var(--stone)}
+.nav b{color:var(--ink);font-weight:500}
+.lang{display:flex;gap:4px;align-items:center}
+.lang button{font:inherit;letter-spacing:inherit;text-transform:inherit;background:none;border:0;border-bottom:1px solid transparent;color:var(--stone);cursor:pointer;padding:8px 6px;min-height:36px}
+.lang button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+
+.hero{padding-block:clamp(36px,6vw,72px) 48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:stretch}
+.hero-left{display:flex;flex-direction:column;gap:32px;align-items:flex-start;justify-content:space-between}
+/* The headline is sized from its own column, so it fills the space at every width. */
+.hero-left{container-type:inline-size}
+.hero h1{font:800 clamp(2.2rem,17cqw,9.5rem)/.94 var(--display);letter-spacing:-.035em}
+.hero h1 span{display:block}
+.quiet{color:var(--stone)}
+.meta{font:400 clamp(1.1rem,1.6vw,1.3rem)/1.6 var(--serif);color:var(--char);max-width:36ch}
+.meta b{color:var(--moss);font-weight:500}
+.photo{position:relative;overflow:hidden;border-radius:2px;box-shadow:0 20px 50px -20px rgba(0,0,0,.4)}
+.photo img{width:100%;height:100%;object-fit:cover}
+.hero .photo{min-height:clamp(320px,42vw,620px)}
+.hero .photo img{position:absolute;inset:0}
+.badge{z-index:1;position:absolute;top:10px;left:10px;font-size:9px;color:var(--bone);background:rgba(0,0,0,.42);padding:5px 9px;border-radius:1px}
+.go{display:inline-flex;gap:12px;align-items:center;background:var(--moss);color:var(--bone);padding:0 30px;min-height:58px;border-radius:2px;font-size:13px;transition:background .2s}
+.go:hover{background:var(--leaf)}
+.go.light{color:var(--bone);border-color:var(--bone)}
+
+.marquee{background:var(--moss);color:var(--bone);padding:16px 0;overflow:hidden}
+.track{display:flex;gap:56px;white-space:nowrap;width:max-content;animation:mq 40s linear infinite;font:700 clamp(1.1rem,2.2vw,2rem)/1 var(--display);letter-spacing:-.01em}
+.track>span{display:flex;gap:56px;align-items:center}
+.track .it{color:#C4D6BC}
+.track i{font-style:normal;color:var(--sage)}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.track{animation:none}html{scroll-behavior:auto}}
+
+section{padding-block:clamp(48px,7vw,96px)}
+.eyebrow{color:var(--moss);display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:18px;height:1px;background:currentColor}
+.title{font:700 clamp(2rem,4.2vw,3.6rem)/1 var(--display);letter-spacing:-.025em;max-width:14ch;margin-top:16px;text-wrap:balance}
+
+.rows{margin-top:48px;border-bottom:1px solid var(--line)}
+.rowx{display:grid;grid-template-columns:90px minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:baseline;padding:28px 0;border-top:1px solid var(--line)}
+.rowx .mono{color:var(--stone)}
+.rowx.two{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.rowx h3{font:700 clamp(1.4rem,2.6vw,2rem)/1.1 var(--display);letter-spacing:-.02em}
+.rowx p{font:400 1.08rem/1.7 var(--serif);color:var(--char)}
+
+.green{background:var(--moss);color:var(--bone)}
+.green .eyebrow{color:#C4D6BC}
+.green .title .it{color:#C4D6BC}
+.steps{margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:36px}
+.steps div{border-top:1px solid rgba(237,231,220,.3);padding-top:18px;display:flex;flex-direction:column;gap:10px}
+.steps .mono{color:#C4D6BC}
+.steps h3{font:700 1.5rem/1.1 var(--display);letter-spacing:-.02em}
+.steps p{font:400 1.05rem/1.65 var(--serif);opacity:.9}
+
+.about{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);margin-top:48px;align-items:start}
+.about .photo{aspect-ratio:4/5}
+.about p{font:400 1.15rem/1.8 var(--serif);color:var(--char)}
+.about p + p{margin-top:22px}
+mark{background:linear-gradient(transparent 55%,rgba(126,156,122,.45) 55%);color:inherit;font-weight:500;padding:0 3px}
+.facts{margin-top:36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.facts div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:6px}
+.facts .mono{color:var(--stone);font-size:10px}
+.facts span:last-child{font-family:var(--serif)}
+
+.paper{background:var(--paper)}
+.contact{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
+.contact h2{font:800 clamp(3rem,11vw,9rem)/.9 var(--display);letter-spacing:-.04em;margin:20px 0}
+.contact p{font:400 1.15rem/1.75 var(--serif);color:var(--char);max-width:44ch}
+.soon{margin-top:24px;color:var(--moss)}
+footer{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;color:var(--stone);padding-block:22px calc(28px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
+
+@media (max-width:640px){
+  .hero{grid-template-columns:1fr}
+  .hero .photo{min-height:260px}
+}
+@media (max-width:900px){
+  .rowx,.rowx.two{grid-template-columns:1fr;gap:6px}
+  .about{grid-template-columns:1fr}
+  .about .photo{aspect-ratio:4/3}
+}
+</style>
+</head>
+<body>
+<div class="nav pad mono">
+  <b>Cynthia Rico Cook</b>
+  <div class="lang" role="group" aria-label="Language / Idioma"><button data-lang="en">EN</button><span>/</span><button data-lang="es">ES</button></div>
+</div>
+
+<header class="hero pad">
+  <div class="hero-left">
+    <h1>
+      <span data-es="Sitios web">Websites</span>
+      <span data-es="y herramientas">&amp; web tools</span>
+      <span class="it" data-es="para tu">for your</span>
+      <span data-es="negocio.">business.</span>
+    </h1>
+    <p class="meta" data-es="Soy <b>Cynthia Rico Cook</b>. Hago los sitios y las herramientas con los que trabaja tu negocio. Cuéntame qué necesitas. <b>Estoy aquí para ayudar.</b>"><b>Cynthia Rico Cook</b> here. I build the sites and tools your business runs on. Tell me what you need. <b>I'm here to help.</b></p>
+    <a class="go mono" href="#contact"><span data-es="Hablemos">Let's talk</span><span>↓</span></a>
+  </div>
+  <div class="photo"><span class="badge mono">Twin Cities, MN · 2026</span><img src="img/chaga-heart.jpg" alt="A chaga mushroom shaped like a heart, growing on a birch tree"></div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="track">
+  <span><span data-es="SITIOS WEB">WEBSITES</span><i>✦</i><span class="it" data-es="hechos con cariño">built with care</span><i>✦</i><span data-es="APPS PARA EL PAPELEO">APPS FOR THE BUSYWORK</span><i>✧</i><span class="it">english y español</span><i>✦</i><span data-es="ARREGLOS Y MANTENIMIENTO">FIXES &amp; UPKEEP</span><i>✦</i><span class="it" data-es="con raíces en Minnesota">rooted in Minnesota</span><i>✧</i></span>
+  <span><span data-es="SITIOS WEB">WEBSITES</span><i>✦</i><span class="it" data-es="hechos con cariño">built with care</span><i>✦</i><span data-es="APPS PARA EL PAPELEO">APPS FOR THE BUSYWORK</span><i>✧</i><span class="it">english y español</span><i>✦</i><span data-es="ARREGLOS Y MANTENIMIENTO">FIXES &amp; UPKEEP</span><i>✦</i><span class="it" data-es="con raíces en Minnesota">rooted in Minnesota</span><i>✧</i></span>
+</div></div>
+
+<section class="pad">
+  <div class="eyebrow mono" data-es="Lo que hago">What I build</div>
+  <h2 class="title" data-es="Cosas que puedo <span class='it'>hacer</span> por ti.">Things I can <span class="it">build</span> for you.</h2>
+  <div class="rows">
+    <div class="rowx two"><h3 data-es="Sitios web">Websites</h3><p data-es="Que se vean increíbles en el teléfono y que te encuentren en Google.">Ones that look great on a phone and get you found on Google.</p></div>
+    <div class="rowx two"><h3 data-es="Apps para el papeleo">Apps for the busywork</h3><p data-es="Facturas, horarios, horas de trabajadores. De la libreta a tu teléfono.">Invoices, schedules, worker hours. Out of the notebook, onto your phone.</p></div>
+    <div class="rowx two"><h3 data-es="Arreglos y mantenimiento">Fixes &amp; upkeep</h3><p data-es="¿Sitio lento? ¿Formulario roto? Lo arreglo y lo mantengo funcionando.">Slow site? Broken form? I'll sort it out and keep it running.</p></div>
+  </div>
+</section>
+
+<section class="pad green">
+  <div class="eyebrow mono" data-es="Cómo funciona">How it goes</div>
+  <h2 class="title" data-es="Sencillo, y <span class='it'>sin sorpresas.</span>">Simple, and <span class="it">no surprises.</span></h2>
+  <div class="steps">
+    <div><span class="mono" data-es="Paso 01">Step 01</span><h3 data-es="Platicamos">We chat</h3><p data-es="Me cuentas qué necesitas.">You tell me what's going on.</p></div>
+    <div><span class="mono" data-es="Paso 02">Step 02</span><h3 data-es="Pruebas una demostración">You try a demo</h3><p data-es="Algo real para probar antes de que construya lo demás.">Something real to click before I build the rest.</p></div>
+    <div><span class="mono" data-es="Paso 03">Step 03</span><h3 data-es="Lo construyo y me quedo">I build it and stick around</h3><p data-es="Un precio claro. Y no desaparezco.">One clear price. No disappearing.</p></div>
+  </div>
+</section>
+
+<section class="pad paper">
+  <div class="eyebrow mono" data-es="Sobre mí">About</div>
+  <h2 class="title" data-es="Un poco <span class='it'>sobre</span> mí.">A little <span class="it">about</span> me.</h2>
+  <div class="about">
+    <div class="photo"><span class="badge mono" data-es="en mi tiempo libre">off the clock</span><img src="img/dandelion-harvest.jpg" alt="A harvest of dandelions"></div>
+    <div>
+      <p data-es="De día construyo los sistemas de check-in de una aerolínea grande: software que tiene que <mark>funcionar siempre</mark>. Los negocios locales casi nunca reciben ese cuidado. Yo creo que deberían.">By day I build check-in systems for a major airline: software that has to <mark>work every single time</mark>. Local businesses almost never get that kind of care. I think they should.</p>
+      <p data-es="En mi tiempo libre me apasiona la <mark>sanación natural</mark>, y comparto lo que aprendo en Earthy Mujer.">Off the clock I'm into <mark>natural healing</mark>, and I share what I learn at Earthy Mujer.</p>
+      <div class="facts">
+        <div><span class="mono" data-es="Ubicación">Based in</span><span>Twin Cities, Minnesota</span></div>
+        <div><span class="mono" data-es="Idiomas">Languages</span><span>English y español</span></div>
+        <div><span class="mono" data-es="Experiencia">Experience</span><span data-es="6 años construyendo software">6 years building software</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad paper contact" id="contact">
+  <div class="eyebrow mono" data-es="Contacto">Get in touch</div>
+  <h2 data-es="<span class='it'>Hablemos.</span>">Let's <span class="it">talk.</span></h2>
+  <p data-es="Cuéntame qué necesitas. La primera llamada es gratis y sin presión.">Tell me what you need. First call's free, no pressure.</p>
+  <div class="soon mono" data-es="Datos de contacto muy pronto">Contact details coming soon</div>
+</section>
+
+<footer class="pad mono"><span>© 2026 Cynthia Rico Cook</span><span>Twin Cities, Minnesota</span></footer>
+
+<script>
+const els=[...document.querySelectorAll('[data-es]')];
+els.forEach(e=>e.dataset.en=e.innerHTML);
+let lang='en';
+try{const s=localStorage.getItem('crc-lang');if(s==='es'||s==='en')lang=s;else if((navigator.language||'').startsWith('es'))lang='es'}catch(e){}
+function apply(){
+  document.documentElement.lang=lang;
+  els.forEach(e=>e.innerHTML=e.dataset[lang]);
+  document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang));
+}
+document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;try{localStorage.setItem('crc-lang',lang)}catch(e){}apply()}));
+apply();
+</script>
+</body>
+</html>
