@@ -107,6 +107,14 @@ mark{background:linear-gradient(transparent 55%,rgba(126,156,122,.45) 55%);color
 .facts .mono{color:var(--stone);font-size:10px}
 .facts span:last-child{font-family:var(--serif)}
 
+.work{margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,56px)}
+.work article{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.work .photo{display:block;width:100%;aspect-ratio:16/10}
+.work .photo img{position:absolute;inset:0;transition:transform .6s}
+.work .photo:hover img{transform:scale(1.04)}
+.work h3{font:700 clamp(1.5rem,2.6vw,2rem)/1.1 var(--display);letter-spacing:-.02em}
+.work p{font:400 1.08rem/1.7 var(--serif);color:var(--char)}
+.more{border-bottom:1px solid var(--ink);padding-bottom:4px}
 .paper{background:var(--paper)}
 .contact{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
 .contact h2{font:800 clamp(3rem,11vw,9rem)/.9 var(--display);letter-spacing:-.04em;margin:20px 0}
@@ -179,6 +187,24 @@ footer{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;color:v
 <div><span class="mono">Experiencia</span><span>6 años construyendo software</span></div>
 </div>
 </div>
+</div>
+</section>
+<section class="pad">
+<div class="eyebrow mono">Trabajo</div>
+<h2 class="title">Cosas que he <span class="it">hecho.</span></h2>
+<div class="work">
+<article>
+<a class="photo" href="https://ricocynthia.github.io/forage-and-heal/"><span class="badge mono">App en vivo</span><img alt="Plantas silvestres recolectadas" loading="lazy" src="../img/forage-and-heal.jpg"/></a>
+<h3>Forage &amp; Heal</h3>
+<p>Una guía para buscar plantas silvestres y hongos medicinales de Minnesota. Busca por nombre o por propiedad curativa, y toca una para ver cómo identificarla con seguridad.</p>
+<a class="more mono" href="https://ricocynthia.github.io/forage-and-heal/"><span>Abrir la app</span> →</a>
+</article>
+<article>
+<a class="photo" href="../quote-demo/"><span class="badge mono">Pruébala</span><img alt="La calculadora mostrando un precio estimado" loading="lazy" src="../img/quote-calculator.jpg"/></a>
+<h3>Calculadora de cotizaciones</h3>
+<p>Tus clientes contestan unas preguntas y ven un precio al instante. Hecha para negocios de limpieza, y fácil de adaptar al tuyo.</p>
+<a class="more mono" href="../quote-demo/"><span>Probar la demostración</span> →</a>
+</article>
 </div>
 </section>
 <section class="pad paper contact" id="contact">

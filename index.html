@@ -107,6 +107,14 @@ mark{background:linear-gradient(transparent 55%,rgba(126,156,122,.45) 55%);color
 .facts .mono{color:var(--stone);font-size:10px}
 .facts span:last-child{font-family:var(--serif)}
 
+.work{margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,56px)}
+.work article{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.work .photo{display:block;width:100%;aspect-ratio:16/10}
+.work .photo img{position:absolute;inset:0;transition:transform .6s}
+.work .photo:hover img{transform:scale(1.04)}
+.work h3{font:700 clamp(1.5rem,2.6vw,2rem)/1.1 var(--display);letter-spacing:-.02em}
+.work p{font:400 1.08rem/1.7 var(--serif);color:var(--char)}
+.more{border-bottom:1px solid var(--ink);padding-bottom:4px}
 .paper{background:var(--paper)}
 .contact{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
 .contact h2{font:800 clamp(3rem,11vw,9rem)/.9 var(--display);letter-spacing:-.04em;margin:20px 0}
@@ -179,6 +187,24 @@ footer{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;color:v
 <div><span class="mono">Experience</span><span>6 years building software</span></div>
 </div>
 </div>
+</div>
+</section>
+<section class="pad">
+<div class="eyebrow mono">Work</div>
+<h2 class="title">Things I've <span class="it">built.</span></h2>
+<div class="work">
+<article>
+<a class="photo" href="https://ricocynthia.github.io/forage-and-heal/"><span class="badge mono">Live app</span><img alt="Foraged wild plants" loading="lazy" src="img/forage-and-heal.jpg"/></a>
+<h3>Forage &amp; Heal</h3>
+<p>A searchable guide to Minnesota's wild plants and medicinal mushrooms. Search by name or healing property, then tap one to see how to identify it safely.</p>
+<a class="more mono" href="https://ricocynthia.github.io/forage-and-heal/"><span>Open the app</span> →</a>
+</article>
+<article>
+<a class="photo" href="quote-demo/"><span class="badge mono">Try it</span><img alt="The quote calculator showing a price estimate" loading="lazy" src="img/quote-calculator.jpg"/></a>
+<h3>Instant quote calculator</h3>
+<p>Customers answer a few questions and see a price right away. Built for cleaning businesses, and easy to adapt to yours.</p>
+<a class="more mono" href="quote-demo/"><span>Try the demo</span> →</a>
+</article>
 </div>
 </section>
 <section class="pad paper contact" id="contact">

@@ -13,6 +13,7 @@ Cynthia Rico Cook: websites and web tools for your business.
 | `build.py` | Turns the source into the two pages below. |
 | `index.html` | English page. Generated, do not edit by hand. |
 | `es/index.html` | Spanish page. Generated, do not edit by hand. |
+| `quote-demo/index.html` | The instant quote calculator demo. A single hand-written page, not built from the source. Prices are in the `PRICES` block at the top of its script. |
 | `img/` | Photos, plus `og.jpg`, the picture shown when the link is shared. |
 | `favicon.svg` | The small icon in the browser tab. |
 | `sitemap.xml` | Tells search engines about both pages. |

@@ -23,6 +23,8 @@ PAGES = {
         "ogalt": "A chaga mushroom shaped like a heart, growing on a birch tree",
         "alt1": "A chaga mushroom shaped like a heart, growing on a birch tree",
         "alt2": "A harvest of dandelions",
+        "alt3": "Foraged wild plants",
+        "alt4": "The quote calculator showing a price estimate",
         "services": ["Websites", "Web apps for small business paperwork", "Website fixes and upkeep"],
     },
     "es": {
@@ -35,6 +37,8 @@ PAGES = {
         "ogalt": "Un hongo chaga con forma de corazón en un abedul",
         "alt1": "Un hongo chaga con forma de corazón en un abedul",
         "alt2": "Una cosecha de dientes de león",
+        "alt3": "Plantas silvestres recolectadas",
+        "alt4": "La calculadora mostrando un precio estimado",
         "services": ["Sitios web", "Apps para el papeleo de negocios pequeños", "Arreglos y mantenimiento de sitios web"],
     },
 }
@@ -74,7 +78,7 @@ def build(lang, page):
     fills = {
         "LANG": lang, "TITLE": page["title"], "DESC": page["desc"], "URL": page["url"],
         "SITE": SITE, "BASE": page["base"], "LOCALE": page["locale"], "OGALT": page["ogalt"],
-        "ALT1": page["alt1"], "ALT2": page["alt2"],
+        "ALT1": page["alt1"], "ALT2": page["alt2"], "ALT3": page["alt3"], "ALT4": page["alt4"],
         "JSONLD": json_ld(lang, page), "LANGLINKS": lang_links(lang),
     }
     for key, value in fills.items():

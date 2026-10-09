@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instant quote calculator demo | Cynthia Rico Cook</title>
+<meta name="description" content="A demo of an instant quote calculator for a cleaning business. Customers answer a few questions and see a price range right away.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap">
+<style>
+/* Layout: questions on the left, a running estimate pinned on the right. On a phone the estimate pins to the bottom. */
+:root{
+  --paper:#F6F3EC; --white:#FFFDF8; --ink:#121614; --stone:#6A6860; --line:rgba(18,22,20,.16);
+  --blue:#2343C4; --blue-deep:#182F8F; --sky:#DCE3F8; --on-blue:#F6F3EC;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.05rem/1.5 Inter,'Helvetica Neue',Arial,sans-serif}
+h1,h2,p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.pad{padding-inline:clamp(18px,3.2vw,44px)}
+.cap{font:600 11px/1.6 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.top{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;align-items:center;padding-block:18px;color:var(--stone)}
+.top a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+.lang{display:flex;gap:4px;align-items:center}
+.lang button{font:inherit;letter-spacing:inherit;text-transform:inherit;background:none;border:0;border-bottom:1px solid transparent;color:var(--stone);cursor:pointer;padding:8px 6px;min-height:36px}
+.lang button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+header{padding-block:clamp(20px,4vw,48px) clamp(24px,4vw,44px)}
+h1{font:800 clamp(2.2rem,6.5vw,5rem)/.96 Inter,sans-serif;letter-spacing:-.04em;max-width:14ch;text-wrap:balance}
+h1 em{font-style:italic;color:var(--blue)}
+.lead{margin-top:18px;color:var(--stone);font-size:1.15rem;max-width:46ch}
+
+.layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(24px,5vw,72px);align-items:start;padding-bottom:72px}
+fieldset{border:0;margin:0;padding:26px 0;border-top:1px solid var(--line);min-width:0}
+legend{padding:0;font:800 clamp(1.3rem,2.6vw,1.8rem)/1.1 Inter,sans-serif;letter-spacing:-.025em;margin-bottom:16px;float:left;width:100%}
+legend + *{clear:both}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.opt > span{display:flex;flex-direction:column;gap:2px;justify-content:center;min-height:64px;padding:12px 16px;border:1.5px solid var(--ink);border-radius:2px;font-weight:600;background:transparent;transition:background .15s,color .15s}
+.opt small{font-weight:400;color:var(--stone);font-size:.88rem}
+.opt input:checked + span{background:var(--blue);border-color:var(--blue);color:var(--on-blue)}
+.opt input:checked + span small{color:#C9D4FF}
+.opt input:focus-visible + span{outline:3px solid var(--blue);outline-offset:3px}
+.steppers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px 32px}
+.stepper{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.stepper b{font-weight:600}
+.ctl{display:flex;align-items:center;gap:6px}
+.ctl button{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:600 1.4rem/1 Inter,sans-serif;cursor:pointer}
+.ctl button:hover{background:var(--sky)}
+.ctl button:disabled{opacity:.3;cursor:default;background:transparent}
+.ctl output{min-width:2.2ch;text-align:center;font:800 1.5rem Inter,sans-serif;font-variant-numeric:tabular-nums}
+
+.result{position:sticky;top:20px;background:var(--blue);color:var(--on-blue);border-radius:2px;padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;gap:14px}
+.result .cap{color:#C9D4FF}
+.price{font:800 clamp(2.3rem,5vw,3.6rem)/1 Inter,sans-serif;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.per{color:#C9D4FF}
+.lines{list-style:none;margin:0;padding:14px 0 0;border-top:1px solid rgba(246,243,236,.3);display:flex;flex-direction:column;gap:6px;font-size:.95rem}
+.lines li{display:flex;justify-content:space-between;gap:12px}
+.lines span:last-child{font-variant-numeric:tabular-nums;white-space:nowrap}
+.btn{display:inline-flex;gap:12px;align-items:center;justify-content:center;background:var(--on-blue);color:var(--blue-deep);padding:0 26px;min-height:56px;border-radius:2px;border:0;cursor:pointer;margin-top:6px}
+.result .btn{color:var(--blue-deep)}
+.btn:hover{background:#fff}
+#sent{min-height:1.3em;font-size:.95rem}
+.fine{font-size:.85rem;color:#C9D4FF}
+[hidden]{display:none!important}
+
+@media (max-width:820px){
+  .layout{grid-template-columns:1fr;padding-bottom:24px}
+  .result{position:sticky;top:auto;bottom:calc(10px + env(safe-area-inset-bottom,0px));gap:8px;padding:16px 18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  .result{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 14px}
+  .result .lines,.result .fine,.result > div.cap{display:none}
+  .price{font-size:1.6rem}
+  .btn{min-height:46px;margin:0;padding:0 18px}
+  #sent{flex-basis:100%;min-height:0}
+}
+</style>
+</head>
+<body>
+
+<div class="top pad cap">
+  <a href="../" data-es="← Cynthia Rico Cook">← Cynthia Rico Cook</a>
+  <div class="lang" role="group" aria-label="Language / Idioma"><button data-lang="en">EN</button><span>/</span><button data-lang="es">ES</button></div>
+</div>
+
+<header class="pad">
+  <div class="cap" style="color:var(--blue)" data-es="Demostración · Calculadora de cotizaciones">Demo · Instant quote calculator</div>
+  <h1><span data-es="Un precio en">A price in</span> <em data-es="segundos.">seconds.</em></h1>
+  <p class="lead" data-es="Así es como un cliente recibiría un estimado en el sitio de un negocio de limpieza, sin llamadas ni esperas. Los precios son de ejemplo: cada negocio pone los suyos.">This is how a customer would get an estimate on a cleaning business's website, with no phone tag. The prices here are examples. Every business sets its own.</p>
+</header>
+
+<main class="pad layout">
+  <form id="calc" novalidate>
+    <fieldset>
+      <legend data-es="¿Qué necesitas limpiar?">What needs cleaning?</legend>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="type" value="regular" id="t-regular" checked><span><span data-es="Limpieza regular">Regular cleaning</span><small data-es="Casa, mantenimiento">Home, upkeep</small></span></label>
+        <label class="opt"><input type="radio" name="type" value="deep" id="t-deep"><span><span data-es="Limpieza profunda">Deep cleaning</span><small data-es="Casa, de arriba a abajo">Home, top to bottom</small></span></label>
+        <label class="opt"><input type="radio" name="type" value="move" id="t-move"><span><span data-es="Mudanza">Move-in or move-out</span><small data-es="Casa vacía">Empty home</small></span></label>
+        <label class="opt"><input type="radio" name="type" value="office" id="t-office"><span><span data-es="Oficina o negocio">Office or business</span><small data-es="Espacio comercial">Commercial space</small></span></label>
+      </div>
+    </fieldset>
+
+    <fieldset id="home-size">
+      <legend data-es="¿De qué tamaño es la casa?">How big is the home?</legend>
+      <div class="steppers">
+        <div class="stepper"><b data-es="Recámaras">Bedrooms</b><div class="ctl"><button type="button" data-step="beds" data-d="-1" aria-label="Fewer bedrooms">−</button><output id="beds">3</output><button type="button" data-step="beds" data-d="1" aria-label="More bedrooms">+</button></div></div>
+        <div class="stepper"><b data-es="Baños">Bathrooms</b><div class="ctl"><button type="button" data-step="baths" data-d="-1" aria-label="Fewer bathrooms">−</button><output id="baths">2</output><button type="button" data-step="baths" data-d="1" aria-label="More bathrooms">+</button></div></div>
+      </div>
+    </fieldset>
+
+    <fieldset id="office-size" hidden>
+      <legend data-es="¿De qué tamaño es el espacio?">How big is the space?</legend>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="size" value="small" id="s-small" checked><span><span data-es="Pequeño">Small</span><small data-es="Menos de 1,000 pies²">Under 1,000 sq ft</small></span></label>
+        <label class="opt"><input type="radio" name="size" value="medium" id="s-medium"><span><span data-es="Mediano">Medium</span><small data-es="1,000 a 2,500 pies²">1,000 to 2,500 sq ft</small></span></label>
+        <label class="opt"><input type="radio" name="size" value="large" id="s-large"><span><span data-es="Grande">Large</span><small data-es="2,500 a 5,000 pies²">2,500 to 5,000 sq ft</small></span></label>
+      </div>
+    </fieldset>
+
+    <fieldset id="freq">
+      <legend data-es="¿Cada cuánto?">How often?</legend>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="freq" value="once" id="f-once" checked><span><span data-es="Una sola vez">One time</span><small data-es="Sin compromiso">No commitment</small></span></label>
+        <label class="opt"><input type="radio" name="freq" value="monthly" id="f-monthly"><span><span data-es="Cada mes">Monthly</span><small data-es="Ahorra 5%">Save 5%</small></span></label>
+        <label class="opt"><input type="radio" name="freq" value="biweekly" id="f-biweekly"><span><span data-es="Cada dos semanas">Every two weeks</span><small data-es="Ahorra 10%">Save 10%</small></span></label>
+        <label class="opt"><input type="radio" name="freq" value="weekly" id="f-weekly"><span><span data-es="Cada semana">Weekly</span><small data-es="Ahorra 15%">Save 15%</small></span></label>
+      </div>
+    </fieldset>
+
+    <fieldset id="extras">
+      <legend data-es="¿Algo extra?">Any extras?</legend>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" name="extra" value="oven" id="x-oven"><span><span data-es="Dentro del horno">Inside the oven</span><small>+$35</small></span></label>
+        <label class="opt"><input type="checkbox" name="extra" value="fridge" id="x-fridge"><span><span data-es="Dentro del refrigerador">Inside the fridge</span><small>+$35</small></span></label>
+        <label class="opt"><input type="checkbox" name="extra" value="windows" id="x-windows"><span><span data-es="Ventanas por dentro">Inside windows</span><small>+$50</small></span></label>
+      </div>
+    </fieldset>
+  </form>
+
+  <aside class="result" aria-live="polite">
+    <div class="cap" data-es="Tu estimado">Your estimate</div>
+    <div><div class="price" id="price">$0</div><div class="per" id="per"></div></div>
+    <ul class="lines" id="lines"></ul>
+    <button class="btn cap" id="request" type="button"><span data-es="Pedir esta cotización">Request this quote</span><span>→</span></button>
+    <div id="sent" role="status"></div>
+    <div class="fine" data-es="Precios de ejemplo. El precio final se confirma después de ver el espacio.">Example prices. The final price is confirmed after seeing the space.</div>
+  </aside>
+</main>
+
+<script>
+/* Every number a business would change lives here. */
+const PRICES = {
+  home: {
+    regular: { base: 90,  bedroom: 20, bathroom: 25 },
+    deep:    { base: 160, bedroom: 35, bathroom: 40 },
+    move:    { base: 200, bedroom: 40, bathroom: 45 },
+  },
+  office: { small: 120, medium: 210, large: 360 },
+  discount: { once: 0, monthly: 0.05, biweekly: 0.10, weekly: 0.15 },
+  extras: { oven: 35, fridge: 35, windows: 50 },
+  spread: 0.10,   // the estimate shows a range of plus or minus this much
+  roundTo: 5,
+};
+
+/* Works in whole dollars. Returns the range and the lines that explain it. */
+function estimate(s) {
+  const isOffice = s.type === 'office';
+  const repeats = s.type === 'regular' || isOffice;
+  const lines = [];
+  let subtotal;
+  if (isOffice) {
+    subtotal = PRICES.office[s.size];
+    lines.push(['base', subtotal]);
+  } else {
+    const p = PRICES.home[s.type];
+    lines.push(['base', p.base], ['beds', p.bedroom * s.beds], ['baths', p.bathroom * s.baths]);
+    subtotal = p.base + p.bedroom * s.beds + p.bathroom * s.baths;
+  }
+  const rate = repeats ? PRICES.discount[s.freq] : 0;
+  const off = Math.round(subtotal * rate);
+  if (off) lines.push(['discount', -off]);
+  let total = subtotal - off;
+  if (!isOffice) for (const x of s.extras) { total += PRICES.extras[x]; lines.push([x, PRICES.extras[x]]); }
+  const r = n => Math.round(n / PRICES.roundTo) * PRICES.roundTo;
+  return { low: r(total * (1 - PRICES.spread)), high: r(total * (1 + PRICES.spread)), lines, repeats: repeats && s.freq !== 'once' };
+}
+
+const TEXT = {
+  en: { base:'Base price', beds:n=>`${n} bedroom${n===1?'':'s'}`, baths:n=>`${n} bathroom${n===1?'':'s'}`, discount:'Repeat visit savings', oven:'Inside the oven', fridge:'Inside the fridge', windows:'Inside windows',
+        perVisit:'per visit', oneTime:'one time', sent:'In a real site, this sends your answers to the business by text or email.' },
+  es: { base:'Precio base', beds:n=>`${n} recámara${n===1?'':'s'}`, baths:n=>`${n} baño${n===1?'':'s'}`, discount:'Ahorro por visitas regulares', oven:'Dentro del horno', fridge:'Dentro del refrigerador', windows:'Ventanas por dentro',
+        perVisit:'por visita', oneTime:'una sola vez', sent:'En un sitio real, esto le envía tus respuestas al negocio por mensaje o correo.' },
+};
+
+if (typeof document !== 'undefined') {
+  const $ = id => document.getElementById(id);
+  const state = { type:'regular', size:'small', freq:'once', beds:3, baths:2, extras:[] };
+  const LIMITS = { beds:[1,6], baths:[1,5] };
+  const els = [...document.querySelectorAll('[data-es]')];
+  els.forEach(e => e.dataset.en = e.innerHTML);
+  let lang = 'en';
+  try { const s = localStorage.getItem('quote-lang'); if (s === 'es' || s === 'en') lang = s; else if ((navigator.language||'').startsWith('es')) lang = 'es'; } catch (e) {}
+  const money = n => (n < 0 ? '−$' : '$') + Math.abs(n);
+
+  function render() {
+    const t = TEXT[lang], isOffice = state.type === 'office', q = estimate(state);
+    $('home-size').hidden = isOffice; $('extras').hidden = isOffice; $('office-size').hidden = !isOffice;
+    $('freq').hidden = !(state.type === 'regular' || isOffice);
+    for (const k of ['beds','baths']) {
+      $(k).textContent = state[k];
+      document.querySelectorAll(`[data-step="${k}"]`).forEach(b => b.disabled = state[k] + Number(b.dataset.d) < LIMITS[k][0] || state[k] + Number(b.dataset.d) > LIMITS[k][1]);
+    }
+    $('price').textContent = `$${q.low} – $${q.high}`;
+    $('per').textContent = q.repeats ? t.perVisit : t.oneTime;
+    $('lines').innerHTML = q.lines.map(([k, v]) => {
+      const label = k === 'beds' ? t.beds(state.beds) : k === 'baths' ? t.baths(state.baths) : t[k];
+      return `<li><span>${label}</span><span>${money(v)}</span></li>`;
+    }).join('');
+    $('sent').textContent = '';
+  }
+  function applyLang() {
+    document.documentElement.lang = lang;
+    els.forEach(e => e.innerHTML = e.dataset[lang]);
+    document.querySelectorAll('[data-lang]').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
+    render();
+  }
+  $('calc').addEventListener('change', e => {
+    const el = e.target;
+    if (el.name === 'extra') state.extras = [...document.querySelectorAll('[name=extra]:checked')].map(x => x.value);
+    else state[el.name] = el.value;
+    render();
+  });
+  document.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.step) { state[b.dataset.step] += Number(b.dataset.d); render(); }
+    else if (b.dataset.lang) { lang = b.dataset.lang; try { localStorage.setItem('quote-lang', lang); } catch (x) {} applyLang(); }
+    else if (b.id === 'request') $('sent').textContent = TEXT[lang].sent;
+  });
+  applyLang();
+}
+</script>
+</body>
+</html>
