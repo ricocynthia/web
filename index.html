@@ -1,13 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Cynthia Rico Cook | Websites and web tools for your business</title>
-<meta name="description" content="I build websites and web tools for your business. English y español. Twin Cities, Minnesota.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap">
+<meta content="I build websites and web tools for your business: sites that get you found, apps that replace the paperwork, and fixes for what you already have. English y español. Twin Cities, Minnesota." name="description"/>
+<link href="https://ricocynthia.github.io/web/" rel="canonical"/>
+<link href="https://ricocynthia.github.io/web/" hreflang="en" rel="alternate"/>
+<link href="https://ricocynthia.github.io/web/es/" hreflang="es" rel="alternate"/>
+<link href="https://ricocynthia.github.io/web/" hreflang="x-default" rel="alternate"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<meta content="website" property="og:type"/>
+<meta content="Cynthia Rico Cook" property="og:site_name"/>
+<meta content="Cynthia Rico Cook | Websites and web tools for your business" property="og:title"/>
+<meta content="I build websites and web tools for your business: sites that get you found, apps that replace the paperwork, and fixes for what you already have. English y español. Twin Cities, Minnesota." property="og:description"/>
+<meta content="https://ricocynthia.github.io/web/" property="og:url"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="https://ricocynthia.github.io/web/img/og.jpg" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="A chaga mushroom shaped like a heart, growing on a birch tree" property="og:image:alt"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Cynthia Rico Cook", "description": "I build websites and web tools for your business: sites that get you found, apps that replace the paperwork, and fixes for what you already have. English y español. Twin Cities, Minnesota.", "url": "https://ricocynthia.github.io/web/", "image": "https://ricocynthia.github.io/web/img/og.jpg", "inLanguage": "en", "knowsLanguage": ["en", "es"], "areaServed": {"@type": "Place", "name": "Minneapolis-Saint Paul, Minnesota"}, "address": {"@type": "PostalAddress", "addressRegion": "MN", "addressCountry": "US"}, "founder": {"@type": "Person", "name": "Cynthia Rico Cook"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Websites"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web apps for small business paperwork"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Website fixes and upkeep"}}]}</script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500&amp;family=Lora:ital,wght@0,400;0,500;1,400;1,500&amp;display=swap" rel="stylesheet"/>
 <style>
 /* Layout: the same editorial language as ricocynthia.github.io. Giant stacked headline with one italic line, mono labels, her own nature photos, a scrolling band. Light only. */
 :root{
@@ -29,8 +47,8 @@ img{display:block;max-width:100%}
 .nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:calc(18px + env(safe-area-inset-top,0px)) 0;color:var(--stone)}
 .nav b{color:var(--ink);font-weight:500}
 .lang{display:flex;gap:4px;align-items:center}
-.lang button{font:inherit;letter-spacing:inherit;text-transform:inherit;background:none;border:0;border-bottom:1px solid transparent;color:var(--stone);cursor:pointer;padding:8px 6px;min-height:36px}
-.lang button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.lang a{font:inherit;letter-spacing:inherit;text-transform:inherit;background:none;border:0;border-bottom:1px solid transparent;color:var(--stone);padding:8px 6px;min-height:36px;display:inline-flex;align-items:center}
+.lang a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
 
 .hero{padding-block:clamp(36px,6vw,72px) 48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:stretch}
 .hero-left{display:flex;flex-direction:column;gap:32px;align-items:flex-start;justify-content:space-between}
@@ -109,87 +127,66 @@ footer{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;color:v
 </head>
 <body>
 <div class="nav pad mono">
-  <b>Cynthia Rico Cook</b>
-  <div class="lang" role="group" aria-label="Language / Idioma"><button data-lang="en">EN</button><span>/</span><button data-lang="es">ES</button></div>
+<b>Cynthia Rico Cook</b>
+<div aria-label="Language / Idioma" class="lang" role="group"><a aria-current="page" href="./">EN</a><span>/</span><a href="es/" hreflang="es">ES</a></div>
 </div>
-
 <header class="hero pad">
-  <div class="hero-left">
-    <h1>
-      <span data-es="Sitios web">Websites</span>
-      <span data-es="y herramientas">&amp; web tools</span>
-      <span class="it" data-es="para tu">for your</span>
-      <span data-es="negocio.">business.</span>
-    </h1>
-    <p class="meta" data-es="Soy <b>Cynthia Rico Cook</b>. Hago los sitios y las herramientas con los que trabaja tu negocio. Cuéntame qué necesitas. <b>Estoy aquí para ayudar.</b>"><b>Cynthia Rico Cook</b> here. I build the sites and tools your business runs on. Tell me what you need. <b>I'm here to help.</b></p>
-    <a class="go mono" href="#contact"><span data-es="Hablemos">Let's talk</span><span>↓</span></a>
-  </div>
-  <div class="photo"><span class="badge mono">Twin Cities, MN · 2026</span><img src="img/chaga-heart.jpg" alt="A chaga mushroom shaped like a heart, growing on a birch tree"></div>
+<div class="hero-left">
+<h1>
+<span>Websites</span>
+<span>&amp; web tools</span>
+<span class="it">for your</span>
+<span>business.</span>
+</h1>
+<p class="meta"><b>Cynthia Rico Cook</b> here. I build the sites and tools your business runs on. Tell me what you need. <b>I'm here to help.</b></p>
+<a class="go mono" href="#contact"><span>Let's talk</span><span>↓</span></a>
+</div>
+<div class="photo"><span class="badge mono">Twin Cities, MN · 2026</span><img alt="A chaga mushroom shaped like a heart, growing on a birch tree" src="img/chaga-heart.jpg"/></div>
 </header>
-
-<div class="marquee" aria-hidden="true"><div class="track">
-  <span><span data-es="SITIOS WEB">WEBSITES</span><i>✦</i><span class="it" data-es="hechos con cariño">built with care</span><i>✦</i><span data-es="APPS PARA EL PAPELEO">APPS FOR THE BUSYWORK</span><i>✧</i><span class="it">english y español</span><i>✦</i><span data-es="ARREGLOS Y MANTENIMIENTO">FIXES &amp; UPKEEP</span><i>✦</i><span class="it" data-es="con raíces en Minnesota">rooted in Minnesota</span><i>✧</i></span>
-  <span><span data-es="SITIOS WEB">WEBSITES</span><i>✦</i><span class="it" data-es="hechos con cariño">built with care</span><i>✦</i><span data-es="APPS PARA EL PAPELEO">APPS FOR THE BUSYWORK</span><i>✧</i><span class="it">english y español</span><i>✦</i><span data-es="ARREGLOS Y MANTENIMIENTO">FIXES &amp; UPKEEP</span><i>✦</i><span class="it" data-es="con raíces en Minnesota">rooted in Minnesota</span><i>✧</i></span>
+<div aria-hidden="true" class="marquee"><div class="track">
+<span><span>WEBSITES</span><i>✦</i><span class="it">built with care</span><i>✦</i><span>APPS FOR THE BUSYWORK</span><i>✧</i><span class="it">english y español</span><i>✦</i><span>FIXES &amp; UPKEEP</span><i>✦</i><span class="it">rooted in Minnesota</span><i>✧</i></span>
+<span><span>WEBSITES</span><i>✦</i><span class="it">built with care</span><i>✦</i><span>APPS FOR THE BUSYWORK</span><i>✧</i><span class="it">english y español</span><i>✦</i><span>FIXES &amp; UPKEEP</span><i>✦</i><span class="it">rooted in Minnesota</span><i>✧</i></span>
 </div></div>
-
 <section class="pad">
-  <div class="eyebrow mono" data-es="Lo que hago">What I build</div>
-  <h2 class="title" data-es="Cosas que puedo <span class='it'>hacer</span> por ti.">Things I can <span class="it">build</span> for you.</h2>
-  <div class="rows">
-    <div class="rowx two"><h3 data-es="Sitios web">Websites</h3><p data-es="Que se vean increíbles en el teléfono y que te encuentren en Google.">Ones that look great on a phone and get you found on Google.</p></div>
-    <div class="rowx two"><h3 data-es="Apps para el papeleo">Apps for the busywork</h3><p data-es="Facturas, horarios, horas de trabajadores. De la libreta a tu teléfono.">Invoices, schedules, worker hours. Out of the notebook, onto your phone.</p></div>
-    <div class="rowx two"><h3 data-es="Arreglos y mantenimiento">Fixes &amp; upkeep</h3><p data-es="¿Sitio lento? ¿Formulario roto? Lo arreglo y lo mantengo funcionando.">Slow site? Broken form? I'll sort it out and keep it running.</p></div>
-  </div>
+<div class="eyebrow mono">What I build</div>
+<h2 class="title">Things I can <span class="it">build</span> for you.</h2>
+<div class="rows">
+<div class="rowx two"><h3>Websites</h3><p>Ones that look great on a phone and get you found on Google.</p></div>
+<div class="rowx two"><h3>Apps for the busywork</h3><p>Invoices, schedules, worker hours. Out of the notebook, onto your phone.</p></div>
+<div class="rowx two"><h3>Fixes &amp; upkeep</h3><p>Slow site? Broken form? I'll sort it out and keep it running.</p></div>
+</div>
 </section>
-
 <section class="pad green">
-  <div class="eyebrow mono" data-es="Cómo funciona">How it goes</div>
-  <h2 class="title" data-es="Sencillo, y <span class='it'>sin sorpresas.</span>">Simple, and <span class="it">no surprises.</span></h2>
-  <div class="steps">
-    <div><span class="mono" data-es="Paso 01">Step 01</span><h3 data-es="Platicamos">We chat</h3><p data-es="Me cuentas qué necesitas.">You tell me what's going on.</p></div>
-    <div><span class="mono" data-es="Paso 02">Step 02</span><h3 data-es="Pruebas una demostración">You try a demo</h3><p data-es="Algo real para probar antes de que construya lo demás.">Something real to click before I build the rest.</p></div>
-    <div><span class="mono" data-es="Paso 03">Step 03</span><h3 data-es="Lo construyo y me quedo">I build it and stick around</h3><p data-es="Un precio claro. Y no desaparezco.">One clear price. No disappearing.</p></div>
-  </div>
+<div class="eyebrow mono">How it goes</div>
+<h2 class="title">Simple, and <span class="it">no surprises.</span></h2>
+<div class="steps">
+<div><span class="mono">Step 01</span><h3>We chat</h3><p>You tell me what's going on.</p></div>
+<div><span class="mono">Step 02</span><h3>You try a demo</h3><p>Something real to click before I build the rest.</p></div>
+<div><span class="mono">Step 03</span><h3>I build it and stick around</h3><p>One clear price. No disappearing.</p></div>
+</div>
 </section>
-
 <section class="pad paper">
-  <div class="eyebrow mono" data-es="Sobre mí">About</div>
-  <h2 class="title" data-es="Un poco <span class='it'>sobre</span> mí.">A little <span class="it">about</span> me.</h2>
-  <div class="about">
-    <div class="photo"><span class="badge mono" data-es="en mi tiempo libre">off the clock</span><img src="img/dandelion-harvest.jpg" alt="A harvest of dandelions"></div>
-    <div>
-      <p data-es="De día construyo los sistemas de check-in de una aerolínea grande: software que tiene que <mark>funcionar siempre</mark>. Los negocios locales casi nunca reciben ese cuidado. Yo creo que deberían.">By day I build check-in systems for a major airline: software that has to <mark>work every single time</mark>. Local businesses almost never get that kind of care. I think they should.</p>
-      <p data-es="En mi tiempo libre me apasiona la <mark>sanación natural</mark>, y comparto lo que aprendo en Earthy Mujer.">Off the clock I'm into <mark>natural healing</mark>, and I share what I learn at Earthy Mujer.</p>
-      <div class="facts">
-        <div><span class="mono" data-es="Ubicación">Based in</span><span>Twin Cities, Minnesota</span></div>
-        <div><span class="mono" data-es="Idiomas">Languages</span><span>English y español</span></div>
-        <div><span class="mono" data-es="Experiencia">Experience</span><span data-es="6 años construyendo software">6 years building software</span></div>
-      </div>
-    </div>
-  </div>
+<div class="eyebrow mono">About</div>
+<h2 class="title">A little <span class="it">about</span> me.</h2>
+<div class="about">
+<div class="photo"><span class="badge mono">off the clock</span><img alt="A harvest of dandelions" src="img/dandelion-harvest.jpg"/></div>
+<div>
+<p>By day I build check-in systems for a major airline: software that has to <mark>work every single time</mark>. Local businesses almost never get that kind of care. I think they should.</p>
+<p>Off the clock I'm into <mark>natural healing</mark>, and I share what I learn at Earthy Mujer.</p>
+<div class="facts">
+<div><span class="mono">Based in</span><span>Twin Cities, Minnesota</span></div>
+<div><span class="mono">Languages</span><span>English y español</span></div>
+<div><span class="mono">Experience</span><span>6 years building software</span></div>
+</div>
+</div>
+</div>
 </section>
-
 <section class="pad paper contact" id="contact">
-  <div class="eyebrow mono" data-es="Contacto">Get in touch</div>
-  <h2 data-es="<span class='it'>Hablemos.</span>">Let's <span class="it">talk.</span></h2>
-  <p data-es="Cuéntame qué necesitas. La primera llamada es gratis y sin presión.">Tell me what you need. First call's free, no pressure.</p>
-  <div class="soon mono" data-es="Datos de contacto muy pronto">Contact details coming soon</div>
+<div class="eyebrow mono">Get in touch</div>
+<h2>Let's <span class="it">talk.</span></h2>
+<p>Tell me what you need. First call's free, no pressure.</p>
+<div class="soon mono">Contact details coming soon</div>
 </section>
-
 <footer class="pad mono"><span>© 2026 Cynthia Rico Cook</span><span>Twin Cities, Minnesota</span></footer>
-
-<script>
-const els=[...document.querySelectorAll('[data-es]')];
-els.forEach(e=>e.dataset.en=e.innerHTML);
-let lang='en';
-try{const s=localStorage.getItem('crc-lang');if(s==='es'||s==='en')lang=s;else if((navigator.language||'').startsWith('es'))lang='es'}catch(e){}
-function apply(){
-  document.documentElement.lang=lang;
-  els.forEach(e=>e.innerHTML=e.dataset[lang]);
-  document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang));
-}
-document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;try{localStorage.setItem('crc-lang',lang)}catch(e){}apply()}));
-apply();
-</script>
 </body>
 </html>

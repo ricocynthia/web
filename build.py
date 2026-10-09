@@ -1,0 +1,97 @@
+"""Builds index.html (English) and es/index.html (Spanish) from src/page.html.
+
+Edit src/page.html, then run:  python3 build.py
+
+English text sits inside each element. Its Spanish version sits on the same
+element's data-es attribute. Needs: pip install beautifulsoup4
+"""
+import json
+from pathlib import Path
+from bs4 import BeautifulSoup
+
+SITE = "https://ricocynthia.github.io/web/"
+ROOT = Path(__file__).parent
+
+PAGES = {
+    "en": {
+        "out": "index.html",
+        "base": "",
+        "url": SITE,
+        "locale": "en_US",
+        "title": "Cynthia Rico Cook | Websites and web tools for your business",
+        "desc": "I build websites and web tools for your business: sites that get you found, apps that replace the paperwork, and fixes for what you already have. English y español. Twin Cities, Minnesota.",
+        "ogalt": "A chaga mushroom shaped like a heart, growing on a birch tree",
+        "alt1": "A chaga mushroom shaped like a heart, growing on a birch tree",
+        "alt2": "A harvest of dandelions",
+        "services": ["Websites", "Web apps for small business paperwork", "Website fixes and upkeep"],
+    },
+    "es": {
+        "out": "es/index.html",
+        "base": "../",
+        "url": SITE + "es/",
+        "locale": "es_US",
+        "title": "Cynthia Rico Cook | Sitios web y herramientas para tu negocio",
+        "desc": "Hago sitios web y herramientas para tu negocio: sitios para que te encuentren, apps que reemplazan el papeleo y arreglos para lo que ya tienes. Español e inglés. Twin Cities, Minnesota.",
+        "ogalt": "Un hongo chaga con forma de corazón en un abedul",
+        "alt1": "Un hongo chaga con forma de corazón en un abedul",
+        "alt2": "Una cosecha de dientes de león",
+        "services": ["Sitios web", "Apps para el papeleo de negocios pequeños", "Arreglos y mantenimiento de sitios web"],
+    },
+}
+
+
+def json_ld(lang, page):
+    return json.dumps(
+        {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Cynthia Rico Cook",
+            "description": page["desc"],
+            "url": page["url"],
+            "image": SITE + "img/og.jpg",
+            "inLanguage": lang,
+            "knowsLanguage": ["en", "es"],
+            "areaServed": {"@type": "Place", "name": "Minneapolis-Saint Paul, Minnesota"},
+            "address": {"@type": "PostalAddress", "addressRegion": "MN", "addressCountry": "US"},
+            "founder": {"@type": "Person", "name": "Cynthia Rico Cook"},
+            "makesOffer": [
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": name}}
+                for name in page["services"]
+            ],
+        },
+        ensure_ascii=False,
+    )
+
+
+def lang_links(lang):
+    en = '<a href="{}" {}>EN</a>'.format("./" if lang == "en" else "../", 'aria-current="page"' if lang == "en" else 'hreflang="en"')
+    es = '<a href="{}" {}>ES</a>'.format("es/" if lang == "en" else "./", 'aria-current="page"' if lang == "es" else 'hreflang="es"')
+    return en + "<span>/</span>" + es
+
+
+def build(lang, page):
+    html = (ROOT / "src/page.html").read_text(encoding="utf-8")
+    fills = {
+        "LANG": lang, "TITLE": page["title"], "DESC": page["desc"], "URL": page["url"],
+        "SITE": SITE, "BASE": page["base"], "LOCALE": page["locale"], "OGALT": page["ogalt"],
+        "ALT1": page["alt1"], "ALT2": page["alt2"],
+        "JSONLD": json_ld(lang, page), "LANGLINKS": lang_links(lang),
+    }
+    for key, value in fills.items():
+        html = html.replace("{{" + key + "}}", value)
+
+    soup = BeautifulSoup(html, "html.parser")
+    for el in soup.select("[data-es]"):
+        if lang == "es":
+            el.clear()
+            el.append(BeautifulSoup(el["data-es"], "html.parser"))
+        del el["data-es"]
+
+    out = ROOT / page["out"]
+    out.parent.mkdir(exist_ok=True)
+    out.write_text(str(soup), encoding="utf-8")
+    print("wrote", page["out"])
+
+
+for lang, page in PAGES.items():
+    build(lang, page)
