@@ -9,33 +9,34 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Lora:ital,wght@1,500&display=swap">
 <style>
 /* Layout: questions on the left, a running estimate pinned on the right. On a phone the estimate pins to the bottom. */
 :root{
-  --paper:#F6F3EC; --white:#FFFDF8; --ink:#121614; --stone:#6A6860; --line:rgba(18,22,20,.16);
-  --blue:#2343C4; --blue-deep:#182F8F; --sky:#DCE3F8; --on-blue:#F6F3EC;
+  /* Same palette as the main site. The --blue names are kept from the first version: they now hold the moss greens. */
+  --paper:#EDE7DC; --white:#F4EFE5; --ink:#0E1410; --stone:#6E6557; --line:rgba(14,20,16,.14);
+  --blue:#2F4A37; --blue-deep:#1F2D24; --sky:#DCE3D2; --on-blue:#EDE7DC;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 1.05rem/1.5 Inter,'Helvetica Neue',Arial,sans-serif}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.05rem/1.55 'DM Sans',system-ui,sans-serif}
 h1,h2,p{margin:0}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--blue);outline-offset:3px}
 .pad{padding-inline:clamp(18px,3.2vw,44px)}
-.cap{font:600 11px/1.6 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.cap{font:400 11px/1.6 'DM Mono','Courier New',monospace;letter-spacing:.14em;text-transform:uppercase}
 .top{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;align-items:center;padding-block:18px;color:var(--stone)}
 .top a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
 .lang{display:flex;gap:4px;align-items:center}
 .lang button{font:inherit;letter-spacing:inherit;text-transform:inherit;background:none;border:0;border-bottom:1px solid transparent;color:var(--stone);cursor:pointer;padding:8px 6px;min-height:36px}
 .lang button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
 header{padding-block:clamp(20px,4vw,48px) clamp(24px,4vw,44px)}
-h1{font:800 clamp(2.2rem,6.5vw,5rem)/.96 Inter,sans-serif;letter-spacing:-.04em;max-width:14ch;text-wrap:balance}
-h1 em{font-style:italic;color:var(--blue)}
+h1{font:800 clamp(2.2rem,6.5vw,5rem)/.96 'Bricolage Grotesque','Arial Black',sans-serif;letter-spacing:-.04em;max-width:14ch;text-wrap:balance}
+h1 em{font:italic 500 1em 'Lora',Georgia,serif;color:var(--blue);letter-spacing:-.01em}
 .lead{margin-top:18px;color:var(--stone);font-size:1.15rem;max-width:46ch}
 
 .layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(24px,5vw,72px);align-items:start;padding-bottom:72px}
 fieldset{border:0;margin:0;padding:26px 0;border-top:1px solid var(--line);min-width:0}
-legend{padding:0;font:800 clamp(1.3rem,2.6vw,1.8rem)/1.1 Inter,sans-serif;letter-spacing:-.025em;margin-bottom:16px;float:left;width:100%}
+legend{padding:0;font:800 clamp(1.3rem,2.6vw,1.8rem)/1.1 'Bricolage Grotesque','Arial Black',sans-serif;letter-spacing:-.025em;margin-bottom:16px;float:left;width:100%}
 legend + *{clear:both}
 .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
 .opt{position:relative}
@@ -43,21 +44,21 @@ legend + *{clear:both}
 .opt > span{display:flex;flex-direction:column;gap:2px;justify-content:center;min-height:64px;padding:12px 16px;border:1.5px solid var(--ink);border-radius:2px;font-weight:600;background:transparent;transition:background .15s,color .15s}
 .opt small{font-weight:400;color:var(--stone);font-size:.88rem}
 .opt input:checked + span{background:var(--blue);border-color:var(--blue);color:var(--on-blue)}
-.opt input:checked + span small{color:#C9D4FF}
+.opt input:checked + span small{color:#C4D6BC}
 .opt input:focus-visible + span{outline:3px solid var(--blue);outline-offset:3px}
 .steppers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px 32px}
 .stepper{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .stepper b{font-weight:600}
 .ctl{display:flex;align-items:center;gap:6px}
-.ctl button{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:600 1.4rem/1 Inter,sans-serif;cursor:pointer}
+.ctl button{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:600 1.4rem/1 'Bricolage Grotesque','Arial Black',sans-serif;cursor:pointer}
 .ctl button:hover{background:var(--sky)}
 .ctl button:disabled{opacity:.3;cursor:default;background:transparent}
-.ctl output{min-width:2.2ch;text-align:center;font:800 1.5rem Inter,sans-serif;font-variant-numeric:tabular-nums}
+.ctl output{min-width:2.2ch;text-align:center;font:800 1.5rem 'Bricolage Grotesque','Arial Black',sans-serif;font-variant-numeric:tabular-nums}
 
 .result{position:sticky;top:20px;background:var(--blue);color:var(--on-blue);border-radius:2px;padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;gap:14px}
-.result .cap{color:#C9D4FF}
-.price{font:800 clamp(2.3rem,5vw,3.6rem)/1 Inter,sans-serif;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-.per{color:#C9D4FF}
+.result .cap{color:#C4D6BC}
+.price{font:800 clamp(2.3rem,5vw,3.6rem)/1 'Bricolage Grotesque','Arial Black',sans-serif;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.per{color:#C4D6BC}
 .lines{list-style:none;margin:0;padding:14px 0 0;border-top:1px solid rgba(246,243,236,.3);display:flex;flex-direction:column;gap:6px;font-size:.95rem}
 .lines li{display:flex;justify-content:space-between;gap:12px}
 .lines span:last-child{font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -65,7 +66,7 @@ legend + *{clear:both}
 .result .btn{color:var(--blue-deep)}
 .btn:hover{background:#fff}
 #sent{min-height:1.3em;font-size:.95rem}
-.fine{font-size:.85rem;color:#C9D4FF}
+.fine{font-size:.85rem;color:#C4D6BC}
 [hidden]{display:none!important}
 
 @media (max-width:820px){
