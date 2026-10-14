@@ -25,194 +25,321 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Cynthia Rico Cook", "description": "Hago sitios web y herramientas para tu negocio: sitios para que te encuentren, apps que reemplazan el papeleo y arreglos para lo que ya tienes. Español e inglés. Twin Cities, Minnesota.", "url": "https://ricocynthia.github.io/web/es/", "image": "https://ricocynthia.github.io/web/img/og.jpg", "inLanguage": "es", "knowsLanguage": ["en", "es"], "areaServed": {"@type": "Place", "name": "Minneapolis-Saint Paul, Minnesota"}, "address": {"@type": "PostalAddress", "addressRegion": "MN", "addressCountry": "US"}, "founder": {"@type": "Person", "name": "Cynthia Rico Cook"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sitios web"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Apps para el papeleo de negocios pequeños"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Arreglos y mantenimiento de sitios web"}}]}</script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500&amp;family=Lora:ital,wght@0,400;0,500;1,400;1,500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&amp;family=Young+Serif&amp;display=swap" rel="stylesheet"/>
 <style>
-/* Layout: the same editorial language as ricocynthia.github.io. Giant stacked headline with one italic line, mono labels, her own nature photos, a scrolling band. Light only. */
+/* Client site. Deliberately different from the portfolio: airy and warm, friendly illustrations, rounded shapes, sentence case. Light only. */
 :root{
-  --paper:#F4EFE5; --bone:#EDE7DC; --ink:#0E1410; --char:#1A2018; --moss:#2F4A37; --leaf:#3F6B47; --sage:#7E9C7A; --stone:#6E6557; --rust:#7A4628;
-  --line:rgba(14,20,16,.14);
-  --display:'Bricolage Grotesque','Arial Black',sans-serif; --serif:'Lora',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; --mono:'DM Mono','Courier New',monospace;
+  --morning:#FBF8F3; --oat:#F4EEE4; --forest:#24402F; --forest-2:#30543D; --fern:#6E9A6A; --sage-tint:#E4ECDF;
+  --peach:#F3D7C2; --peach-2:#EAC2A5; --marigold:#E2A63B; --soil:#5B4A3C; --line:rgba(36,64,47,.14);
+  --display:'Young Serif',Georgia,serif; --sans:'Figtree',system-ui,sans-serif;
+  --r-panel:32px; --r-tile:24px; --r-photo:20px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bone);color:var(--ink);font:16px/1.7 var(--sans);margin:0;overflow-x:hidden}
+body{background:var(--morning);color:var(--forest);font:400 17px/1.6 var(--sans);margin:0;overflow-x:hidden}
 h1,h2,h3,p{margin:0}
-a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em;text-wrap:balance}
+a{color:inherit}
 img{display:block;max-width:100%}
-:focus-visible{outline:2px solid var(--rust);outline-offset:4px}
-.mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
-.it{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--moss)}
-.pad{padding-inline:clamp(20px,3.2vw,40px)}
+svg{display:block}
+:focus-visible{outline:3px solid var(--marigold);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+.lead{font-size:clamp(1.08rem,1.4vw,1.2rem);color:var(--soil);max-width:46ch}
+.sub{color:var(--soil)}
 
-.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:calc(18px + env(safe-area-inset-top,0px)) 0;color:var(--stone)}
-.nav b{color:var(--ink);font-weight:500}
-.lang{display:flex;gap:4px;align-items:center}
-.lang a{font:inherit;letter-spacing:inherit;text-transform:inherit;background:none;border:0;border-bottom:1px solid transparent;color:var(--stone);padding:8px 6px;min-height:36px;display:inline-flex;align-items:center}
-.lang a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--ink)}
+/* nav */
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:calc(20px + env(safe-area-inset-top,0px)) 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;text-decoration:none}
+.brand svg{flex:none}
+.nav-r{display:flex;align-items:center;gap:10px}
+.lang{display:flex;background:var(--oat);border-radius:999px;padding:4px}
+.lang span{display:none}
+.lang a{text-decoration:none;font-size:14px;font-weight:600;padding:8px 14px;min-height:36px;display:inline-flex;align-items:center;border-radius:999px;color:var(--soil)}
+.lang a[aria-current="page"]{background:#fff;color:var(--forest);box-shadow:0 1px 2px rgba(36,64,47,.12)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 26px;border-radius:999px;background:var(--forest);color:var(--morning);font-weight:600;text-decoration:none;transition:background .2s}
+.btn:hover{background:var(--forest-2)}
+.btn.sm{min-height:44px;padding:0 18px;font-size:15px}
+.btn.sun{background:var(--marigold);color:var(--forest)}
+.btn.sun:hover{background:#EBB653}
 
-.hero{padding-block:clamp(36px,6vw,72px) 48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:stretch}
-.hero-left{display:flex;flex-direction:column;gap:32px;align-items:flex-start;justify-content:space-between}
-/* The headline is sized from its own column, so it fills the space at every width. */
-.hero-left{container-type:inline-size}
-.hero h1{font:800 clamp(2.2rem,17cqw,9.5rem)/.94 var(--display);letter-spacing:-.035em}
-.hero h1 span{display:block}
-.quiet{color:var(--stone)}
-.meta{font:400 clamp(1.1rem,1.6vw,1.3rem)/1.6 var(--serif);color:var(--char);max-width:36ch}
-.meta b{color:var(--moss);font-weight:500}
-.photo{position:relative;overflow:hidden;border-radius:2px;box-shadow:0 20px 50px -20px rgba(0,0,0,.4)}
-.photo img{width:100%;height:100%;object-fit:cover}
-.hero .photo{min-height:clamp(320px,42vw,620px)}
-.hero .photo img{position:absolute;inset:0}
-.badge{z-index:1;position:absolute;top:10px;left:10px;font-size:9px;color:var(--bone);background:rgba(0,0,0,.42);padding:5px 9px;border-radius:1px}
-.go{display:inline-flex;gap:12px;align-items:center;background:var(--moss);color:var(--bone);padding:0 30px;min-height:58px;border-radius:2px;font-size:13px;transition:background .2s}
-.go:hover{background:var(--leaf)}
-.go.light{color:var(--bone);border-color:var(--bone)}
-
-.marquee{background:var(--moss);color:var(--bone);padding:16px 0;overflow:hidden}
-.track{display:flex;gap:56px;white-space:nowrap;width:max-content;animation:mq 40s linear infinite;font:700 clamp(1.1rem,2.2vw,2rem)/1 var(--display);letter-spacing:-.01em}
-.track>span{display:flex;gap:56px;align-items:center}
-.track .it{color:#C4D6BC}
-.track i{font-style:normal;color:var(--sage)}
-@keyframes mq{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion: reduce){.track{animation:none}html{scroll-behavior:auto}}
-
-section{padding-block:clamp(48px,7vw,96px)}
-.eyebrow{color:var(--moss);display:flex;align-items:center;gap:10px}
-.eyebrow::before{content:'';width:18px;height:1px;background:currentColor}
-.title{font:700 clamp(2rem,4.2vw,3.6rem)/1 var(--display);letter-spacing:-.025em;max-width:14ch;margin-top:16px;text-wrap:balance}
-
-.rows{margin-top:48px;border-bottom:1px solid var(--line)}
-.rowx{display:grid;grid-template-columns:90px minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:baseline;padding:28px 0;border-top:1px solid var(--line)}
-.rowx .mono{color:var(--stone)}
-.rowx.two{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-.rowx h3{font:700 clamp(1.4rem,2.6vw,2rem)/1.1 var(--display);letter-spacing:-.02em}
-.rowx p{font:400 1.08rem/1.7 var(--serif);color:var(--char)}
-
-.green{background:var(--moss);color:var(--bone)}
-.green .eyebrow{color:#C4D6BC}
-.green .title .it{color:#C4D6BC}
-.steps{margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:36px}
-.steps div{border-top:1px solid rgba(237,231,220,.3);padding-top:18px;display:flex;flex-direction:column;gap:10px}
-.steps .mono{color:#C4D6BC}
-.steps h3{font:700 1.5rem/1.1 var(--display);letter-spacing:-.02em}
-.steps p{font:400 1.05rem/1.65 var(--serif);opacity:.9}
-
-.about{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,72px);margin-top:48px;align-items:start}
-.about .photo{aspect-ratio:4/5}
-.about p{font:400 1.15rem/1.8 var(--serif);color:var(--char)}
-.about p + p{margin-top:22px}
-mark{background:linear-gradient(transparent 55%,rgba(126,156,122,.45) 55%);color:inherit;font-weight:500;padding:0 3px}
-.facts{margin-top:36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.facts div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:6px}
-.facts .mono{color:var(--stone);font-size:10px}
-.facts span:last-child{font-family:var(--serif)}
-
-.work{margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,56px)}
-.work article{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
-.work .photo{display:block;width:100%;aspect-ratio:16/10}
-.work .photo img{position:absolute;inset:0;transition:transform .6s}
-.work .photo:hover img{transform:scale(1.04)}
-.work h3{font:700 clamp(1.5rem,2.6vw,2rem)/1.1 var(--display);letter-spacing:-.02em}
-.work p{font:400 1.08rem/1.7 var(--serif);color:var(--char)}
-.more{border-bottom:1px solid var(--ink);padding-bottom:4px}
-.paper{background:var(--paper)}
-.contact{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
-.contact h2{font:800 clamp(3rem,11vw,9rem)/.9 var(--display);letter-spacing:-.04em;margin:20px 0}
-.contact p{font:400 1.15rem/1.75 var(--serif);color:var(--char);max-width:44ch}
-.soon{margin-top:24px;color:var(--moss)}
-footer{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;color:var(--stone);padding-block:22px calc(28px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
-
-@media (max-width:640px){
-  .hero{grid-template-columns:1fr}
-  .hero .photo{min-height:260px}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center;padding-block:clamp(40px,7vw,96px) clamp(48px,7vw,88px)}
+.hero h1{font-size:clamp(2.4rem,5vw,4.2rem);line-height:1.04}
+.hero .hi{display:block;color:var(--fern);white-space:nowrap}
+.hero .lead{margin-top:22px}
+.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:32px}
+.bilingual{display:inline-flex;align-items:center;gap:8px;font-weight:500;color:var(--soil)}
+.bilingual b{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--sage-tint);color:var(--forest);font-size:12px;font-weight:700}
+.scene{width:100%;height:auto}
+.sprout path{transform-box:fill-box;transform-origin:bottom center}
+@media (prefers-reduced-motion: no-preference){
+  .sprout .stem{stroke-dasharray:120;stroke-dashoffset:120;animation:grow 1.1s .3s ease-out forwards}
+  .sprout .leaf{transform:scale(0);animation:pop .6s ease-out forwards}
+  .sprout .l1{animation-delay:1.0s}.sprout .l2{animation-delay:1.2s}.sprout .l3{animation-delay:1.4s}
 }
-@media (max-width:900px){
-  .rowx,.rowx.two{grid-template-columns:1fr;gap:6px}
+@keyframes grow{to{stroke-dashoffset:0}}
+@keyframes pop{to{transform:scale(1)}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+
+/* sections */
+section{padding-block:clamp(56px,8vw,104px)}
+.head{display:flex;flex-direction:column;gap:12px;max-width:640px}
+.head h2{font-size:clamp(2rem,3.8vw,3rem);line-height:1.08}
+
+/* services: one big tile, two stacked */
+.services{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px;margin-top:44px}
+.tile{border-radius:var(--r-tile);padding:clamp(24px,3vw,36px);display:flex;gap:20px}
+.tile h3{font-size:clamp(1.45rem,2.2vw,1.8rem);line-height:1.15}
+.tile p{color:var(--soil);margin-top:8px;max-width:34ch}
+.tile.big{grid-row:span 2;background:var(--sage-tint);flex-direction:column;justify-content:space-between}
+.tile.big svg{width:min(100%,360px);align-self:center}
+.tile.peach{background:var(--peach)}
+.tile.peach p{color:#5A4434}
+.tile.line{background:#fff;border:1.5px solid var(--line)}
+.tile.row{align-items:center}
+.tile.row svg{flex:none;width:96px;height:96px}
+
+/* how it goes */
+.how{background:var(--oat);border-radius:var(--r-panel);padding:clamp(32px,5vw,64px)}
+.stops{list-style:none;padding:0;margin:48px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;position:relative}
+.stops::before{content:'';position:absolute;top:26px;left:26px;right:16%;border-top:2px dashed rgba(36,64,47,.35)}
+.stop{display:flex;flex-direction:column;gap:10px;position:relative}
+.num{width:52px;height:52px;border-radius:50%;background:var(--morning);border:2px solid var(--forest);display:grid;place-items:center;font:400 1.3rem/1 var(--display)}
+.stop:last-child .num{background:var(--marigold);border-color:var(--marigold)}
+.stop h3{font-size:1.4rem;line-height:1.2;margin-top:6px}
+.stop p{color:var(--soil);max-width:28ch}
+
+/* work */
+.work{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px;margin-top:44px;align-items:start}
+.card{display:flex;flex-direction:column;gap:14px}
+.shot{display:block;position:relative;border-radius:var(--r-photo);overflow:hidden;background:var(--oat)}
+.shot img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.card.feature .shot{border:10px solid var(--peach)}
+.tag{position:absolute;bottom:14px;left:14px;background:var(--morning);color:var(--forest);font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px}
+.card h3{font-size:clamp(1.4rem,2.2vw,1.75rem);line-height:1.15}
+.card p{color:var(--soil);max-width:44ch}
+.link{font-weight:600;text-decoration:underline;text-decoration-color:var(--marigold);text-decoration-thickness:3px;text-underline-offset:5px;align-self:flex-start}
+.link:hover{text-decoration-color:var(--forest)}
+
+/* about */
+.about{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center;max-width:960px}
+.about .round{width:clamp(180px,22vw,260px);aspect-ratio:1;border-radius:50%;overflow:hidden;border:10px solid var(--sage-tint)}
+.about .round img{width:100%;height:100%;object-fit:cover}
+.about h2{font-size:clamp(2rem,3.8vw,3rem);line-height:1.08}
+.about p{color:var(--soil);margin-top:14px;max-width:52ch}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;padding:0;list-style:none}
+.chips li{background:var(--oat);border-radius:999px;padding:8px 16px;font-size:15px;font-weight:500}
+
+/* contact */
+.contact{background:var(--forest);color:var(--morning);border-radius:var(--r-panel);padding:clamp(40px,6vw,80px) clamp(28px,5vw,72px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center;overflow:hidden;position:relative}
+.contact h2{font-size:clamp(2.6rem,6vw,4.8rem);line-height:1}
+.contact p{color:#D9E3D3;margin-top:14px;font-size:1.12rem;max-width:40ch}
+.contact .soon{display:inline-block;margin-top:24px;background:rgba(251,248,243,.12);color:var(--morning);border-radius:999px;padding:10px 18px;font-weight:600;font-size:15px}
+.contact svg{width:clamp(120px,16vw,190px);height:auto}
+
+footer{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;color:var(--soil);font-size:15px;padding-block:28px calc(32px + env(safe-area-inset-bottom,0px))}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .scene{max-width:480px;margin-inline:auto}
+  .services,.work{grid-template-columns:1fr}
+  .tile.big{grid-row:auto}
+  .stops{grid-template-columns:1fr;gap:28px}
+  .stops::before{top:26px;bottom:26px;left:25px;right:auto;border-top:0;border-left:2px dashed rgba(36,64,47,.35)}
+  .stop{display:grid;grid-template-columns:52px 1fr;column-gap:16px}
+  .stop .num{grid-row:span 2}
+  .stop h3{margin-top:10px}
+  .stop .num{flex:none}
   .about{grid-template-columns:1fr}
-  .about .photo{aspect-ratio:4/3}
+  .contact{grid-template-columns:1fr}
+  .contact svg{display:none}
+}
+@media (max-width:520px){
+  .nav .btn{display:none}
+  .tile.row{flex-direction:column;align-items:flex-start}
+  .tile.row svg{width:80px;height:80px}
 }
 </style>
 </head>
 <body>
-<div class="nav pad mono">
-<b>Cynthia Rico Cook</b>
+<div class="wrap nav">
+<a class="brand" href="#top" id="top">
+<svg aria-hidden="true" height="36" viewbox="0 0 36 36" width="36"><circle cx="18" cy="18" fill="#24402F" r="18"></circle><path d="M18 27c0-6 0-9 0-12" fill="none" stroke="#FBF8F3" stroke-linecap="round" stroke-width="2.4"></path><path d="M18 17c-4.5 0-7-2.6-7-6.5 4.2 0 7 2.4 7 6.5Z" fill="#6E9A6A"></path><path d="M18 20c4.5 0 7.5-2.8 7.5-7-4.4 0-7.5 2.6-7.5 7Z" fill="#E2A63B"></path></svg>
+<span>Cynthia Rico Cook</span>
+</a>
+<div class="nav-r">
 <div aria-label="Language / Idioma" class="lang" role="group"><a href="../" hreflang="en">EN</a><span>/</span><a aria-current="page" href="./">ES</a></div>
+<a class="btn sm" href="#contact">Hablemos</a>
 </div>
-<header class="hero pad">
-<div class="hero-left">
-<h1>
-<span>Sitios web</span>
-<span>y apps</span>
-<span class="it">para tu</span>
-<span>negocio.</span>
-</h1>
-<p class="meta">Soy <b>Cynthia Rico Cook</b>. Hago los sitios y las herramientas con los que trabaja tu negocio. Cuéntame qué necesitas. <b>Estoy aquí para ayudar.</b></p>
-<a class="go mono" href="#contact"><span>Hablemos</span><span>↓</span></a>
 </div>
-<div class="photo"><span class="badge mono">Twin Cities, MN · 2026</span><img alt="Un hongo chaga con forma de corazón en un abedul" src="../img/chaga-heart.jpg"/></div>
-</header>
-<div aria-hidden="true" class="marquee"><div class="track">
-<span><span>SITIOS WEB</span><i>✦</i><span class="it">hechos con cariño</span><i>✦</i><span>APPS PARA EL PAPELEO</span><i>✧</i><span class="it">english y español</span><i>✦</i><span>ARREGLOS Y MANTENIMIENTO</span><i>✦</i><span class="it">con raíces en Minnesota</span><i>✧</i></span>
-<span><span>SITIOS WEB</span><i>✦</i><span class="it">hechos con cariño</span><i>✦</i><span>APPS PARA EL PAPELEO</span><i>✧</i><span class="it">english y español</span><i>✦</i><span>ARREGLOS Y MANTENIMIENTO</span><i>✦</i><span class="it">con raíces en Minnesota</span><i>✧</i></span>
-</div></div>
-<section class="pad">
-<div class="eyebrow mono">Lo que hago</div>
-<h2 class="title">Cosas que puedo <span class="it">hacer</span> por ti.</h2>
-<div class="rows">
-<div class="rowx two"><h3>Sitios web</h3><p>Que se vean increíbles en el teléfono y que te encuentren en Google.</p></div>
-<div class="rowx two"><h3>Apps para el papeleo</h3><p>Facturas, horarios, horas de trabajadores. De la libreta a tu teléfono.</p></div>
-<div class="rowx two"><h3>Arreglos y mantenimiento</h3><p>¿Sitio lento? ¿Formulario roto? Lo arreglo y lo mantengo funcionando.</p></div>
-</div>
-</section>
-<section class="pad green">
-<div class="eyebrow mono">Cómo funciona</div>
-<h2 class="title">Sencillo, y <span class="it">sin sorpresas.</span></h2>
-<div class="steps">
-<div><span class="mono">Paso 01</span><h3>Platicamos</h3><p>Me cuentas qué necesitas.</p></div>
-<div><span class="mono">Paso 02</span><h3>Pruebas una demostración</h3><p>Algo real para probar antes de que construya lo demás.</p></div>
-<div><span class="mono">Paso 03</span><h3>Lo construyo y me quedo</h3><p>Un precio claro. Y no desaparezco.</p></div>
-</div>
-</section>
-<section class="pad paper">
-<div class="eyebrow mono">Sobre mí</div>
-<h2 class="title">Un poco <span class="it">sobre</span> mí.</h2>
-<div class="about">
-<div class="photo"><span class="badge mono">en mi tiempo libre</span><img alt="Una cosecha de dientes de león" src="../img/dandelion-harvest.jpg"/></div>
+<header class="wrap hero">
 <div>
-<p>De día construyo los sistemas de check-in de una aerolínea grande: software que tiene que <mark>funcionar siempre</mark>. Los negocios locales casi nunca reciben ese cuidado. Yo creo que deberían.</p>
-<p>En mi tiempo libre me apasiona la <mark>sanación natural</mark>, y comparto lo que aprendo en Earthy Mujer.</p>
-<div class="facts">
-<div><span class="mono">Ubicación</span><span>Twin Cities, Minnesota</span></div>
-<div><span class="mono">Idiomas</span><span>English y español</span></div>
-<div><span class="mono">Experiencia</span><span>6 años construyendo software</span></div>
+<h1><span class="hi">Hola, soy Cynthia.</span><span>Hago sitios web y apps sencillas para negocios pequeños.</span></h1>
+<p class="lead">Sitios para que tus clientes te encuentren, apps que reemplazan el papeleo, y arreglos para lo que ya tienes. Cuéntame qué necesitas.</p>
+<div class="hero-cta">
+<a class="btn" href="#contact">Platiquemos de tu negocio</a>
+<span class="bilingual"><b>EN</b><b>ES</b>English y español</span>
+</div>
+</div>
+<svg aria-hidden="true" class="scene" viewbox="0 0 520 440">
+<!-- soft backdrop -->
+<path d="M70 120c30-70 130-100 220-86s170 50 192 130-10 170-90 214-200 40-262-6S40 190 70 120Z" fill="#F3D7C2"></path>
+<circle cx="420" cy="78" fill="#E2A63B" r="26"></circle>
+<g stroke="#E2A63B" stroke-linecap="round" stroke-width="3"><path d="M420 30v-12M462 78h12M450 48l8-8M390 48l-8-8"></path></g>
+<!-- laptop -->
+<rect fill="#FBF8F3" height="182" rx="14" stroke="#24402F" stroke-width="3" width="270" x="108" y="128"></rect>
+<path d="M108 156h270" stroke="#24402F" stroke-width="3"></path>
+<circle cx="126" cy="142" fill="#E2A63B" r="4"></circle><circle cx="140" cy="142" fill="#6E9A6A" r="4"></circle><circle cx="154" cy="142" fill="#EAC2A5" r="4"></circle>
+<!-- tiny shop on screen -->
+<rect fill="#E4ECDF" height="88" rx="4" stroke="#24402F" stroke-width="2.5" width="128" x="140" y="196"></rect>
+<path d="M132 196c0-14 8-20 16-20h112c8 0 16 6 16 20Z" fill="#E2A63B" stroke="#24402F" stroke-width="2.5"></path>
+<path d="M132 196q12 14 24 0q12 14 24 0q12 14 24 0q12 14 24 0q12 14 24 0q12 14 24 0" fill="#FBF8F3" stroke="#24402F" stroke-linejoin="round" stroke-width="2.5"></path>
+<rect fill="#24402F" height="54" rx="3" width="30" x="190" y="230"></rect>
+<rect fill="#FBF8F3" height="22" rx="3" stroke="#24402F" stroke-width="2" width="26" x="152" y="230"></rect>
+<rect fill="#FBF8F3" height="22" rx="3" stroke="#24402F" stroke-width="2" width="26" x="232" y="230"></rect>
+<rect fill="#24402F" height="10" rx="5" width="70" x="290" y="186"></rect>
+<rect fill="#6E9A6A" height="8" opacity=".55" rx="4" width="56" x="290" y="206"></rect>
+<rect fill="#6E9A6A" height="8" opacity=".55" rx="4" width="62" x="290" y="222"></rect>
+<rect fill="#24402F" height="22" rx="11" width="58" x="290" y="252"></rect>
+<path d="M86 310h314l-14 20H100Z" fill="#E4ECDF" stroke="#24402F" stroke-linejoin="round" stroke-width="3"></path>
+<!-- phone with invoice -->
+<g transform="rotate(6 410 270)">
+<rect fill="#FBF8F3" height="168" rx="16" stroke="#24402F" stroke-width="3" width="92" x="372" y="186"></rect>
+<rect fill="#24402F" height="6" rx="3" width="36" x="400" y="196"></rect>
+<rect fill="#24402F" height="8" rx="4" width="50" x="386" y="218"></rect>
+<g fill="#EAC2A5"><rect height="6" rx="3" width="64" x="386" y="238"></rect><rect height="6" rx="3" width="54" x="386" y="252"></rect><rect height="6" rx="3" width="60" x="386" y="266"></rect></g>
+<path d="M386 284h64" stroke="#24402F" stroke-dasharray="4 4" stroke-width="2"></path>
+<circle cx="418" cy="318" fill="#6E9A6A" r="17"></circle>
+<path d="M410 318l6 6 11-12" fill="none" stroke="#FBF8F3" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.2"></path>
+</g>
+<!-- plant -->
+<g class="sprout">
+<path class="stem" d="M60 330c0-30 2-60 10-96" fill="none" stroke="#24402F" stroke-linecap="round" stroke-width="3"></path>
+<path class="leaf l1" d="M62 300c-20 0-34-12-36-32 20 0 34 12 36 32Z" fill="#6E9A6A" stroke="#24402F" stroke-width="2.5"></path>
+<path class="leaf l2" d="M64 278c20-2 34-16 34-36-20 2-34 16-34 36Z" fill="#6E9A6A" stroke="#24402F" stroke-width="2.5"></path>
+<path class="leaf l3" d="M70 236c-12-6-18-20-14-34 12 6 18 20 14 34Z" fill="#E2A63B" stroke="#24402F" stroke-width="2.5"></path>
+</g>
+<path d="M34 330h56l-8 52H42Z" fill="#EAC2A5" stroke="#24402F" stroke-linejoin="round" stroke-width="3"></path>
+<path d="M30 326h64" stroke="#24402F" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</header>
+<section class="wrap" id="services">
+<div class="head">
+<h2>En qué te puedo ayudar</h2>
+<p class="lead">Empezamos con lo que más te ayude ahora. Lo demás puede esperar.</p>
+</div>
+<div class="services">
+<div class="tile big">
+<div>
+<h3>Sitios web</h3>
+<p>Que se vean increíbles en el teléfono y que te encuentren en Google, en inglés y en español.</p>
+</div>
+<svg aria-hidden="true" viewbox="0 0 360 220">
+<rect fill="#FBF8F3" height="160" rx="12" stroke="#24402F" stroke-width="3" width="200" x="20" y="30"></rect>
+<rect fill="#E4ECDF" height="22" rx="11" stroke="#24402F" stroke-width="2" width="164" x="38" y="50"></rect>
+<circle cx="52" cy="61" fill="none" r="5" stroke="#24402F" stroke-width="2"></circle>
+<rect fill="#6E9A6A" height="6" rx="3" width="80" x="64" y="58"></rect>
+<g fill="#24402F"><rect height="8" rx="4" width="110" x="38" y="90"></rect><rect height="8" rx="4" width="94" x="38" y="130"></rect></g>
+<g fill="#6E9A6A" opacity=".55"><rect height="6" rx="3" width="150" x="38" y="104"></rect><rect height="6" rx="3" width="140" x="38" y="144"></rect><rect height="6" rx="3" width="120" x="38" y="156"></rect></g>
+<path d="M156 90l3 6 6 1-4.5 4 1 6-5.5-3-5.5 3 1-6-4.5-4 6-1Z" fill="#E2A63B"></path>
+<rect fill="#FBF8F3" height="152" rx="16" stroke="#24402F" stroke-width="3" width="96" x="236" y="56"></rect>
+<path d="M284 92c-14 0-24 10-24 23 0 18 24 39 24 39s24-21 24-39c0-13-10-23-24-23Z" fill="#E2A63B" stroke="#24402F" stroke-width="3"></path>
+<circle cx="284" cy="115" fill="#FBF8F3" r="8" stroke="#24402F" stroke-width="2.5"></circle>
+<rect fill="#24402F" height="8" rx="4" width="56" x="256" y="170"></rect>
+<rect fill="#6E9A6A" height="6" opacity=".55" rx="3" width="40" x="264" y="184"></rect>
+</svg>
+</div>
+<div class="tile peach row">
+<svg aria-hidden="true" viewbox="0 0 96 96">
+<rect fill="#FBF8F3" height="74" rx="8" stroke="#24402F" stroke-width="3" width="56" x="16" y="12"></rect>
+<rect fill="#E2A63B" height="12" rx="4" stroke="#24402F" stroke-width="2.5" width="24" x="32" y="6"></rect>
+<g fill="none" stroke="#24402F" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"><path d="M26 34l4 4 7-8M26 52l4 4 7-8"></path></g>
+<g fill="#24402F"><rect height="5" rx="2.5" width="18" x="44" y="32"></rect><rect height="5" rx="2.5" width="18" x="44" y="50"></rect></g>
+<rect fill="#EAC2A5" height="5" rx="2.5" width="36" x="26" y="68"></rect>
+<circle cx="74" cy="72" fill="#6E9A6A" r="14" stroke="#24402F" stroke-width="3"></circle>
+<path d="M74 64v16M68 68h9a3 3 0 0 1 0 6h-6a3 3 0 0 0 0 6h9" fill="none" stroke="#FBF8F3" stroke-linecap="round" stroke-width="2.4"></path>
+</svg>
+<div>
+<h3>Apps para el papeleo</h3>
+<p>Facturas, horarios, horas de trabajadores. De la libreta a tu teléfono.</p>
+</div>
+</div>
+<div class="tile line row">
+<svg aria-hidden="true" viewbox="0 0 96 96">
+<circle cx="44" cy="52" fill="#E4ECDF" r="26" stroke="#24402F" stroke-width="3"></circle>
+<g fill="#24402F"><rect height="10" rx="2" width="8" x="40" y="20"></rect><rect height="10" rx="2" width="8" x="40" y="74"></rect><rect height="8" rx="2" width="10" x="12" y="48"></rect><rect height="8" rx="2" width="10" x="66" y="48"></rect></g>
+<circle cx="44" cy="52" fill="#FBF8F3" r="9" stroke="#24402F" stroke-width="3"></circle>
+<path d="M66 30c0-12 8-20 20-20 0 12-8 20-20 20Z" fill="#6E9A6A" stroke="#24402F" stroke-width="2.5"></path>
+<path d="M66 30c-1-6-4-10-9-12" fill="none" stroke="#24402F" stroke-linecap="round" stroke-width="2.5"></path>
+</svg>
+<div>
+<h3>Arreglos y mantenimiento</h3>
+<p>¿Sitio lento? ¿Formulario roto? Lo arreglo y lo mantengo funcionando.</p>
 </div>
 </div>
 </div>
 </section>
-<section class="pad">
-<div class="eyebrow mono">Trabajo</div>
-<h2 class="title">Cosas que he <span class="it">hecho.</span></h2>
+<div class="wrap">
+<section class="how">
+<div class="head">
+<h2>Así trabajamos</h2>
+<p class="lead">Sencillo y sin sorpresas.</p>
+</div>
+<ol class="stops">
+<li class="stop"><span class="num">1</span><h3>Platicamos</h3><p>Me cuentas qué necesitas. La primera llamada es gratis.</p></li>
+<li class="stop"><span class="num">2</span><h3>Pruebas una demostración</h3><p>Algo real para probar antes de que construya lo demás.</p></li>
+<li class="stop"><span class="num">3</span><h3>Lo construyo y me quedo</h3><p>Un precio claro. Y no desaparezco.</p></li>
+</ol>
+</section>
+</div>
+<section class="wrap" id="work">
+<div class="head">
+<h2>Pruébalo tú</h2>
+<p class="lead">Un par de cosas que he hecho. Las dos funcionan de verdad.</p>
+</div>
 <div class="work">
-<article>
-<a class="photo" href="https://ricocynthia.github.io/forage-and-heal/"><span class="badge mono">App en vivo</span><img alt="Plantas silvestres recolectadas" loading="lazy" src="../img/forage-and-heal.jpg"/></a>
-<h3>Forage &amp; Heal</h3>
-<p>Una guía para buscar plantas silvestres y hongos medicinales de Minnesota. Busca por nombre o por propiedad curativa, y toca una para ver cómo identificarla con seguridad.</p>
-<a class="more mono" href="https://ricocynthia.github.io/forage-and-heal/"><span>Abrir la app</span> →</a>
-</article>
-<article>
-<a class="photo" href="../quote-demo/"><span class="badge mono">Pruébala</span><img alt="La calculadora mostrando un precio estimado" loading="lazy" src="../img/quote-calculator.jpg"/></a>
+<article class="card feature">
+<a class="shot" href="../quote-demo/"><span class="tag">Demostración</span><img alt="La calculadora mostrando un precio estimado" loading="lazy" src="../img/quote-calculator.jpg"/></a>
 <h3>Calculadora de cotizaciones</h3>
 <p>Tus clientes contestan unas preguntas y ven un precio al instante. Hecha para negocios de limpieza, y fácil de adaptar al tuyo.</p>
-<a class="more mono" href="../quote-demo/"><span>Probar la demostración</span> →</a>
+<a class="link" href="../quote-demo/">Probar la calculadora</a>
+</article>
+<article class="card">
+<a class="shot" href="https://ricocynthia.github.io/forage-and-heal/"><span class="tag">App en vivo</span><img alt="Plantas silvestres recolectadas" loading="lazy" src="../img/forage-and-heal.jpg"/></a>
+<h3>Forage &amp; Heal</h3>
+<p>Una guía para buscar plantas silvestres y hongos medicinales de Minnesota.</p>
+<a class="link" href="https://ricocynthia.github.io/forage-and-heal/">Abrir la app</a>
 </article>
 </div>
 </section>
-<section class="pad paper contact" id="contact">
-<div class="eyebrow mono">Contacto</div>
-<h2><span class="it">Hablemos.</span></h2>
-<p>Cuéntame qué necesitas. La primera llamada es gratis y sin presión.</p>
-<div class="soon mono">Datos de contacto muy pronto</div>
+<section class="wrap" id="about">
+<div class="about">
+<div class="round"><img alt="Un hongo chaga con forma de corazón en un abedul" loading="lazy" src="../img/chaga-heart.jpg"/></div>
+<div>
+<h2>Un poco sobre mí</h2>
+<p>De día construyo los sistemas de check-in de una aerolínea grande, software que tiene que funcionar siempre. Los negocios locales casi nunca reciben ese cuidado. Yo creo que deberían.</p>
+<p>En mi tiempo libre me apasiona la sanación natural, y comparto lo que aprendo en Earthy Mujer.</p>
+<ul class="chips">
+<li>Twin Cities, Minnesota</li>
+<li>English y español</li>
+<li>6 años construyendo software</li>
+</ul>
+</div>
+</div>
 </section>
-<footer class="pad mono"><span>© 2026 Cynthia Rico Cook</span><span>Twin Cities, Minnesota</span></footer>
+<div class="wrap" id="contact">
+<div class="contact">
+<div>
+<h2>Hablemos.</h2>
+<p>Cuéntame qué necesitas. La primera llamada es gratis y sin presión.</p>
+<span class="soon">Datos de contacto muy pronto</span>
+</div>
+<svg aria-hidden="true" viewbox="0 0 190 190">
+<path d="M30 60c0-17 13-30 30-30h70c17 0 30 13 30 30v40c0 17-13 30-30 30H86l-34 28v-28h-2c-11 0-20-9-20-20Z" fill="#FBF8F3"></path>
+<circle cx="74" cy="80" fill="#24402F" r="7"></circle><circle cx="96" cy="80" fill="#6E9A6A" r="7"></circle><circle cx="118" cy="80" fill="#E2A63B" r="7"></circle>
+</svg>
+</div>
+</div>
+<footer class="wrap"><span>© 2026 Cynthia Rico Cook</span><span>Twin Cities, Minnesota</span></footer>
 </body>
 </html>
