@@ -86,15 +86,6 @@ u.pre.on{background-size:100% 100%}
 .split .list li::before{content:'';position:absolute;left:0;top:.62em;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 2px rgba(0,0,0,.12)}
 .split .pic{background:var(--bg) 42% 50%/cover;min-height:320px}
 
-/* services */
-.services{padding-block:clamp(64px,9vw,112px)}
-.services h2{font-size:clamp(2.3rem,5vw,3.8rem);line-height:1.05}
-.services .lead{margin-top:14px;color:var(--soft);max-width:46ch;font-size:1.15rem}
-.svc{margin-top:clamp(28px,4vw,44px);border-top:2px solid var(--ink)}
-.svc .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:8px 40px;padding:clamp(20px,3vw,30px) 0;border-bottom:1.5px solid rgba(31,50,38,.22);align-items:baseline}
-.svc h3{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,3vw,2.4rem);line-height:1.1}
-.svc p{color:var(--soft);max-width:48ch}
-
 /* one clear price + how it goes */
 .how{background:var(--sage);color:var(--ink);padding-block:clamp(72px,11vw,140px);text-align:center}
 .how .big{font-size:clamp(2.4rem,6.2vw,5.2rem);line-height:1.06;max-width:18ch;margin:0 auto}
@@ -110,17 +101,15 @@ u.pre.on{background-size:100% 100%}
 .work{padding-block:clamp(64px,9vw,112px)}
 .work h2,.pricing h2{font-size:clamp(2.3rem,5vw,3.8rem);line-height:1.05}
 .work .lead{margin-top:14px;color:var(--soft);font-size:1.15rem}
-.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:clamp(28px,4vw,44px);align-items:start}
-.card{display:flex;flex-direction:column;gap:12px}
-.shot{display:block;position:relative;border-radius:24px;overflow:hidden;background:var(--sage);transition:transform .28s var(--ease),box-shadow .28s var(--ease);box-shadow:0 6px 0 rgba(0,0,0,.08)}
-.shot img{width:100%;aspect-ratio:16/10;object-fit:cover}
-.shot:active{transform:scale(.98)}
-@media (hover:hover) and (pointer:fine){.shot:hover{transform:translateY(-6px);box-shadow:0 14px 0 rgba(0,0,0,.08)}}
-.tag{position:absolute;bottom:14px;left:14px;background:var(--cream);color:var(--ink);font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px}
-.card h3{font-family:var(--serif);font-weight:600;font-size:1.85rem;line-height:1.1;margin-top:4px}
-.card p{color:var(--soft);max-width:44ch}
-.link{font-weight:600;text-decoration:underline;text-decoration-color:var(--marker);text-decoration-thickness:3px;text-underline-offset:5px;align-self:flex-start}
-@media (hover:hover) and (pointer:fine){.link:hover{text-decoration-color:var(--ink)}}
+.demos{margin-top:clamp(28px,4vw,44px);border-top:2px solid var(--ink)}
+.demo{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 32px;align-items:center;padding:clamp(22px,3vw,34px) 0;border-bottom:1.5px solid rgba(31,50,38,.22);text-decoration:none;transition:padding .28s var(--ease)}
+.demo h3{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,3.2vw,2.6rem);line-height:1.08;margin-top:10px}
+.demo p{color:var(--soft);max-width:54ch;margin-top:8px}
+.tag{display:inline-block;background:var(--sage);color:var(--ink);font-size:13px;font-weight:600;padding:5px 12px;border-radius:999px}
+.go{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;background:var(--btn);color:var(--cream);font-weight:600;white-space:nowrap;transition:transform .2s var(--ease),background .2s}
+.go::after{content:'\2192';transition:transform .25s var(--ease)}
+.demo:active .go{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.demo:hover .go{background:var(--deep)}.demo:hover .go::after{transform:translateX(4px)}.demo:hover{padding-left:12px}}
 
 /* who I can help */
 .who{background:var(--deep);color:var(--cream);padding:clamp(64px,10vw,120px) 16px;text-align:center}
@@ -193,8 +182,8 @@ footer{background:var(--deep);color:rgba(243,237,224,.7);display:flex;flex-wrap:
 
 @media (max-width:860px){
   .split{grid-template-columns:1fr}
-  .svc .row{grid-template-columns:1fr}
-  .cards,.plans{grid-template-columns:1fr}
+  .demo{grid-template-columns:1fr}
+  .plans{grid-template-columns:1fr}
   .stops{grid-template-columns:1fr;gap:28px}
   .stops::before{top:26px;bottom:26px;left:25px;right:auto;border-top:0;border-left:2px dashed rgba(31,50,38,.35)}
   .stop{display:grid;grid-template-columns:52px 1fr;column-gap:16px}
@@ -240,26 +229,6 @@ footer{background:var(--deep);color:rgba(243,237,224,.7);display:flex;flex-wrap:
 </div>
 <div aria-label="A lake at sunset with the sky turning orange" class="pic" role="img" style="--bg:url(img/lake-sunset.jpg)"></div>
 </section>
-<section class="services" id="services">
-<div class="in">
-<h2>What I can help with</h2>
-<p class="lead">We start with whatever helps most right now. The rest can wait.</p>
-<div class="svc">
-<div class="row">
-<h3>Websites</h3>
-<p>Ones that look great on a phone and get you found on Google, in English and Spanish.</p>
-</div>
-<div class="row">
-<h3>Tools for your business</h3>
-<p>Ordering, booking, quote calculators and signups, built around how you work. Out of the notebook, onto your phone.</p>
-</div>
-<div class="row">
-<h3>Fixes and upkeep</h3>
-<p>Slow site? Broken form? I'll sort it out and keep it running.</p>
-</div>
-</div>
-</div>
-</section>
 <section class="how">
 <div class="in">
 <p class="big">One clear price. And <u class="gd">I stick around</u> after launch.</p>
@@ -274,25 +243,22 @@ footer{background:var(--deep);color:rgba(243,237,224,.7);display:flex;flex-wrap:
 <div class="in">
 <h2>Try it yourself</h2>
 <p class="lead">A few things I've made. They all really work.</p>
-<div class="cards">
-<article class="card">
-<a class="shot" href="farm-demo/"><span class="tag">Demo</span><img alt="Rows of strawberry beds under a low sunset" loading="lazy" src="img/farm-demo/berries-hero.jpg"/></a>
-<h3>Sample farm websites</h3>
-<p>Pick a beef farm, a u-pick berry farm or a pumpkin patch. The ordering, signups and counters really work.</p>
-<a class="link" href="farm-demo/">See the farm samples</a>
-</article>
-<article class="card">
-<a class="shot" href="quote-demo/"><span class="tag">Demo</span><img alt="The quote calculator showing a price estimate" loading="lazy" src="img/quote-calculator.jpg"/></a>
-<h3>Instant quote calculator</h3>
-<p>Customers answer a few questions and see a price right away. Built for cleaning businesses, and easy to adapt to yours.</p>
-<a class="link" href="quote-demo/">Try the calculator</a>
-</article>
-<article class="card">
-<a class="shot" href="https://ricocynthia.github.io/forage-and-heal/"><span class="tag">Live app</span><img alt="Foraged wild plants" loading="lazy" src="img/forage-and-heal.jpg"/></a>
-<h3>Forage &amp; Heal</h3>
-<p>A searchable guide to Minnesota's wild plants and medicinal mushrooms.</p>
-<a class="link" href="https://ricocynthia.github.io/forage-and-heal/">Open the app</a>
-</article>
+<div class="demos">
+<a class="demo" href="farm-demo/">
+<div><span class="tag">Demo</span><h3>Sample farm websites</h3>
+<p>Pick a beef farm, a u-pick berry farm or a pumpkin patch. The ordering, signups and counters really work.</p></div>
+<span class="go">See the farm samples</span>
+</a>
+<a class="demo" href="quote-demo/">
+<div><span class="tag">Demo</span><h3>Instant quote calculator</h3>
+<p>Customers answer a few questions and see a price right away. Built for cleaning businesses, and easy to adapt to yours.</p></div>
+<span class="go">Try the calculator</span>
+</a>
+<a class="demo" href="https://ricocynthia.github.io/forage-and-heal/">
+<div><span class="tag">Live app</span><h3>Forage &amp; Heal</h3>
+<p>A searchable guide to Minnesota's wild plants and medicinal mushrooms.</p></div>
+<span class="go">Open the app</span>
+</a>
 </div>
 </div>
 </section>
@@ -361,8 +327,8 @@ footer{background:var(--deep);color:rgba(243,237,224,.7);display:flex;flex-wrap:
 (function(){
   if(!('IntersectionObserver' in window))return;
   var map=[['.panel',0],['.split h2',0],['.split .txt p',1],['.split .list li',2],['.split .pic',0],
-    ['.services h2',0],['.services .lead',1],['.svc .row',0],['.how .big',0],['.stop',0],
-    ['.work h2',0],['.work .lead',1],['.card',0],['.who h2',0],['.pills li',0],['.who .open',4],
+    ['.how .big',0],['.stop',0],
+    ['.work h2',0],['.work .lead',1],['.demo',0],['.who h2',0],['.pills li',0],['.who .open',4],
     ['.pricing h2',0],['.plan',0],['.pricing .pf',0],['.band',0],['.about .round',0],['.about h2',0],['.about p',1],['.chips li',2],
     ['.contact h2',0],['.contact p',1],['.reach',2]];
   var els=[];
@@ -371,7 +337,7 @@ footer{background:var(--deep);color:rgba(243,237,224,.7);display:flex;flex-wrap:
       e.classList.add('rv');
       var d=m[1]?Math.min(4,m[1]+i):0; if(d)e.classList.add('d'+d);
       if(m[0]==='.pills li')e.style.transitionDelay=(i*70)+'ms';
-      if(m[0]==='.stop'||m[0]==='.card'||m[0]==='.svc .row')e.style.transitionDelay=(i*100)+'ms';
+      if(m[0]==='.stop'||m[0]==='.demo')e.style.transitionDelay=(i*100)+'ms';
       els.push(e);
     });
   });
