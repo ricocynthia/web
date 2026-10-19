@@ -38,7 +38,18 @@ button,input{font:inherit}
 .hero{min-height:calc(100svh - 44px);display:flex;flex-direction:column}
 .hero .top{display:flex;justify-content:space-between;align-items:center;padding-block:18px}
 .hero .cta{background:var(--hay);color:var(--hay-ink);text-decoration:none;font-weight:700;padding:12px 20px;border-radius:999px;min-height:44px;display:inline-flex;align-items:center;font-size:16px}
-.hero .scene{width:100%;max-width:900px;height:auto;margin-top:auto}
+.hero .scene{width:100%;aspect-ratio:16/8;object-fit:cover;margin-top:auto;display:block}
+figure{margin:0}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+figcaption{font-size:14px;margin-top:8px;opacity:.85}
+.bleed{background:var(--pasture)}
+.bleed img{aspect-ratio:21/8}
+.bleed figcaption{padding:10px var(--m) 0;color:var(--cream)}
+.how .grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,60px);align-items:start}
+.how .calf{aspect-ratio:4/5;margin-top:34px}
+.credits{font-size:13px;color:#D7E2CF;padding-top:16px;max-width:110ch}
+.credits a{color:#fff}
+@media (max-width:860px){.how .grid{grid-template-columns:1fr}.bleed img{aspect-ratio:4/3}}
 .hero .bottom{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:end;padding-block:24px 34px}
 .hero h1{font-size:clamp(72px,15vw,240px)}
 .hero h1 .gold{color:var(--hay)}
@@ -47,7 +58,8 @@ button,input{font:inherit}
 .mask > span{display:block;transform:translateY(105%);animation:up 900ms var(--ease-out) forwards}
 .m2 > span{animation-delay:120ms}
 @keyframes up{to{transform:none}}
-.bale{transform-box:fill-box;transform-origin:center;animation:roll 7s ease-in-out infinite alternate}
+.scene{animation:drift 24s ease-in-out infinite alternate}
+@keyframes drift{from{transform:scale(1)}to{transform:scale(1.04)}}
 @keyframes roll{from{transform:translateX(-8px) rotate(-8deg)}to{transform:translateX(8px) rotate(8deg)}}
 
 .chapter{padding-block:clamp(72px,10vw,150px)}
@@ -109,7 +121,7 @@ footer .mark span{color:var(--hay)}
 }
 @media (prefers-reduced-motion: reduce){
   .mask > span,.in{animation:none;opacity:1;transform:none}
-  .bale{animation:none}.press:active{transform:none}
+  .scene{animation:none}.press:active{transform:none}
   html{scroll-behavior:auto}
 }
 </style>
@@ -126,13 +138,7 @@ footer .mark span{color:var(--hay)}
     <div style="font-weight:500">Beef and pork by the share</div>
     <a class="cta press" href="#freezer">Order beef</a>
   </div>
-  <svg class="scene" viewBox="0 0 900 260" aria-hidden="true">
-    <path d="M0 210 C 220 170, 600 172, 900 200 L900 260 L0 260 Z" fill="#3E7038"/>
-    <g fill="none" stroke="#C9A24A" stroke-width="5"><path d="M40 196 L40 150 M120 192 L120 146 M200 188 L200 142 M280 186 L280 140"/><path d="M30 160 L290 150 M30 178 L290 168"/></g>
-    <g class="bale"><circle cx="460" cy="182" r="62" fill="#E9C46A"/><circle cx="460" cy="182" r="40" fill="none" stroke="#C9A24A" stroke-width="7"/><circle cx="460" cy="182" r="16" fill="none" stroke="#C9A24A" stroke-width="7"/></g>
-    <g><circle cx="650" cy="196" r="46" fill="#E9C46A"/><circle cx="650" cy="196" r="28" fill="none" stroke="#C9A24A" stroke-width="6"/><circle cx="650" cy="196" r="10" fill="none" stroke="#C9A24A" stroke-width="6"/></g>
-    <g><circle cx="800" cy="206" r="32" fill="#E9C46A"/><circle cx="800" cy="206" r="18" fill="none" stroke="#C9A24A" stroke-width="5"/></g>
-  </svg>
+  <img class="scene" src="../../img/farm-demo/beef-hero.jpg" alt="Hereford cattle standing in snow on a sunny winter day" width="960" height="576" fetchpriority="high">
   <div class="bottom">
     <h1 class="big"><span class="mask"><span>Long</span></span><span class="mask m2"><span class="gold">Fence</span></span></h1>
     <p>Grass-fed beef and pork from our family farm in central Minnesota. Fill your freezer once a year.</p>
@@ -173,13 +179,17 @@ footer .mark span{color:var(--hay)}
   </div>
 </section>
 
+<figure class="bleed"><img src="../../img/farm-demo/beef-land.jpg" alt="Green pasture and fields edged by forest under a big sky" width="960" height="640" loading="lazy"><figcaption>Pasture, fields and woods: where the herd spends the summer.</figcaption></figure>
+
 <section class="chapter how">
   <div class="wrap">
     <h2 class="h2 in">How it works</h2>
-    <div class="steps">
+    <div class="grid"><div class="steps">
       <div class="step in"><b>Reserve your share</b> with a deposit, or just your name if you're paying at pickup.</div>
       <div class="step in"><b>We call when it's at the locker.</b> Tell the butcher how you like it: thick steaks, more ground, roasts or not.</div>
       <div class="step in"><b>Pick it up and pay the rest.</b> Then you're set until next year.</div>
+    </div>
+    <figure class="calf in"><img src="../../img/farm-demo/beef-calf.jpg" alt="A young Hereford calf standing in green pasture" width="960" height="637" loading="lazy"><figcaption>Raised on grass from the start.</figcaption></figure>
     </div>
   </div>
 </section>
@@ -188,13 +198,7 @@ footer .mark span{color:var(--hay)}
   <div class="wrap">
     <h2 class="h2 in">The farm</h2>
     <div class="card in">
-      <svg viewBox="0 0 400 300" role="img" aria-label="Drawing of round hay bales in a pasture at dusk">
-        <rect width="400" height="300" fill="#E8A86A"/>
-        <circle cx="290" cy="110" r="38" fill="#F6D9A0"/>
-        <path d="M0 190 C 100 160, 260 162, 400 184 L400 300 L0 300 Z" fill="#2F5A2E"/>
-        <g><circle cx="110" cy="224" r="44" fill="#E9C46A"/><circle cx="110" cy="224" r="26" fill="none" stroke="#C9A24A" stroke-width="7"/></g>
-        <g><circle cx="250" cy="238" r="32" fill="#E9C46A"/><circle cx="250" cy="238" r="18" fill="none" stroke="#C9A24A" stroke-width="5"/></g>
-      </svg>
+      <img src="../../img/farm-demo/beef-bales.jpg" alt="Two round hay bales in a cut field" width="960" height="640" loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:999px 999px 18px 18px;display:block">
       <div>
         <p>Our cattle spend their lives on grass behind the long fence the farm is named for. Most of our families order every single year.</p>
         <p>On a real site, this part is in the farmer's own words: how the herd lives, and why they still do it this way.</p>
@@ -223,6 +227,7 @@ footer .mark span{color:var(--hay)}
       <div>Card, cash, check or Venmo</div>
     </div>
     <div class="big mark">Long<br><span>Fence</span></div>
+    <p class="credits">Photos from Wikimedia Commons, shown for illustration under their licenses: <a href="https://commons.wikimedia.org/w/index.php?curid=182965224">Hereford cattle in Quebec (cropped)</a>, Quintin Soloviev, CC BY 4.0; <a href="https://commons.wikimedia.org/w/index.php?curid=87531283">Round hay bales in Brodalen 1</a>, W.carter, CC0; <a href="https://commons.wikimedia.org/w/index.php?curid=35473229">CSIRO ScienceImage 2462 Hereford Cattle in a Pasture</a>, division, CSIRO, CC BY 3.0; <a href="https://commons.wikimedia.org/w/index.php?curid=16436724">Savijärvi, Millola, Nummi</a>, Abc10, CC BY-SA 3.0.</p>
     <div class="legal"><span>Demo site. Long Fence Farm, its prices and phone number are made up. Amounts are rough estimates.</span><span>Designed and built by <a href="../../">Cynthia Rico Cook</a>. Want one? <a href="sms:+16123852211">Text (612) 385-2211</a></span></div>
   </div>
 </footer>

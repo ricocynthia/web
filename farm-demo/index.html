@@ -30,7 +30,7 @@ header p{margin-top:20px;max-width:44ch;font-size:clamp(18px,1.6vw,21px)}
 @media (hover:hover) and (pointer:fine){.farm:hover{transform:translateY(-4px)}}
 .farm .kind{font-weight:600;font-size:17px}
 .farm .name{font-weight:800;font-size:clamp(40px,4.4vw,64px);line-height:.92;letter-spacing:-0.035em;text-transform:uppercase}
-.farm svg{width:100%;height:auto;display:block}
+.farm img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;border-radius:18px}
 .farm .does{font-size:16px;line-height:1.4}
 .farm .go{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:16px;padding:12px 18px;border-radius:999px;align-self:flex-start;min-height:44px}
 .beef{background:#2F5A2E;color:#F6F1E4;font-family:'Schibsted Grotesk','Instrument Sans',sans-serif}
@@ -82,21 +82,21 @@ footer{padding-block:24px 34px;font-size:14px;color:#4E5A52}
   <div class="grid">
     <a class="farm beef" href="beef/">
       <span class="kind">Beef and pork by the share</span>
-      <svg viewBox="0 0 300 110" aria-hidden="true"><path d="M0 90 C 80 74, 200 76, 300 86 L300 110 L0 110 Z" fill="#3E7038"/><circle cx="110" cy="76" r="30" fill="#E9C46A"/><circle cx="110" cy="76" r="18" fill="none" stroke="#C9A24A" stroke-width="5"/><circle cx="196" cy="84" r="22" fill="#E9C46A"/><circle cx="196" cy="84" r="12" fill="none" stroke="#C9A24A" stroke-width="4"/></svg>
+      <img src="../img/farm-demo/beef-hero.jpg" alt="" width="960" height="576" loading="lazy">
       <span class="name">Long<br>Fence</span>
       <span class="does">Freezer calculator, deposits, and card, cash, check or Venmo.</span>
       <span class="go">See the beef farm <span aria-hidden="true">→</span></span>
     </a>
     <a class="farm berries" href="berries/">
       <span class="kind">U-pick berries and CSA</span>
-      <svg viewBox="0 0 300 110" aria-hidden="true"><rect width="300" height="60" fill="#E7E1D3"/><circle cx="230" cy="40" r="20" fill="#F0C85A"/><path d="M0 56 C 90 40, 200 42, 300 54 L300 110 L0 110 Z" fill="#2E4430"/><g fill="#C42A2F"><circle cx="40" cy="84" r="4"/><circle cx="100" cy="94" r="5"/><circle cx="170" cy="86" r="4"/><circle cx="250" cy="96" r="5"/></g></svg>
+      <img src="../img/farm-demo/berries-hero.jpg" alt="" width="960" height="713" loading="lazy">
       <span class="name">Wild<br>Plum</span>
       <span class="does">Daily picking report, "text me when it's ready," and CSA signups.</span>
       <span class="go">See the berry farm <span aria-hidden="true">→</span></span>
     </a>
     <a class="farm pumpkins" href="pumpkins/">
       <span class="kind">Pumpkin patch and parties</span>
-      <svg viewBox="0 0 300 110" aria-hidden="true"><ellipse cx="80" cy="80" rx="52" ry="30" fill="#C85A1C"/><rect x="76" y="40" width="9" height="18" rx="3" fill="#3E5A2A"/><ellipse cx="180" cy="86" rx="38" ry="22" fill="#F6E9CF"/><rect x="176" y="56" width="8" height="15" rx="3" fill="#3E5A2A"/><ellipse cx="256" cy="90" rx="34" ry="18" fill="#8C9A92"/><rect x="252" y="64" width="8" height="14" rx="3" fill="#3E5A2A"/></svg>
+      <img src="../img/farm-demo/pumpkins-hero.jpg" alt="" width="960" height="650" loading="lazy">
       <span class="name">Crooked<br>Gourd</span>
       <span class="does">Live "open now" status, admission counter and party booking.</span>
       <span class="go">See the pumpkin patch <span aria-hidden="true">→</span></span>
@@ -117,6 +117,6 @@ footer{padding-block:24px 34px;font-size:14px;color:#4E5A52}
   </div>
 </section>
 
-<footer class="wrap">All three farms, their prices and phone numbers are made up for these samples. Built by <a href="../">Cynthia Rico Cook</a>, Andover, Minnesota.</footer>
+<footer class="wrap">All three farms, their prices and phone numbers are made up for these samples. Photos are from Wikimedia Commons, credited on each sample page. Built by <a href="../">Cynthia Rico Cook</a>, Andover, Minnesota.</footer>
 </body>
 </html>

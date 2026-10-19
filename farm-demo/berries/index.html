@@ -37,7 +37,25 @@ button,input{font:inherit}
 .demo-bar a{font-weight:600}
 
 .hero{position:relative;min-height:calc(100svh - 44px);background:var(--night);color:#fff;overflow:hidden;display:flex}
-.hero svg.scene{position:absolute;inset:0;width:100%;height:100%}
+.hero .scene-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;animation:drift 24s ease-in-out infinite alternate}
+.hero .scrim{position:absolute;left:0;right:0;bottom:0;height:46%;background:rgba(10,16,12,.72)}
+.hero .top .brand{color:#fff}
+@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.09)}}
+figure{margin:0}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+figcaption{font-size:14px;color:var(--soft);margin-top:8px}
+.strip{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin-top:30px}
+.strip figure:nth-child(1){grid-column:1/8;aspect-ratio:4/3}
+.strip figure:nth-child(2){grid-column:8/13;aspect-ratio:4/5;margin-top:60px}
+.strip figure:nth-child(3){grid-column:2/7;aspect-ratio:1/1;margin-top:-40px}
+.strip figure:nth-child(4){grid-column:7/13;aspect-ratio:4/3}
+.strip figure{display:flex;flex-direction:column}
+.strip figure img{flex:1;min-height:0}
+.credits{font-size:13px;color:#AFB9B1;padding-bottom:28px;max-width:110ch}
+.credits a{color:#D7DED9}
+.about .grid2{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,60px);align-items:start}
+.about .tree{aspect-ratio:4/5}
+@media (max-width:860px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}.strip figure:nth-child(n){grid-column:auto;margin-top:0;aspect-ratio:4/5}.about .grid2{grid-template-columns:1fr}}
 .hero .top{position:absolute;top:0;left:0;right:0;z-index:2}
 .hero .top .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:18px}
 .hero .brand{font-weight:600;font-size:16px;color:var(--ink)}
@@ -142,7 +160,7 @@ footer .legal a{color:#fff}
 }
 @media (prefers-reduced-motion: reduce){
   .rise,.sun,.in{animation:none;opacity:1;transform:none}
-  .cloud,.cloud2,.sway,.dot{animation:none}
+  .cloud,.cloud2,.sway,.dot,.scene-photo{animation:none}
   .press:active{transform:none}
   html{scroll-behavior:auto}
 }
@@ -158,33 +176,8 @@ footer .legal a{color:#fff}
 </div>
 
 <header class="hero">
-  <svg class="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <rect width="1440" height="900" fill="#E7E1D3"/>
-    <circle class="sun" cx="1060" cy="260" r="110" fill="#F0C85A"/>
-    <g class="cloud" fill="#F6F2EA"><ellipse cx="160" cy="150" rx="120" ry="30"/><ellipse cx="220" cy="130" rx="70" ry="30"/></g>
-    <g class="cloud2" fill="#F6F2EA" opacity=".8"><ellipse cx="120" cy="230" rx="90" ry="22"/></g>
-    <path d="M0 410 C 360 330, 900 320, 1440 400 L1440 560 L0 560 Z" fill="#7C8F63"/>
-    <path d="M0 470 C 420 400, 1000 410, 1440 460 L1440 620 L0 620 Z" fill="#4E6640"/>
-    <path d="M0 540 L1440 520 L1440 900 L0 900 Z" fill="#2E4430"/>
-    <path d="M720 525 L0 650 L0 700 Z" fill="#3B5638"/>
-    <path d="M720 525 L0 790 L0 880 Z" fill="#3B5638"/>
-    <path d="M720 525 L320 900 L480 900 Z" fill="#3B5638"/>
-    <path d="M720 525 L900 900 L1060 900 Z" fill="#3B5638"/>
-    <path d="M720 525 L1440 760 L1440 850 Z" fill="#3B5638"/>
-    <path d="M720 525 L1440 630 L1440 670 Z" fill="#3B5638"/>
-    <g fill="#C42A2F"><circle cx="120" cy="690" r="6"/><circle cx="60" cy="760" r="7"/><circle cx="390" cy="800" r="7"/><circle cx="420" cy="860" r="8"/><circle cx="960" cy="800" r="7"/><circle cx="1000" cy="870" r="8"/><circle cx="1300" cy="740" r="7"/><circle cx="1380" cy="800" r="8"/></g>
-    <g>
-      <path d="M1240 560 C 1236 500, 1246 440, 1232 380" stroke="#3B2618" stroke-width="16" fill="none" stroke-linecap="round"/>
-      <path d="M1236 430 C 1200 400, 1170 392, 1140 370 M1238 410 C 1280 380, 1310 372, 1340 350" stroke="#3B2618" stroke-width="9" fill="none" stroke-linecap="round"/>
-      <ellipse cx="1238" cy="330" rx="150" ry="90" fill="#3E5A32"/>
-      <ellipse cx="1150" cy="360" rx="80" ry="55" fill="#4E6A3C"/>
-      <ellipse cx="1330" cy="350" rx="80" ry="55" fill="#4E6A3C"/>
-      <g class="sway" fill="#5E2340">
-        <circle cx="1170" cy="400" r="12"/><circle cx="1200" cy="384" r="11"/><circle cx="1290" cy="398" r="12"/><circle cx="1320" cy="380" r="11"/><circle cx="1240" cy="410" r="12"/><circle cx="1350" cy="410" r="10"/>
-      </g>
-    </g>
-    <rect x="0" y="640" width="1440" height="260" fill="#13201A" opacity=".88"/>
-  </svg>
+  <img class="scene-photo" src="../../img/farm-demo/berries-hero.jpg" alt="Rows of strawberry beds under a low sunset" width="960" height="713" fetchpriority="high">
+  <div class="scrim" aria-hidden="true"></div>
   <div class="top"><div class="wrap">
     <div class="brand">Wild Plum Farm</div>
     <a class="cta pill press rise" href="#ripe">What's ripe today?</a>
@@ -201,6 +194,7 @@ footer .legal a{color:#fff}
     <div class="intro in">
       <h2 class="h2">What's ripe this morning</h2>
       <p>We update this before the gate opens. Hours move with the weather and the berries, so check here before you drive out.</p>
+      <figure style="aspect-ratio:16/9;margin-top:10px"><img src="../../img/farm-demo/berries-stand.jpg" alt="A farm stand with crates of produce and a chalkboard sign" width="960" height="540" loading="lazy"></figure>
     </div>
     <div class="panel in">
       <div class="updated"><span class="dot" aria-hidden="true"></span>Updated this morning at 6:40</div>
@@ -219,6 +213,18 @@ footer .legal a{color:#fff}
         <button class="go pill press" type="submit" id="alertBtn">Text me when strawberries are ready</button>
         <p class="note" id="alertNote" aria-live="polite"></p>
       </form>
+    </div>
+  </div>
+</section>
+
+<section class="field">
+  <div class="wrap">
+    <h2 class="h2 in">From the field</h2>
+    <div class="strip">
+      <figure class="in"><img src="../../img/farm-demo/berries-wild.jpg" alt="Wild strawberries ripening among green leaves" width="960" height="721" loading="lazy"><figcaption>June: the first berries turn red.</figcaption></figure>
+      <figure class="in"><img src="../../img/farm-demo/berries-flower.jpg" alt="A white strawberry flower beside ripe and green berries" width="960" height="720" loading="lazy"><figcaption>Flowers and fruit on the same plant.</figcaption></figure>
+      <figure class="in"><img src="../../img/farm-demo/berries-raspberries.jpg" alt="A bowl of raspberries with cream and sugar" width="960" height="720" loading="lazy"><figcaption>July: raspberries, best with cream.</figcaption></figure>
+      <figure class="in"><img src="../../img/farm-demo/berries-blackraspberry.jpg" alt="A black raspberry bush along a wooden fence" width="960" height="720" loading="lazy"><figcaption>Black raspberries along the fence line.</figcaption></figure>
     </div>
   </div>
 </section>
@@ -263,9 +269,12 @@ footer .legal a{color:#fff}
 <section class="about">
   <div class="wrap">
     <h2 class="h2 in" style="margin-bottom:28px">The farm</h2>
-    <p class="text in"><svg viewBox="0 0 110 110" role="img" aria-label="Drawing of a wild plum on a branch"><rect width="110" height="110" fill="#F1E3EA"/><path d="M20 30 C 50 26, 70 22, 96 14" stroke="#3B2618" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M62 24 C 70 40, 66 44, 64 48" stroke="#3B2618" stroke-width="3" fill="none"/><ellipse cx="64" cy="70" rx="24" ry="26" fill="#5E2340"/><path d="M64 46 C 60 60, 60 80, 64 94" stroke="#4A1A33" stroke-width="2" fill="none"/><path d="M76 22 C 90 30, 96 42, 94 52 C 82 50, 74 38, 76 22 Z" fill="#4E6A3C"/></svg>Three generations have farmed this ground, and the wild plum thicket by the road has been here longer than any of us. We grow what this land is good at and sell it straight to the families who eat it.</p>
+    <div class="grid2"><div><p class="text in"><img src="../../img/farm-demo/berries-plumbranch.jpg" alt="" width="110" height="110" style="float:left;width:3.6em;height:3.6em;object-fit:cover;margin:.1em .45em .1em 0">Three generations have farmed this ground, and the wild plum thicket by the road has been here longer than any of us. We grow what this land is good at and sell it straight to the families who eat it.</p>
     <p class="text soft in">On a real site, this part is in the farmer's own words: why they farm, and what a good morning here looks like.</p>
     <div class="facts in"><span>Central Minnesota</span><span>Family run</span><span>U-pick and CSA</span><span>Card, cash, check or Venmo</span></div>
+    </div>
+    <figure class="tree in"><img src="../../img/farm-demo/berries-plumtree.jpg" alt="A young wild plum tree in a grassy clearing" width="960" height="720" loading="lazy"><figcaption>A wild plum, Prunus americana, the tree the farm is named for.</figcaption></figure>
+    </div>
   </div>
 </section>
 
@@ -289,6 +298,7 @@ footer .legal a{color:#fff}
       <div>Pay how you like<span>Card, cash, check or Venmo</span></div>
     </div>
     <div class="display mark">Wild<br>Plum</div>
+    <p class="credits">Photos from Wikimedia Commons, shown for illustration under their licenses: <a href="https://commons.wikimedia.org/w/index.php?curid=78807046">Strawberry Field For... next year (28481298324)</a>, Johan Neven from Borgloon-Gotem, Belgium, CC BY 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=10129205">Fragaria vesca 003</a>, H. Zell, CC BY-SA 3.0; <a href="https://commons.wikimedia.org/w/index.php?curid=70756740">Fragaria vesca (41503723130)</a>, xulescu_g, CC BY-SA 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=33740073">Prunus americana Syrets1</a>, Аимаина хикари, CC0; <a href="https://commons.wikimedia.org/w/index.php?curid=33740072">Prunus americana Syrets2</a>, Аимаина хикари, CC0; <a href="https://commons.wikimedia.org/w/index.php?curid=4099308">Raspberries with crème fraîche and sugar</a>, Jef Poskanzer from Berkeley, CA, USA, CC BY 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=42542646">Siena Farms stand at Boston Public Market</a>, NewtonCourt, CC BY-SA 4.0; <a href="https://commons.wikimedia.org/w/index.php?curid=133131152">2023-06-15 10 39 15 Black Raspberry bush with ripening fruit along Terrace Boulevard in the Parkway Village section of Ewing Township, Mercer County, New Jersey</a>, Famartin, CC BY-SA 4.0.</p>
     <div class="legal"><span>Demo site. Wild Plum Farm, its people, prices and phone number are made up.</span><span>Designed and built by <a href="../../">Cynthia Rico Cook</a>. Want one? <a href="sms:+16123852211">Text (612) 385-2211</a></span></div>
   </div>
 </footer>
