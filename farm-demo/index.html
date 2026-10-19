@@ -9,119 +9,95 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap">
 <style>
-:root{--paper:#F5F1E6;--ink:#1F3326;--olive:#5A6B2E;--sage:#E3E6D3;--ease-out:cubic-bezier(0.23,1,0.32,1);--m:clamp(16px,3vw,40px)}
+:root{--bg:#FFFFFF;--soft-bg:#F6F4EF;--ink:#1E2A20;--soft:#59625A;--green:#2E4A33;--ease-out:cubic-bezier(0.23,1,0.32,1);--m:clamp(18px,4vw,48px)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.5 'Instrument Sans',system-ui,sans-serif}
-h1,h2,p{margin:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 'Figtree',system-ui,sans-serif}
+h1,h2,h3,p{margin:0}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--olive);outline-offset:3px}
-.wrap{width:100%;max-width:1240px;margin:0 auto;padding-inline:var(--m)}
-.top{display:flex;justify-content:space-between;align-items:center;padding-block:20px;font-weight:500}
-.top a{text-decoration:none}
-header{padding-block:clamp(40px,7vw,100px) clamp(30px,5vw,60px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}
-h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(48px,8vw,112px);line-height:.98;letter-spacing:-0.025em}
-header p{margin-top:20px;max-width:44ch;font-size:clamp(18px,1.6vw,21px)}
-.plant{width:clamp(120px,14vw,200px);height:auto}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding-bottom:20px}
-.farm{display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:clamp(380px,40vw,520px);border-radius:30px;padding:clamp(20px,2.4vw,30px);text-decoration:none;transition:transform 200ms var(--ease-out)}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding-inline:var(--m)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:16px}
+.top .name{font-weight:800;font-size:20px;text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 26px;border-radius:999px;background:var(--green);color:#fff;font-weight:700;font-size:16px;text-decoration:none;transition:transform 160ms var(--ease-out)}
+.btn:active{transform:scale(0.97)}
+.btn.light{background:#fff;color:var(--ink)}
+header{padding-block:clamp(40px,6vw,80px) clamp(28px,4vw,44px)}
+h1{font-weight:800;font-size:clamp(38px,5.4vw,64px);line-height:1.04;letter-spacing:-0.025em}
+header p{margin-top:14px;max-width:52ch;font-size:19px;color:var(--soft)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.farm{display:flex;flex-direction:column;gap:6px;background:var(--soft-bg);border-radius:20px;padding:12px 12px 20px;text-decoration:none;transition:transform 200ms var(--ease-out)}
 .farm:active{transform:scale(0.98)}
 @media (hover:hover) and (pointer:fine){.farm:hover{transform:translateY(-4px)}}
-.farm .kind{font-weight:600;font-size:17px}
-.farm .name{font-weight:800;font-size:clamp(40px,4.4vw,64px);line-height:.92;letter-spacing:-0.035em;text-transform:uppercase}
-.farm img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;border-radius:18px}
-.farm .does{font-size:16px;line-height:1.4}
-.farm .go{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:16px;padding:12px 18px;border-radius:999px;align-self:flex-start;min-height:44px}
-.beef{background:#2F5A2E;color:#F6F1E4;font-family:'Schibsted Grotesk','Instrument Sans',sans-serif}
-.beef .go{background:#E9C46A;color:#1F2A17}
-.berries{background:#13201A;color:#F4F1EA}
-.berries .name{font-family:'Unbounded','Instrument Sans',sans-serif;font-size:clamp(34px,3.6vw,54px)}
-.berries .go{background:#fff;color:#13201A}
-.pumpkins{background:#E8742A;color:#2B1A0F;font-family:'Bricolage Grotesque','Instrument Sans',sans-serif}
-.pumpkins .go{background:#2B1A0F;color:#F6E9CF}
-.more{margin-top:10px;background:var(--sage);border-radius:30px;padding:clamp(22px,3vw,34px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
-.more h2{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(26px,2.6vw,36px);line-height:1.1}
-.more p{max-width:52ch}
-.contact{padding-block:clamp(70px,9vw,130px)}
-.contact h2{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(40px,6vw,84px);line-height:1;letter-spacing:-0.02em}
-.contact p{margin-top:16px;max-width:48ch}
-.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-.btn{display:inline-flex;align-items:center;min-height:52px;padding:14px 24px;border-radius:999px;text-decoration:none;font-weight:600;transition:transform 160ms var(--ease-out)}
-.btn:active{transform:scale(0.97)}
-.btn.solid{background:var(--ink);color:var(--paper)}
-.btn.line{background:#fff;color:var(--ink)}
-footer{padding-block:24px 34px;font-size:14px;color:#4E5A52}
-@media (max-width:900px){.grid{grid-template-columns:1fr}.farm{min-height:0}header{grid-template-columns:1fr}.plant{display:none}}
+.farm img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:12px;margin-bottom:10px}
+.farm .kind{color:var(--soft);font-size:15px;padding-inline:6px}
+.farm .n{font-weight:800;font-size:22px;padding-inline:6px}
+.farm .does{font-size:16px;padding-inline:6px;color:var(--soft)}
+.farm .go{font-weight:700;padding-inline:6px;margin-top:8px}
+.more{margin-top:16px;background:var(--soft-bg);border-radius:20px;padding:clamp(22px,3vw,32px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+.more h2{font-weight:800;font-size:clamp(22px,2.2vw,28px)}
+.more p{color:var(--soft);margin-top:4px;max-width:52ch}
+.band{margin-block:clamp(56px,7vw,96px);background:var(--green);color:#fff;border-radius:24px;padding:clamp(26px,4vw,52px)}
+.band h2{font-weight:800;font-size:clamp(30px,3.6vw,44px);line-height:1.1;letter-spacing:-0.02em}
+.band p{color:#DCE6DD;margin-top:10px;max-width:52ch}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.btn.line{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.5)}
+footer{padding-block:0 34px;font-size:14px;color:var(--soft)}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion: reduce){.farm,.btn{transition:none}.farm:active,.btn:active{transform:none}}
-
-/* Calm cards: one neutral surface, the photos carry the color */
-.beef,.berries,.pumpkins{background:#EFEBE1;color:var(--ink)}
-.beef .go,.berries .go,.pumpkins .go{background:var(--ink);color:var(--paper)}
-
 </style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@800&family=Unbounded:wght@800&family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap">
 </head>
 <body>
 <div class="wrap top">
-  <a href="../">Cynthia Rico Cook</a>
-  <a href="sms:+16123852211">Text (612) 385-2211</a>
+  <a class="name" href="../">Cynthia Rico Cook</a>
+  <a class="btn" href="sms:+16123852211">Text me</a>
 </div>
 
 <header class="wrap">
-  <div>
-    <h1>Pick a farm like yours.</h1>
-    <p>Each one is a sample site for a made-up farm. Tap around: the ordering, counters and signups really work. Your site would look like your farm, not like these.</p>
-  </div>
-  <svg class="plant" viewBox="0 0 240 320" aria-hidden="true">
-    <g fill="none" stroke="#1F3326" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M120 318 C 118 262, 110 222, 96 184"/><path d="M120 318 C 126 252, 150 210, 168 166"/><path d="M120 318 C 100 294, 72 284, 52 266"/>
-      <g transform="translate(96 184)"><g transform="rotate(-40)"><path d="M0 0 C 18 -18, 18 -48, 0 -64 C -18 -48, -18 -18, 0 0 Z" fill="#E3E6D3"/></g><path d="M0 0 C 20 -20, 20 -54, 0 -72 C -20 -54, -20 -20, 0 0 Z" fill="#E3E6D3"/><g transform="rotate(40)"><path d="M0 0 C 18 -18, 18 -48, 0 -64 C -18 -48, -18 -18, 0 0 Z" fill="#E3E6D3"/></g></g>
-      <g transform="translate(168 166) rotate(14)"><g transform="rotate(-42)"><path d="M0 0 C 16 -16, 16 -42, 0 -56 C -16 -42, -16 -16, 0 0 Z" fill="#E3E6D3"/></g><path d="M0 0 C 18 -18, 18 -48, 0 -64 C -18 -48, -18 -18, 0 0 Z" fill="#E3E6D3"/><g transform="rotate(42)"><path d="M0 0 C 16 -16, 16 -42, 0 -56 C -16 -42, -16 -16, 0 0 Z" fill="#E3E6D3"/></g></g>
-      <g transform="translate(46 266) rotate(14)"><path d="M0 0 C 15 0, 23 15, 17 32 C 12 42, 4 48, 0 48 C -4 48, -12 42, -17 32 C -23 15, -15 0, 0 0 Z" fill="#B5473A"/></g>
-    </g>
-  </svg>
+  <h1>Pick a farm like yours.</h1>
+  <p>Each one is a sample site for a made-up farm. Tap around: the ordering, counters and signups really work. Your site would be built around your farm, not copied from these.</p>
 </header>
 
 <main class="wrap">
   <div class="grid">
-    <a class="farm beef" href="beef/">
-      <span class="kind">Beef and pork by the share</span>
+    <a class="farm" href="beef/">
       <img src="../img/farm-demo/beef-hero.jpg" alt="" width="960" height="576" loading="lazy">
-      <span class="name">Long<br>Fence</span>
-      <span class="does">Freezer calculator, deposits, and card, cash, check or Venmo.</span>
+      <span class="kind">Beef and pork by the share</span>
+      <span class="n">Long Fence Farm</span>
+      <span class="does">Shop cards, a freezer calculator, and card, cash, check or Venmo.</span>
       <span class="go">See the beef farm <span aria-hidden="true">→</span></span>
     </a>
-    <a class="farm berries" href="berries/">
-      <span class="kind">U-pick berries and CSA</span>
+    <a class="farm" href="berries/">
       <img src="../img/farm-demo/berries-hero.jpg" alt="" width="960" height="713" loading="lazy">
-      <span class="name">Wild<br>Plum</span>
-      <span class="does">Daily picking report, "text me when it's ready," and CSA signups.</span>
+      <span class="kind">U-pick berries and CSA</span>
+      <span class="n">Wild Plum Farm</span>
+      <span class="does">A daily picking report, "text me when it's ready," and CSA signups.</span>
       <span class="go">See the berry farm <span aria-hidden="true">→</span></span>
     </a>
-    <a class="farm pumpkins" href="pumpkins/">
-      <span class="kind">Pumpkin patch and parties</span>
+    <a class="farm" href="pumpkins/">
       <img src="../img/farm-demo/pumpkins-hero.jpg" alt="" width="960" height="650" loading="lazy">
-      <span class="name">Crooked<br>Gourd</span>
-      <span class="does">Live "open now" status, admission counter and party booking.</span>
+      <span class="kind">Pumpkin patch and parties</span>
+      <span class="n">Crooked Gourd Farm</span>
+      <span class="does">A live "open now" sign, an admission counter and party booking.</span>
       <span class="go">See the pumpkin patch <span aria-hidden="true">→</span></span>
     </a>
   </div>
   <div class="more">
     <div><h2>Dairy, flowers, Christmas trees?</h2><p>If your farm sells something else, I can mock up a sample for your kind of farm.</p></div>
-    <a class="btn solid" href="sms:+16123852211">Text me about yours</a>
+    <a class="btn" href="sms:+16123852211">Text me about yours</a>
+  </div>
+
+  <div class="band">
+    <h2>Your farm, online, your way.</h2>
+    <p>Farm websites from $500, with payment plans and trades welcome. Five founding farm spots at a sliding-scale price.</p>
+    <div class="btns">
+      <a class="btn light" href="sms:+16123852211">Text (612) 385-2211</a>
+      <a class="btn line" href="mailto:hello.cynthiaricocook@gmail.com">hello.cynthiaricocook@gmail.com</a>
+    </div>
   </div>
 </main>
 
-<section class="wrap contact">
-  <h2>Your farm, online, your way.</h2>
-  <p>Farm websites from $500, with payment plans and trades welcome. Five founding farm spots at a sliding-scale price.</p>
-  <div class="btns">
-    <a class="btn solid" href="sms:+16123852211">Text (612) 385-2211</a>
-    <a class="btn line" href="mailto:hello.cynthiaricocook@gmail.com">hello.cynthiaricocook@gmail.com</a>
-  </div>
-</section>
-
-<footer class="wrap">All three farms, their prices and phone numbers are made up for these samples. Photos are from Wikimedia Commons, credited on each sample page. Built by <a href="../">Cynthia Rico Cook</a>, Andover, Minnesota.</footer>
+<footer class="wrap">All three farms, their people, prices and phone numbers are made up for these samples. Photos are from Wikimedia Commons, credited on each sample page. Built by <a href="../">Cynthia Rico Cook</a>, Andover, Minnesota.</footer>
 </body>
 </html>

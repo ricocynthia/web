@@ -9,274 +9,247 @@
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@800&family=Onest:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap">
 <style>
 :root{
-  --bg:#FFFFFF; --surface:#F3F1EC; --field:#E6E2D8;
-  --ink:#13201A; --soft:#4E5A52; --night:#13201A; --on-night:#F4F1EA;
-  --plum:#5E2340; --plum-soft:#F1E3EA; --gold:#F0C85A; --berry:#C42A2F;
+  --bg:#FFFFFF; --soft-bg:#F6F4EF; --line-bg:#ECE8DF;
+  --ink:#1E2A20; --soft:#59625A; --green:#2E4A33;
+  --accent:#B4561F;
   --ease-out:cubic-bezier(0.23,1,0.32,1);
-  --m:clamp(16px,3vw,40px);
+  --m:clamp(18px,4vw,48px);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 'Onest',system-ui,sans-serif}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 'Figtree',system-ui,sans-serif}
 h1,h2,h3,p{margin:0}
 a{color:inherit}
 button,input{font:inherit}
-:focus-visible{outline:3px solid var(--plum);outline-offset:3px}
-.wrap{width:100%;max-width:1240px;margin:0 auto;padding-inline:var(--m)}
-.display{font-family:'Unbounded',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.92}
-.h2{font-family:'Unbounded',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:1;font-size:clamp(30px,4.2vw,56px)}
-.press{transition:transform 160ms var(--ease-out),background-color 200ms ease,color 200ms ease,border-color 200ms ease}
-.press:active{transform:scale(0.97)}
-.pill{border-radius:999px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding-inline:var(--m)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 26px;border-radius:999px;border:0;background:var(--green);color:#fff;font-weight:700;font-size:16px;text-decoration:none;cursor:pointer;transition:transform 160ms var(--ease-out)}
+.btn:active{transform:scale(0.97)}
+.btn.light{background:#fff;color:var(--ink)}
+.btn.full{width:100%}
+h2{font-weight:800;font-size:clamp(30px,3.6vw,44px);line-height:1.1;letter-spacing:-0.02em}
+.sub{color:var(--soft);font-size:18px;max-width:52ch;margin-top:10px}
+section{padding-block:clamp(64px,8vw,104px)}
 
-.demo-bar{background:var(--plum);color:#fff;font-size:15px}
-.demo-bar .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;align-items:center;padding-block:10px}
-.demo-bar a{font-weight:600}
-
-.hero{position:relative;min-height:calc(100svh - 44px);background:var(--night);color:#fff;overflow:hidden;display:flex}
-.hero .scene-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;animation:drift 24s ease-in-out infinite alternate}
-.hero .scrim{position:absolute;left:0;right:0;bottom:0;height:46%;background:rgba(10,16,12,.72)}
-.hero .top .brand{color:#fff}
-@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.09)}}
-figure{margin:0}
-figure img{display:block;width:100%;height:100%;object-fit:cover}
-figcaption{font-size:14px;color:var(--soft);margin-top:8px}
-.strip{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin-top:30px}
-.strip figure:nth-child(1){grid-column:1/8;aspect-ratio:4/3}
-.strip figure:nth-child(2){grid-column:8/13;aspect-ratio:4/5;margin-top:60px}
-.strip figure:nth-child(3){grid-column:2/7;aspect-ratio:1/1;margin-top:-40px}
-.strip figure:nth-child(4){grid-column:7/13;aspect-ratio:4/3}
-.strip figure{display:flex;flex-direction:column}
-.strip figure img{flex:1;min-height:0}
-.credits{font-size:13px;color:#AFB9B1;padding-bottom:28px;max-width:110ch}
-.credits a{color:#D7DED9}
-.about .grid2{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,60px);align-items:start}
-.about .tree{aspect-ratio:4/5}
-@media (max-width:860px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}.strip figure:nth-child(n){grid-column:auto;margin-top:0;aspect-ratio:4/5}.about .grid2{grid-template-columns:1fr}}
-.hero .top{position:absolute;top:0;left:0;right:0;z-index:2}
-.hero .top .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:18px}
-.hero .brand{font-weight:600;font-size:16px;color:var(--ink)}
-.hero .cta{background:#fff;color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;padding:12px 20px;min-height:44px;display:inline-flex;align-items:center}
-.hero .bottom{position:relative;z-index:2;margin-top:auto;width:100%}
-.hero .bottom .wrap{padding-bottom:clamp(20px,3vw,34px);display:flex;flex-direction:column;gap:18px}
-.hero p.lede{max-width:34ch;font-size:clamp(16px,1.4vw,19px);line-height:1.45}
-.hero h1{font-size:clamp(68px,17.5vw,280px)}
-.hero h1 span{display:block}
-.rise{opacity:0;transform:translateY(22px);animation:rise 800ms var(--ease-out) forwards}
-.d1{animation-delay:120ms}.d2{animation-delay:240ms}
-@keyframes rise{to{opacity:1;transform:none}}
-.sun{transform-box:fill-box;transform-origin:center;animation:sunup 2600ms var(--ease-out) both}
-@keyframes sunup{from{transform:translateY(60px);opacity:.6}to{transform:none;opacity:1}}
-.cloud{animation:drift 60s linear infinite}
-.cloud2{animation:drift 85s linear infinite;animation-delay:-40s}
-@keyframes drift{from{transform:translateX(-20%)}to{transform:translateX(110%)}}
-.sway{transform-box:fill-box;transform-origin:top center;animation:sway 4.5s ease-in-out infinite alternate}
-@keyframes sway{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}
-
-section{padding-block:clamp(72px,10vw,150px)}
-.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,80px);align-items:start}
-.split .intro{display:flex;flex-direction:column;gap:18px;position:sticky;top:24px}
-.split .intro p{max-width:40ch;font-size:18px}
-.panel{display:flex;flex-direction:column;gap:14px}
-
-.updated{display:flex;align-items:center;gap:10px;color:var(--soft);font-size:15px}
-.dot{width:10px;height:10px;border-radius:50%;background:#3F8A3A;animation:pulse 2.2s ease-in-out infinite}
+.demo-bar{background:var(--soft-bg);font-size:14px;color:var(--soft)}
+.demo-bar .wrap{display:flex;flex-wrap:wrap;gap:4px 16px;justify-content:space-between;padding-block:9px}
+.demo-bar a{color:var(--ink);font-weight:600}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-0.01em;text-decoration:none}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-weight:500}
+.nav ul a{text-decoration:none}
+.status{display:inline-flex;align-items:center;gap:8px;background:var(--soft-bg);font-weight:600;font-size:15px;padding:12px 18px;border-radius:999px;min-height:46px}
+.status i{width:9px;height:9px;border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.row{display:flex;justify-content:space-between;gap:12px;align-items:center;background:var(--surface);border-radius:18px;padding:18px 20px;font-size:17px}
-.row strong{font-weight:600}
-.row.big{background:var(--night);color:var(--on-night);flex-direction:column;align-items:flex-start;gap:4px}
-.row.big .now{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(20px,2.2vw,26px);letter-spacing:-0.02em;text-transform:uppercase}
+@media (max-width:900px){.nav ul{display:none}}
 
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:10px 16px;min-height:44px;cursor:pointer;font-size:15px;font-weight:500}
-.chip[aria-pressed="true"]{background:var(--ink);color:#fff}
-.chip.plum[aria-pressed="true"]{background:var(--plum);border-color:var(--plum)}
-label.field{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:500}
-label.field input{font-size:17px;padding:12px 16px;border:2px solid var(--ink);border-radius:14px;min-height:50px;background:#fff}
-.go{background:var(--plum);color:#fff;border:0;padding:16px 22px;min-height:54px;font-weight:600;font-size:17px;cursor:pointer;width:100%}
-.note{font-size:15px;color:var(--soft);min-height:1.5em}
-.note.done{color:var(--plum);font-weight:600}
+.hero .frame{position:relative;margin-inline:var(--m);border-radius:24px;overflow:hidden;min-height:clamp(460px,72svh,720px);display:flex;align-items:flex-end}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:drift 26s ease-in-out infinite alternate}
+@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.08)}}
+.hero .shade{position:absolute;inset:auto 0 0 0;height:70%;background:rgba(14,22,16,.55)}
+.hero .copy{position:relative;color:#fff;padding:clamp(24px,4vw,56px);max-width:660px;display:flex;flex-direction:column;gap:16px}
+.hero h1{font-weight:800;font-size:clamp(38px,5.4vw,68px);line-height:1.02;letter-spacing:-0.025em}
+.hero p{font-size:clamp(17px,1.5vw,20px);max-width:42ch}
+.rise{opacity:0;transform:translateY(16px);animation:rise 700ms var(--ease-out) forwards}
+.d1{animation-delay:90ms}.d2{animation-delay:180ms}
+@keyframes rise{to{opacity:1;transform:none}}
 
-.freezer{background:var(--field)}
-.result{background:var(--night);color:var(--on-night);border-radius:24px;padding:24px;display:grid;grid-template-columns:1fr auto;gap:14px 20px;align-items:end}
-.result .lbs{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,3.6vw,46px);letter-spacing:-0.03em;line-height:1;text-transform:uppercase}
-.result .what{grid-column:1/2;font-size:17px;line-height:1.45}
-.box{grid-column:2/3;grid-row:1/3;width:64px;height:120px;border-radius:10px;background:rgba(255,255,255,.12);display:flex;align-items:flex-end;overflow:hidden}
-.box span{display:block;width:100%;background:var(--gold);border-radius:8px;transition:height 360ms var(--ease-out)}
-.result .space{grid-column:1/3;font-size:15px;color:#C9D1CB}
+.points{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(18px,3vw,36px);margin-top:36px}
+.points div{display:flex;flex-direction:column;gap:8px}
+.points svg{color:var(--accent)}
+.points h3{font-weight:700;font-size:19px}
+.points p{color:var(--soft);font-size:16px}
 
-.csa{background:var(--plum-soft)}
-.shares{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.share{text-align:left;background:#fff;border:2px solid transparent;border-radius:22px;padding:20px;cursor:pointer;display:flex;flex-direction:column;gap:4px;color:var(--ink)}
-.share[aria-pressed="true"]{border-color:var(--plum)}
-.share .t{font-weight:600}
-.share .p{font-family:'Unbounded',sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.03em}
-.share .d{font-size:15px;color:var(--soft)}
+.panel{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(20px,4vw,48px);margin-top:30px;background:var(--soft-bg);border-radius:24px;padding:clamp(20px,3vw,34px);align-items:center}
+.stepper{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:999px;padding:8px;max-width:420px}
+.stepper button{width:54px;height:54px;border-radius:50%;border:0;font-size:26px;cursor:pointer;background:var(--soft-bg);color:var(--ink);transition:transform 160ms var(--ease-out)}
+.stepper button:active{transform:scale(0.94)}
+.stepper .more{background:var(--accent);color:#fff}
+.stepper output{font-weight:800;font-size:22px}
+.total .n{font-weight:800;font-size:clamp(44px,5vw,60px);letter-spacing:-0.03em;line-height:1}
+.total p{color:var(--soft);margin-top:8px}
+.prices{display:flex;flex-direction:column;margin-top:18px;border-top:1px solid var(--line-bg);max-width:420px}
+.prices div{display:flex;justify-content:space-between;padding:12px 4px;border-bottom:1px solid var(--line-bg)}
 
-.season h2{font-size:clamp(64px,13vw,190px)}
-.season .list{display:flex;flex-direction:column;gap:6px;margin-top:28px;max-width:760px}
-details{background:var(--surface);border-radius:18px}
-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:0 20px;min-height:58px;font-weight:600}
-summary::-webkit-details-marker{display:none}
-.plus{display:inline-block;font-size:22px;transition:transform 220ms var(--ease-out)}
-details[open] .plus{transform:rotate(45deg)}
-details p{padding:0 20px 20px;max-width:60ch}
+.story{background:var(--soft-bg)}
+.story .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.story img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:20px;display:block}
+.story p{font-size:19px;margin-top:16px;max-width:46ch}
+.story .sig{font-weight:700;margin-top:20px}
+.animals{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.animals span{background:#fff;border-radius:999px;padding:9px 15px;font-size:15px}
 
-.about .text{font-size:clamp(22px,2.4vw,34px);line-height:1.25;max-width:30ch}
-.about .text svg{float:left;width:3.6em;height:3.6em;margin:.1em .45em .1em 0}
-.about .soft{color:var(--soft);margin-top:1em}
-.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
-.facts span{background:var(--surface);border-radius:999px;padding:10px 16px;font-size:15px}
+.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:28px}
+.strip img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px;display:block}
 
-.visit{padding-bottom:0}
-.rows a,.rows div{display:flex;align-items:flex-end;padding:0 var(--m) 16px;min-height:clamp(84px,9vw,130px);font-weight:500;font-size:clamp(28px,4.4vw,64px);letter-spacing:-0.02em;text-decoration:none;max-width:none}
-.rows > :nth-child(odd){background:var(--surface)}
-.rows > :nth-child(even){background:var(--field)}
-.rows .call{background:var(--plum)!important;color:#fff;justify-content:space-between;align-items:center;padding-bottom:0}
-.arrow{width:clamp(52px,6vw,80px);height:clamp(52px,6vw,80px);border-radius:50%;background:#fff;color:var(--plum);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.party{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);margin-top:30px;align-items:start}
+.party .photo{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:20px;display:block}
+.box{background:var(--soft-bg);border-radius:24px;padding:clamp(20px,3vw,30px);display:flex;flex-direction:column;gap:12px}
+.box label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:15px}
+.box input{min-height:52px;border-radius:14px;border:0;padding:12px 16px;font-size:17px;background:#fff}
+.note{color:var(--soft);font-size:15px;min-height:1.5em}
+.note.done{color:var(--accent);font-weight:600}
 
-footer{background:var(--night);color:var(--on-night);padding-top:48px}
-footer .cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;font-size:16px}
-footer .cols div span{display:block;color:#AFB9B1}
-footer .mark{font-size:clamp(64px,16vw,250px);margin-top:clamp(80px,14vw,200px)}
-footer .legal{padding-block:20px 28px;font-size:14px;color:#AFB9B1;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
-footer .legal a{color:#fff}
+.band{background:var(--green);color:#fff;border-radius:24px;padding:clamp(26px,4vw,52px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center}
+.band p{color:#DCE6DD;margin-top:8px}
+.hours{display:flex;flex-direction:column}
+.hours div{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+.hours div:last-child{border:0}
 
-.in{opacity:1}
+footer{padding-block:56px 30px;background:var(--soft-bg);margin-top:clamp(64px,8vw,104px)}
+footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px}
+footer h4{margin:0 0 10px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+footer ul a{text-decoration:none}
+footer .credits{font-size:13px;color:var(--soft);margin-top:34px;max-width:110ch}
+footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-size:14px;color:var(--soft);margin-top:12px}
+
 @supports (animation-timeline: view()){
-  .in{animation:rise linear both;animation-timeline:view();animation-range:entry 5% cover 25%}
+  .in{animation:settle linear both;animation-timeline:view();animation-range:entry 0% cover 22%}
 }
-@media (max-width:860px){
-  .split{grid-template-columns:1fr}
-  .split .intro{position:static}
-  footer .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .rows .call .arrow{width:56px;height:56px}
+@keyframes settle{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media (max-width:900px){
+  .points{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .story .grid,.panel,.party,.band{grid-template-columns:1fr}
+  .strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  footer .cols{grid-template-columns:1fr 1fr}
 }
-@media (max-width:480px){
-  .shares{grid-template-columns:1fr}
-}
+@media (max-width:520px){.nav .btn{display:none}}
 @media (prefers-reduced-motion: reduce){
-  .rise,.sun,.in{animation:none;opacity:1;transform:none}
-  .cloud,.cloud2,.sway,.dot,.scene-photo{animation:none}
-  .press:active{transform:none}
+  .rise,.in,.hero img,.status i{animation:none;opacity:1;transform:none}
+  .btn:active,.stepper button:active{transform:none}
   html{scroll-behavior:auto}
 }
-
-/* Calm palette tweaks: neutral demo bar and a soft sage CSA section */
-.demo-bar{background:var(--surface);color:var(--ink)}
-.demo-bar a{color:var(--plum)}
-.csa{background:#EEF0E8}
-
-
-
-:root{--plum:#B4561F;--plum-soft:#F6E8DC}
-.hero .top .brand{color:#fff}
-.status{display:inline-flex;align-items:center;gap:8px;background:rgba(19,32,26,.82);color:#fff;font-weight:500;font-size:15px;padding:11px 16px;border-radius:999px}
-.status i{width:9px;height:9px;border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite}
-.hero .top .wrap{gap:10px;flex-wrap:wrap}
-.stepper{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border-radius:999px;padding:8px}
-.stepper button{width:56px;height:56px;border-radius:50%;border:0;font-size:28px;cursor:pointer}
-.stepper .minus{background:var(--night);color:#fff}
-.stepper .plus{background:var(--plum);color:#fff}
-.stepper output{font-family:'Unbounded',sans-serif;font-weight:800;font-size:26px;text-transform:uppercase;letter-spacing:-0.02em}
-.total{background:var(--night);color:var(--on-night);border-radius:24px;padding:24px}
-.total .n{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(48px,6vw,72px);letter-spacing:-0.03em;line-height:1}
-.animals{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-.animals span{background:var(--surface);border-radius:999px;padding:10px 16px;font-size:16px}
-@media (prefers-reduced-motion: reduce){.status i{animation:none}}
-
 </style>
 </head>
 <body>
 
-<div class="demo-bar">
-  <div class="wrap">
-    <span>This is a demo site. Crooked Gourd Farm is made up.</span>
-    <span>Want one for your farm? <a href="sms:+16123852211">Text Cynthia</a> or <a href="../">see other farm types</a></span>
-  </div>
-</div>
+<div class="demo-bar"><div class="wrap">
+  <span>Demo site. Crooked Gourd Farm is made up.</span>
+  <span>Want one for your farm? <a href="sms:+16123852211">Text Cynthia</a> · <a href="../">Other farm types</a></span>
+</div></div>
 
-<header class="hero">
-  <img class="scene-photo" src="../../img/farm-demo/pumpkins-hero.jpg" alt="A hay wagon piled with orange pumpkins in a pumpkin field" width="960" height="650" fetchpriority="high">
-  <div class="scrim" aria-hidden="true"></div>
-  <div class="top"><div class="wrap">
-    <div class="brand">Crooked Gourd Farm</div>
-    <div class="status" aria-live="polite"><i id="dot" style="background:#7BC86C"></i><span id="status">Checking hours</span></div>
-  </div></div>
-  <div class="bottom"><div class="wrap">
-    <p class="lede rise">Pick a pumpkin, ride the hay wagon and meet the llamas. Open every fall on our family farm.</p>
-    <h1 class="display"><span class="rise d1">Crooked</span><span class="rise d2">Gourd</span></h1>
-  </div></div>
+<nav class="nav" aria-label="Main"><div class="wrap">
+  <a class="logo" href="#top"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 9c-1-3 0-5 3-6" stroke="#2E4A33" stroke-width="2.4" fill="none" stroke-linecap="round"/><ellipse cx="11" cy="19" rx="7" ry="9" fill="#B4561F"/><ellipse cx="21" cy="19" rx="7" ry="9" fill="#B4561F"/><ellipse cx="16" cy="19" rx="5" ry="9.5" fill="#C96A2E"/></svg>Crooked Gourd Farm</a>
+  <ul><li><a href="#visit">Visit</a></li><li><a href="#story">Animals</a></li><li><a href="#party">Parties</a></li><li><a href="#hours">Hours</a></li></ul>
+  <div class="status" aria-live="polite"><i id="dot" style="background:#3F8A3A"></i><span id="status">Checking hours</span></div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="frame">
+    <img src="../../img/farm-demo/pumpkins-hero.jpg" alt="A hay wagon piled with orange pumpkins in a pumpkin field" width="960" height="650" fetchpriority="high">
+    <div class="shade" aria-hidden="true"></div>
+    <div class="copy">
+      <h1 class="rise">Pumpkins, hayrides and a few very nosy llamas.</h1>
+      <p class="rise d1">Pick your own pumpkin and spend the afternoon on our family farm. Open every fall.</p>
+      <div class="rise d2"><a class="btn light" href="#visit">Plan your visit</a></div>
+    </div>
+  </div>
 </header>
 
 <main>
-<section id="count">
-  <div class="wrap split">
-    <div class="intro in">
-      <h2 class="h2">Who's coming?</h2>
-      <p>Admission is $6 a person and covers the hayride, the animals and the whole farm. Count everyone in the car.</p>
+<section>
+  <div class="wrap">
+    <h2 class="in">What's at the patch</h2>
+    <div class="points">
+      <div class="in"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="8" ry="6.5"/><path d="M12 7.5c0-2 1-3.5 3-4"/><path d="M9 8.5c-1.2 3-1.2 8 0 11M15 8.5c1.2 3 1.2 8 0 11"/></svg><h3>pick it off the vine</h3><p>Wagons and clippers at the gate. Every size, orange to white.</p></div>
+      <div class="in"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="9" width="15" height="7" rx="1"/><circle cx="6" cy="18" r="2"/><circle cx="14" cy="18" r="2"/><path d="M17 12h3l2 3v1h-5"/></svg><h3>Hayride included</h3><p>Out to the far field and back, about every twenty minutes.</p></div>
+      <div class="in"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21v-6c-2 0-3-1.5-3-3.5V4l2 2 2-2v6h6c2 0 4 2 4 4v7"/><path d="M12 21v-4M16 21v-4"/></svg><h3>meet the animals</h3><p>Llamas, goats, donkeys and one very loud peacock.</p></div>
+      <div class="in"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg><h3>Card or cash</h3><p>Pay at the gate. No tickets to print.</p></div>
     </div>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="in">Who's coming?</h2>
+    <p class="sub in">Admission covers the hayride, the animals and the whole farm. Count everyone in the car, babies are free.</p>
     <div class="panel in">
-      <div class="stepper">
-        <button type="button" class="minus press" id="minus" aria-label="One fewer person">−</button>
-        <output id="people" aria-live="polite">4 people</output>
-        <button type="button" class="plus press" id="plus" aria-label="One more person">+</button>
+      <div>
+        <div class="stepper">
+          <button type="button" id="minus" aria-label="One fewer person">−</button>
+          <output id="people" aria-live="polite">4 people</output>
+          <button type="button" class="more" id="plus" aria-label="One more person">+</button>
+        </div>
+        <div class="prices">
+          <div><span>Small pumpkins</span><strong>$4</strong></div>
+          <div><span>Carving pumpkins</span><strong>$8 to $12</strong></div>
+          <div><span>The big ones</span><strong>By the pound</strong></div>
+        </div>
       </div>
-      <div class="total"><div class="n" id="total">$24</div><p style="margin-top:6px">at the gate, card or cash. Pumpkins, gourds and straw bales are priced separately.</p></div>
+      <div class="total"><div class="n" id="total">$24</div><p>admission at $6 a person, paid at the gate. Pumpkins are priced separately.</p></div>
     </div>
   </div>
 </section>
 
-<section class="field">
+<section class="story" id="story">
+  <div class="wrap grid">
+    <img class="in" src="../../img/farm-demo/pumpkins-llama.jpg" alt="A white llama standing by a wooden fence" width="960" height="720" loading="lazy">
+    <div class="in">
+      <h2>Hi, we're the Pedersons.</h2>
+      <p>We started with a half acre of pumpkins and a roadside table. Then the kids wanted a llama. Then the llama wanted friends.</p>
+      <p>Twenty falls later it's still just us, a lot of pumpkins and the animals who live here year round. Come say hi.</p>
+      <p class="sig">Karen and Joe Pederson</p>
+      <div class="animals"><span>Llamas</span><span>Alpacas</span><span>Donkeys</span><span>Goats</span><span>Pot-bellied pigs</span><span>Peacocks</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
   <div class="wrap">
-    <h2 class="h2 in">Around the farm</h2>
-    <div class="strip"><figure class="in"><img src="../../img/farm-demo/pumpkins-barn.jpg" alt="A field full of orange pumpkins in front of a red barn" width="960" height="433" loading="lazy"><figcaption>The patch in late September.</figcaption></figure><figure class="in"><img src="../../img/farm-demo/pumpkins-llama.jpg" alt="A white llama standing by a wooden fence" width="960" height="720" loading="lazy"><figcaption>Say hi to the llamas.</figcaption></figure><figure class="in"><img src="../../img/farm-demo/pumpkins-big.jpg" alt="Giant orange pumpkins lined up on a path" width="960" height="703" loading="lazy"><figcaption>The big ones go fast.</figcaption></figure><figure class="in"><img src="../../img/farm-demo/pumpkins-field.jpg" alt="Hundreds of pumpkins scattered across a field" width="960" height="638" loading="lazy"><figcaption>Every color, orange to white to grey.</figcaption></figure>
+    <h2 class="in">Around the farm</h2>
+    <div class="strip">
+      <img class="in" src="../../img/farm-demo/pumpkins-barn.jpg" alt="A field full of orange pumpkins in front of a red barn" width="960" height="433" loading="lazy">
+      <img class="in" src="../../img/farm-demo/pumpkins-big.jpg" alt="Giant orange pumpkins lined up on a path" width="960" height="703" loading="lazy">
+      <img class="in" src="../../img/farm-demo/pumpkins-field.jpg" alt="Hundreds of pumpkins scattered across a field" width="960" height="638" loading="lazy">
+      <img class="in" src="../../img/farm-demo/pumpkins-hero.jpg" alt="A hay wagon full of pumpkins" width="960" height="650" loading="lazy" style="object-position:70% center">
     </div>
   </div>
 </section>
 
-<section class="about">
+<section id="party" style="padding-top:0">
   <div class="wrap">
-    <h2 class="h2 in" style="margin-bottom:28px">Meet the animals</h2>
-    <p class="text in">A real working farm, so the animals live where you visit them. Bring a camera and some patience for the llamas.</p>
-    <div class="animals in"><span>Llamas</span><span>Alpacas</span><span>Donkeys</span><span>Goats</span><span>Pot-bellied pigs</span><span>Peacocks</span></div>
-  </div>
-</section>
-
-<section class="csa" id="party">
-  <div class="wrap split">
-    <div class="intro in">
-      <h2 class="h2">Summer parties</h2>
-      <p>Birthdays, graduations and field trips, with a picnic pavilion, restrooms and the animals. Dates go fast.</p>
+    <h2 class="in">Have your party here</h2>
+    <p class="sub in">Birthdays, graduations and field trips, with a picnic pavilion, restrooms and the animals. Summer and fall dates go fast.</p>
+    <div class="party">
+      <img class="photo in" src="../../img/farm-demo/pumpkins-barn.jpg" alt="" width="960" height="433" loading="lazy" style="object-position:30% center">
+      <form class="box in" id="partyForm" novalidate>
+        <label>Party date<input type="date" id="pdate"></label>
+        <label>How many guests?<input type="number" id="pguests" value="20" min="1" max="80"></label>
+        <button class="btn full" type="submit">Request this date</button>
+        <p class="note" id="pnote" aria-live="polite">Hold it with a $50 deposit online, or call and pay in person.</p>
+      </form>
     </div>
-    <form class="panel in" id="partyForm" novalidate>
-      <label class="field">Party date<input type="date" id="pdate"></label>
-      <label class="field">How many guests?<input type="number" id="pguests" value="20" min="1" max="80"></label>
-      <button class="go pill press" type="submit">Request this date</button>
-      <p class="note" id="pnote" aria-live="polite">Hold it with a $50 deposit online, or call and pay in person.</p>
-    </form>
   </div>
 </section>
 
-<section class="visit">
-  <div class="wrap"><h2 class="h2 in" style="margin-bottom:24px">Fall hours</h2></div>
-  <div class="rows">
-    <div>Mon to Thu, 4 to 7 pm</div>
-    <div>Friday, 3 to 7 pm</div>
-    <div>Sat and Sun, 10 to 6</div>
-    <a class="call press" href="tel:+16125550163">(612) 555-0163<span class="arrow" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+<section id="hours" style="padding-top:0">
+  <div class="wrap">
+    <div class="band in">
+      <div><h2>Fall hours</h2><p>Late September through October. Closed if it's pouring, and we'll say so up top.</p><a class="btn light" style="margin-top:18px" href="tel:+16125550163">Call (612) 555-0163</a></div>
+      <div class="hours">
+        <div><span>Monday to Thursday</span><strong>4 to 7 pm</strong></div>
+        <div><span>Friday</span><strong>3 to 7 pm</strong></div>
+        <div><span>Saturday and Sunday</span><strong>10 am to 6 pm</strong></div>
+      </div>
+    </div>
   </div>
 </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <div class="display mark">Crooked<br>Gourd</div>
+    <div class="cols">
+      <div><a class="logo" href="#top">Crooked Gourd Farm</a><p style="color:var(--soft);margin-top:10px;max-width:34ch">Pick-your-own pumpkins, hayrides and farm animals in central Minnesota.</p></div>
+      <div><h4>Visit</h4><ul><li><a href="#visit">Admission</a></li><li><a href="#hours">Hours</a></li></ul></div>
+      <div><h4>Farm</h4><ul><li><a href="#story">The animals</a></li><li><a href="#party">Parties</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="tel:+16125550163">(612) 555-0163</a></li><li>Fall weekends 10 to 6</li></ul></div>
+    </div>
     <p class="credits">Photos from Wikimedia Commons, shown for illustration under their licenses: <a href="https://commons.wikimedia.org/w/index.php?curid=16004809">Pumpkin Field</a>, Rodney Campbell, CC BY 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=93493574">Pumpkin Field, Ladner, British Columbia</a>, Judy Gallagher, CC BY 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=130939662">Pumpkin Field - geograph.org.uk - 4664357</a>, John M, CC BY-SA 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=175411276">Pumpkin harvest at Clumber Park - geograph.org.uk - 3598303</a>, Barbara Carr, CC BY-SA 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=101320358">Llama (Lama glama) (19692833269)</a>, Peter O&#x27;Connor aka anemoneprojectors, CC BY-SA 2.0.</p>
-    <div class="legal"><span>Demo site. Crooked Gourd Farm, its prices and phone number are made up.</span><span>Designed and built by <a href="../../">Cynthia Rico Cook</a>. Want one? <a href="sms:+16123852211">Text (612) 385-2211</a></span></div>
+    <div class="legal"><span>Demo site. Crooked Gourd Farm, the Pedersons, prices and phone number are made up.</span><span>Built by <a href="../../">Cynthia Rico Cook</a>. Want one? <a href="sms:+16123852211">Text (612) 385-2211</a></span></div>
   </div>
 </footer>
 
@@ -287,10 +260,10 @@ footer .legal a{color:#fff}
   var hours={0:[10,18],1:[16,19],2:[16,19],3:[16,19],4:[16,19],5:[15,19],6:[10,18]};
   function fmt(x){return x===12?'noon':(x>12?(x-12)+' pm':x+' am');}
   var s,c;
-  if(!inSeason){s='Opens late September';c='#D9C9A4';}
-  else if(h>=hours[day][0]&&h<hours[day][1]){s='Open now until '+fmt(hours[day][1]);c='#7BC86C';}
-  else if(h<hours[day][0]){s='Opens today at '+fmt(hours[day][0]);c='#F2C14E';}
-  else{s='Opens tomorrow at '+fmt(hours[(day+1)%7][0]);c='#F2C14E';}
+  if(!inSeason){s='Opens late September';c='#C9B98F';}
+  else if(h>=hours[day][0]&&h<hours[day][1]){s='Open now until '+fmt(hours[day][1]);c='#3F8A3A';}
+  else if(h<hours[day][0]){s='Opens today at '+fmt(hours[day][0]);c='#D9A331';}
+  else{s='Opens tomorrow at '+fmt(hours[(day+1)%7][0]);c='#D9A331';}
   document.getElementById('status').textContent=s; document.getElementById('dot').style.background=c;
   var n=4;
   function draw(){document.getElementById('people').textContent=n===1?'1 person':n+' people';document.getElementById('total').textContent='$'+(n*6);}
