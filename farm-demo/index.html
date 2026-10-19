@@ -54,6 +54,11 @@ header p{margin-top:20px;max-width:44ch;font-size:clamp(18px,1.6vw,21px)}
 footer{padding-block:24px 34px;font-size:14px;color:#4E5A52}
 @media (max-width:900px){.grid{grid-template-columns:1fr}.farm{min-height:0}header{grid-template-columns:1fr}.plant{display:none}}
 @media (prefers-reduced-motion: reduce){.farm,.btn{transition:none}.farm:active,.btn:active{transform:none}}
+
+/* Calm cards: one neutral surface, the photos carry the color */
+.beef,.berries,.pumpkins{background:#EFEBE1;color:var(--ink)}
+.beef .go,.berries .go,.pumpkins .go{background:var(--ink);color:var(--paper)}
+
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@800&family=Unbounded:wght@800&family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap">
 </head>
