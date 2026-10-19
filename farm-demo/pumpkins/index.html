@@ -9,179 +9,217 @@
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@800&family=Onest:wght@400;500;600&display=swap">
 <style>
 :root{
-  --orange:#E8742A; --orange-2:#EF8A45; --husk:#F6E9CF; --bark:#3B2618; --ink:#2B1A0F;
-  --sage:#8FA27A; --sage-ink:#1E2A14; --white:#FFFFFF;
+  --bg:#FFFFFF; --surface:#F3F1EC; --field:#E6E2D8;
+  --ink:#13201A; --soft:#4E5A52; --night:#13201A; --on-night:#F4F1EA;
+  --plum:#5E2340; --plum-soft:#F1E3EA; --gold:#F0C85A; --berry:#C42A2F;
   --ease-out:cubic-bezier(0.23,1,0.32,1);
   --m:clamp(16px,3vw,40px);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--orange);color:var(--ink);font:400 18px/1.5 'Bricolage Grotesque',system-ui,sans-serif}
-h1,h2,p{margin:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 'Onest',system-ui,sans-serif}
+h1,h2,h3,p{margin:0}
 a{color:inherit}
 button,input{font:inherit}
-:focus-visible{outline:3px solid var(--bark);outline-offset:3px}
+:focus-visible{outline:3px solid var(--plum);outline-offset:3px}
 .wrap{width:100%;max-width:1240px;margin:0 auto;padding-inline:var(--m)}
-.h2{font-weight:800;letter-spacing:-0.03em;line-height:0.95;font-size:clamp(42px,6.5vw,100px)}
-.press{transition:transform 160ms var(--ease-out),background-color 200ms ease}
-.press:active{transform:scale(0.96)}
+.display{font-family:'Unbounded',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.92}
+.h2{font-family:'Unbounded',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:1;font-size:clamp(30px,4.2vw,56px)}
+.press{transition:transform 160ms var(--ease-out),background-color 200ms ease,color 200ms ease,border-color 200ms ease}
+.press:active{transform:scale(0.97)}
+.pill{border-radius:999px}
 
-.demo-bar{background:var(--bark);color:var(--husk);font-size:15px}
-.demo-bar .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;padding-block:10px}
-.demo-bar a{font-weight:700}
+.demo-bar{background:var(--plum);color:#fff;font-size:15px}
+.demo-bar .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;align-items:center;padding-block:10px}
+.demo-bar a{font-weight:600}
 
-.hero{min-height:calc(100svh - 44px);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(20px,4vw,60px);align-items:end;padding-block:18px 34px;position:relative}
-.hero .top{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;align-self:start}
-.status{display:flex;align-items:center;gap:8px;background:var(--ink);color:var(--husk);font-weight:500;font-size:15px;padding:11px 16px;border-radius:999px}
-.status i{width:9px;height:9px;border-radius:50%;display:inline-block;animation:blink 2s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{font-weight:800;font-size:clamp(66px,11vw,180px);line-height:.9;letter-spacing:-0.035em}
-.hero h1 span{display:block}
-.hero h1 .light{color:#FFF4E0}
-.drop{opacity:0;transform:translateY(-18px) rotate(-3deg);animation:drop 800ms var(--ease-out) forwards}
-.drop.d2{animation-delay:120ms}.drop.d3{animation-delay:240ms}
-@keyframes drop{to{opacity:1;transform:none}}
-.hero .lede{margin-top:20px;max-width:32ch;font-size:clamp(18px,1.6vw,22px);line-height:1.4}
-.side{display:flex;flex-direction:column;gap:24px;align-items:flex-start}
-.ticket{background:var(--husk);border-radius:20px;padding:18px 26px;display:flex;align-items:center;gap:20px;transform-origin:20% 0;animation:swing 3.6s ease-in-out infinite alternate;
-  -webkit-mask:radial-gradient(circle 12px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat;
-  mask:radial-gradient(circle 12px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat}
-@keyframes swing{from{transform:rotate(-2deg)}to{transform:rotate(1.5deg)}}
-.ticket .p{font-weight:800;font-size:52px;letter-spacing:-0.03em}
+.hero{position:relative;min-height:calc(100svh - 44px);background:var(--night);color:#fff;overflow:hidden;display:flex}
+.hero .scene-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;animation:drift 24s ease-in-out infinite alternate}
+.hero .scrim{position:absolute;left:0;right:0;bottom:0;height:46%;background:rgba(10,16,12,.72)}
+.hero .top .brand{color:#fff}
+@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.09)}}
 figure{margin:0}
 figure img{display:block;width:100%;height:100%;object-fit:cover}
-figcaption{font-size:14px;margin-top:8px}
-.heroimg{width:100%;aspect-ratio:4/3;border-radius:28px;overflow:hidden}
-.heroimg img{animation:drift 24s ease-in-out infinite alternate}
-@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.08)}}
-.pgrid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin:28px 0 18px}
-.pgrid figure:nth-child(1){grid-column:1/13;aspect-ratio:21/9}
-.pgrid figure:nth-child(2){grid-column:1/6;aspect-ratio:1/1}
-.pgrid figure:nth-child(3){grid-column:6/13;aspect-ratio:16/10}
-.pgrid figure img{border-radius:22px}
-.agrid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,60px);align-items:center}
-.llama{aspect-ratio:4/5}
-.llama img{border-radius:999px 999px 22px 22px}
-.credits{font-size:13px;color:#D9C9A4;padding-top:16px;max-width:110ch}
-.credits a{color:#F6E9CF}
-@media (max-width:860px){.agrid{grid-template-columns:1fr}.pgrid figure:nth-child(2),.pgrid figure:nth-child(3){grid-column:1/13;aspect-ratio:4/3}}
-.wobble{transform-box:fill-box;transform-origin:bottom center;animation:wob 2.8s ease-in-out infinite alternate}
-.wobble.w2{animation-duration:3.4s;animation-delay:-1s}.wobble.w3{animation-duration:3s;animation-delay:-2s}
-@keyframes wob{from{transform:rotate(-2.5deg)}to{transform:rotate(2.5deg)}}
+figcaption{font-size:14px;color:var(--soft);margin-top:8px}
+.strip{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin-top:30px}
+.strip figure:nth-child(1){grid-column:1/8;aspect-ratio:4/3}
+.strip figure:nth-child(2){grid-column:8/13;aspect-ratio:4/5;margin-top:60px}
+.strip figure:nth-child(3){grid-column:2/7;aspect-ratio:1/1;margin-top:-40px}
+.strip figure:nth-child(4){grid-column:7/13;aspect-ratio:4/3}
+.strip figure{display:flex;flex-direction:column}
+.strip figure img{flex:1;min-height:0}
+.credits{font-size:13px;color:#AFB9B1;padding-bottom:28px;max-width:110ch}
+.credits a{color:#D7DED9}
+.about .grid2{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,60px);align-items:start}
+.about .tree{aspect-ratio:4/5}
+@media (max-width:860px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}.strip figure:nth-child(n){grid-column:auto;margin-top:0;aspect-ratio:4/5}.about .grid2{grid-template-columns:1fr}}
+.hero .top{position:absolute;top:0;left:0;right:0;z-index:2}
+.hero .top .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:18px}
+.hero .brand{font-weight:600;font-size:16px;color:var(--ink)}
+.hero .cta{background:#fff;color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;padding:12px 20px;min-height:44px;display:inline-flex;align-items:center}
+.hero .bottom{position:relative;z-index:2;margin-top:auto;width:100%}
+.hero .bottom .wrap{padding-bottom:clamp(20px,3vw,34px);display:flex;flex-direction:column;gap:18px}
+.hero p.lede{max-width:34ch;font-size:clamp(16px,1.4vw,19px);line-height:1.45}
+.hero h1{font-size:clamp(68px,17.5vw,280px)}
+.hero h1 span{display:block}
+.rise{opacity:0;transform:translateY(22px);animation:rise 800ms var(--ease-out) forwards}
+.d1{animation-delay:120ms}.d2{animation-delay:240ms}
+@keyframes rise{to{opacity:1;transform:none}}
+.sun{transform-box:fill-box;transform-origin:center;animation:sunup 2600ms var(--ease-out) both}
+@keyframes sunup{from{transform:translateY(60px);opacity:.6}to{transform:none;opacity:1}}
+.cloud{animation:drift 60s linear infinite}
+.cloud2{animation:drift 85s linear infinite;animation-delay:-40s}
+@keyframes drift{from{transform:translateX(-20%)}to{transform:translateX(110%)}}
+.sway{transform-box:fill-box;transform-origin:top center;animation:sway 4.5s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}
 
 section{padding-block:clamp(72px,10vw,150px)}
 .split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,80px);align-items:start}
-.split .intro{display:flex;flex-direction:column;gap:18px}
-.split .intro p{max-width:36ch}
+.split .intro{display:flex;flex-direction:column;gap:18px;position:sticky;top:24px}
+.split .intro p{max-width:40ch;font-size:18px}
+.panel{display:flex;flex-direction:column;gap:14px}
 
-.count{background:var(--husk)}
-.stepper{display:flex;align-items:center;justify-content:space-between;background:var(--white);border-radius:999px;padding:8px}
-.stepper button{width:58px;height:58px;border-radius:50%;border:0;font-size:28px;cursor:pointer}
-.stepper .minus{background:var(--ink);color:var(--husk)}
-.stepper .plus{background:var(--orange);color:var(--ink)}
-.stepper output{font-weight:800;font-size:32px;letter-spacing:-0.02em}
-.total{background:var(--ink);color:var(--husk);border-radius:28px;padding:26px;margin-top:14px}
-.total .n{font-weight:800;font-size:clamp(56px,6vw,84px);letter-spacing:-0.03em;line-height:1}
+.updated{display:flex;align-items:center;gap:10px;color:var(--soft);font-size:15px}
+.dot{width:10px;height:10px;border-radius:50%;background:#3F8A3A;animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:center;background:var(--surface);border-radius:18px;padding:18px 20px;font-size:17px}
+.row strong{font-weight:600}
+.row.big{background:var(--night);color:var(--on-night);flex-direction:column;align-items:flex-start;gap:4px}
+.row.big .now{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(20px,2.2vw,26px);letter-spacing:-0.02em;text-transform:uppercase}
 
-.animals{background:var(--bark);color:var(--husk)}
-.wall{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 18px;font-weight:800;letter-spacing:-0.03em;line-height:1;margin-top:28px;max-width:1000px}
-.wall .a{font-size:clamp(54px,8vw,120px);color:var(--orange)}
-.wall .b{font-size:clamp(34px,5vw,72px)}
-.wall .c{font-size:clamp(30px,4vw,56px);color:#C9D3B0}
-.animals p{margin-top:24px;max-width:44ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:10px 16px;min-height:44px;cursor:pointer;font-size:15px;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff}
+.chip.plum[aria-pressed="true"]{background:var(--plum);border-color:var(--plum)}
+label.field{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:500}
+label.field input{font-size:17px;padding:12px 16px;border:2px solid var(--ink);border-radius:14px;min-height:50px;background:#fff}
+.go{background:var(--plum);color:#fff;border:0;padding:16px 22px;min-height:54px;font-weight:600;font-size:17px;cursor:pointer;width:100%}
+.note{font-size:15px;color:var(--soft);min-height:1.5em}
+.note.done{color:var(--plum);font-weight:600}
 
-.pumpkins{background:var(--white)}
-.pumpkins svg{width:100%;max-width:820px;height:auto;margin:28px 0 18px}
-.pumpkins p{max-width:52ch}
+.freezer{background:var(--field)}
+.result{background:var(--night);color:var(--on-night);border-radius:24px;padding:24px;display:grid;grid-template-columns:1fr auto;gap:14px 20px;align-items:end}
+.result .lbs{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,3.6vw,46px);letter-spacing:-0.03em;line-height:1;text-transform:uppercase}
+.result .what{grid-column:1/2;font-size:17px;line-height:1.45}
+.box{grid-column:2/3;grid-row:1/3;width:64px;height:120px;border-radius:10px;background:rgba(255,255,255,.12);display:flex;align-items:flex-end;overflow:hidden}
+.box span{display:block;width:100%;background:var(--gold);border-radius:8px;transition:height 360ms var(--ease-out)}
+.result .space{grid-column:1/3;font-size:15px;color:#C9D1CB}
 
-.party{background:var(--sage);color:var(--sage-ink)}
-.party form{display:flex;flex-direction:column;gap:14px}
-label{display:flex;flex-direction:column;gap:6px;font-size:16px;font-weight:500}
-label input{font-size:17px;padding:12px 16px;border:0;border-radius:16px;min-height:52px;background:var(--white)}
-.go{background:var(--sage-ink);color:var(--husk);border:0;border-radius:999px;padding:17px;min-height:56px;font-weight:700;font-size:18px;cursor:pointer}
-.note{font-size:15px;min-height:1.5em}
-.note.done{font-weight:700}
+.csa{background:var(--plum-soft)}
+.shares{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.share{text-align:left;background:#fff;border:2px solid transparent;border-radius:22px;padding:20px;cursor:pointer;display:flex;flex-direction:column;gap:4px;color:var(--ink)}
+.share[aria-pressed="true"]{border-color:var(--plum)}
+.share .t{font-weight:600}
+.share .p{font-family:'Unbounded',sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.03em}
+.share .d{font-size:15px;color:var(--soft)}
 
-.hours{padding-bottom:0}
-.rows > *{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:0 var(--m) 14px;min-height:clamp(66px,7vw,96px);font-size:clamp(20px,2.4vw,32px);text-decoration:none}
-.rows > :nth-child(odd){background:var(--orange-2)}
-.rows b{font-weight:800}
-.rows .phone{font-weight:800;font-size:clamp(30px,4.4vw,60px);letter-spacing:-0.02em;min-height:clamp(88px,9vw,130px)}
+.season h2{font-size:clamp(64px,13vw,190px)}
+.season .list{display:flex;flex-direction:column;gap:6px;margin-top:28px;max-width:760px}
+details{background:var(--surface);border-radius:18px}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:0 20px;min-height:58px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.plus{display:inline-block;font-size:22px;transition:transform 220ms var(--ease-out)}
+details[open] .plus{transform:rotate(45deg)}
+details p{padding:0 20px 20px;max-width:60ch}
 
-footer{background:var(--bark);color:var(--husk);padding-top:40px}
-footer .mark{font-weight:800;letter-spacing:-0.035em;line-height:.9;font-size:clamp(60px,12vw,190px);margin-top:clamp(80px,12vw,180px)}
-footer .mark span{color:var(--orange)}
-.legal{padding-block:20px 28px;font-size:14px;color:#D9C9A4;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.about .text{font-size:clamp(22px,2.4vw,34px);line-height:1.25;max-width:30ch}
+.about .text svg{float:left;width:3.6em;height:3.6em;margin:.1em .45em .1em 0}
+.about .soft{color:var(--soft);margin-top:1em}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
+.facts span{background:var(--surface);border-radius:999px;padding:10px 16px;font-size:15px}
 
+.visit{padding-bottom:0}
+.rows a,.rows div{display:flex;align-items:flex-end;padding:0 var(--m) 16px;min-height:clamp(84px,9vw,130px);font-weight:500;font-size:clamp(28px,4.4vw,64px);letter-spacing:-0.02em;text-decoration:none;max-width:none}
+.rows > :nth-child(odd){background:var(--surface)}
+.rows > :nth-child(even){background:var(--field)}
+.rows .call{background:var(--plum)!important;color:#fff;justify-content:space-between;align-items:center;padding-bottom:0}
+.arrow{width:clamp(52px,6vw,80px);height:clamp(52px,6vw,80px);border-radius:50%;background:#fff;color:var(--plum);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+footer{background:var(--night);color:var(--on-night);padding-top:48px}
+footer .cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;font-size:16px}
+footer .cols div span{display:block;color:#AFB9B1}
+footer .mark{font-size:clamp(64px,16vw,250px);margin-top:clamp(80px,14vw,200px)}
+footer .legal{padding-block:20px 28px;font-size:14px;color:#AFB9B1;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+footer .legal a{color:#fff}
+
+.in{opacity:1}
 @supports (animation-timeline: view()){
-  .in{animation:inup linear both;animation-timeline:view();animation-range:entry 0% cover 28%}
+  .in{animation:rise linear both;animation-timeline:view();animation-range:entry 5% cover 25%}
 }
-@keyframes inup{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 @media (max-width:860px){
-  .hero,.split{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr}
+  .split .intro{position:static}
+  footer .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rows .call .arrow{width:56px;height:56px}
+}
+@media (max-width:480px){
+  .shares{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion: reduce){
-  .drop,.in{animation:none;opacity:1;transform:none}
-  .ticket,.wobble,.status i,.heroimg img{animation:none}
+  .rise,.sun,.in{animation:none;opacity:1;transform:none}
+  .cloud,.cloud2,.sway,.dot,.scene-photo{animation:none}
   .press:active{transform:none}
   html{scroll-behavior:auto}
 }
 
-/* Calm palette: warm cream ground, a linen step, bark ink, one muted pumpkin accent */
-:root{--cream2:#F6F0E6;--linen:#EDE3D3;--bark2:#2E2218;--pump:#C0652C;--soft2:#6B5A49}
-body{background:var(--cream2);color:var(--bark2)}
-.demo-bar{background:var(--linen);color:var(--bark2)}
-.hero h1 .light{color:var(--pump)}
-.ticket{background:var(--linen)}
-.count{background:var(--linen)}
-.stepper .plus{background:#E7B48C;color:var(--bark2)}
-.total{background:var(--bark2)}
-.animals{background:var(--cream2);color:var(--bark2)}
-.wall .a{color:var(--pump)}
-.wall .c{color:#7E8A6A}
-.pumpkins{background:var(--linen)}
-.party{background:#E6E8DC;color:var(--bark2)}
-.go{background:var(--bark2);color:var(--cream2)}
-.hours{background:var(--cream2)}
-.rows > :nth-child(odd){background:var(--linen)}
-footer{background:var(--bark2)}
-footer .mark span{color:#E7B48C}
+/* Calm palette tweaks: neutral demo bar and a soft sage CSA section */
+.demo-bar{background:var(--surface);color:var(--ink)}
+.demo-bar a{color:var(--plum)}
+.csa{background:#EEF0E8}
+
+
+
+:root{--plum:#B4561F;--plum-soft:#F6E8DC}
+.hero .top .brand{color:#fff}
+.status{display:inline-flex;align-items:center;gap:8px;background:rgba(19,32,26,.82);color:#fff;font-weight:500;font-size:15px;padding:11px 16px;border-radius:999px}
+.status i{width:9px;height:9px;border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite}
+.hero .top .wrap{gap:10px;flex-wrap:wrap}
+.stepper{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border-radius:999px;padding:8px}
+.stepper button{width:56px;height:56px;border-radius:50%;border:0;font-size:28px;cursor:pointer}
+.stepper .minus{background:var(--night);color:#fff}
+.stepper .plus{background:var(--plum);color:#fff}
+.stepper output{font-family:'Unbounded',sans-serif;font-weight:800;font-size:26px;text-transform:uppercase;letter-spacing:-0.02em}
+.total{background:var(--night);color:var(--on-night);border-radius:24px;padding:24px}
+.total .n{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(48px,6vw,72px);letter-spacing:-0.03em;line-height:1}
+.animals{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.animals span{background:var(--surface);border-radius:999px;padding:10px 16px;font-size:16px}
+@media (prefers-reduced-motion: reduce){.status i{animation:none}}
 
 </style>
 </head>
 <body>
 
-<div class="demo-bar"><div class="wrap">
-  <span>This is a demo site. Crooked Gourd Farm is made up.</span>
-  <span>Want one for your farm? <a href="sms:+16123852211">Text Cynthia</a> or <a href="../">see other farm types</a></span>
-</div></div>
+<div class="demo-bar">
+  <div class="wrap">
+    <span>This is a demo site. Crooked Gourd Farm is made up.</span>
+    <span>Want one for your farm? <a href="sms:+16123852211">Text Cynthia</a> or <a href="../">see other farm types</a></span>
+  </div>
+</div>
 
-<header class="hero wrap">
-  <div class="top">
-    <div style="font-weight:700">Pumpkins, hayrides, animals</div>
+<header class="hero">
+  <img class="scene-photo" src="../../img/farm-demo/pumpkins-hero.jpg" alt="A hay wagon piled with orange pumpkins in a pumpkin field" width="960" height="650" fetchpriority="high">
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="top"><div class="wrap">
+    <div class="brand">Crooked Gourd Farm</div>
     <div class="status" aria-live="polite"><i id="dot" style="background:#7BC86C"></i><span id="status">Checking hours</span></div>
-  </div>
-  <div>
-    <h1><span class="drop">Crooked</span><span class="drop d2">Gourd</span><span class="drop d3 light">Farm</span></h1>
-    <p class="lede">Pick a pumpkin, ride the hay wagon and meet the llamas. Open every fall on our family farm.</p>
-  </div>
-  <div class="side">
-    <div class="ticket"><div class="p">$6</div><div style="font-size:17px;line-height:1.3"><b>Admit one.</b><br>Hayride, animals and<br>the whole farm included.</div></div>
-    <figure class="heroimg"><img src="../../img/farm-demo/pumpkins-hero.jpg" alt="A hay wagon piled with orange pumpkins in a pumpkin field" width="960" height="650" fetchpriority="high"></figure>
-  </div>
+  </div></div>
+  <div class="bottom"><div class="wrap">
+    <p class="lede rise">Pick a pumpkin, ride the hay wagon and meet the llamas. Open every fall on our family farm.</p>
+    <h1 class="display"><span class="rise d1">Crooked</span><span class="rise d2">Gourd</span></h1>
+  </div></div>
 </header>
 
 <main>
-<section class="count">
+<section id="count">
   <div class="wrap split">
     <div class="intro in">
       <h2 class="h2">Who's coming?</h2>
-      <p>Count everyone in the car and see what to bring to the gate.</p>
+      <p>Admission is $6 a person and covers the hayride, the animals and the whole farm. Count everyone in the car.</p>
     </div>
-    <div class="in">
+    <div class="panel in">
       <div class="stepper">
         <button type="button" class="minus press" id="minus" aria-label="One fewer person">−</button>
         <output id="people" aria-live="polite">4 people</output>
@@ -192,62 +230,51 @@ footer .mark span{color:#E7B48C}
   </div>
 </section>
 
-<section class="animals">
+<section class="field">
   <div class="wrap">
-    <div class="agrid"><div>
-    <h2 class="h2 in">Say hi to</h2>
-    <div class="wall in">
-      <span class="a">llamas</span><span class="b">alpacas</span><span class="b">donkeys</span><span class="c">goats</span><span class="b">pot-bellied pigs</span><span class="a">peacocks</span><span class="c">and more</span>
-    </div>
-    <p class="in">A real working farm, so the animals roam where they live. Bring a camera.</p>
-    </div>
-    <figure class="llama in"><img src="../../img/farm-demo/pumpkins-llama.jpg" alt="A white llama standing by a wooden fence" width="960" height="720" loading="lazy"></figure>
+    <h2 class="h2 in">Around the farm</h2>
+    <div class="strip"><figure class="in"><img src="../../img/farm-demo/pumpkins-barn.jpg" alt="A field full of orange pumpkins in front of a red barn" width="960" height="433" loading="lazy"><figcaption>The patch in late September.</figcaption></figure><figure class="in"><img src="../../img/farm-demo/pumpkins-llama.jpg" alt="A white llama standing by a wooden fence" width="960" height="720" loading="lazy"><figcaption>Say hi to the llamas.</figcaption></figure><figure class="in"><img src="../../img/farm-demo/pumpkins-big.jpg" alt="Giant orange pumpkins lined up on a path" width="960" height="703" loading="lazy"><figcaption>The big ones go fast.</figcaption></figure><figure class="in"><img src="../../img/farm-demo/pumpkins-field.jpg" alt="Hundreds of pumpkins scattered across a field" width="960" height="638" loading="lazy"><figcaption>Every color, orange to white to grey.</figcaption></figure>
     </div>
   </div>
 </section>
 
-<section class="pumpkins">
+<section class="about">
   <div class="wrap">
-    <h2 class="h2 in">Every pumpkin color</h2>
-    <div class="pgrid">
-      <figure class="in"><img src="../../img/farm-demo/pumpkins-barn.jpg" alt="A field full of orange pumpkins in front of a red barn and mountains" width="960" height="433" loading="lazy"></figure>
-      <figure class="in"><img src="../../img/farm-demo/pumpkins-big.jpg" alt="Giant orange pumpkins lined up on a path" width="960" height="703" loading="lazy"></figure>
-      <figure class="in"><img src="../../img/farm-demo/pumpkins-field.jpg" alt="Hundreds of pumpkins scattered across a harvested field" width="960" height="638" loading="lazy"></figure>
-    </div>
-    <p class="in">Orange, white, grey and green. Plus gourds, squash, corn bundles and straw bales for decorating your porch.</p>
+    <h2 class="h2 in" style="margin-bottom:28px">Meet the animals</h2>
+    <p class="text in">A real working farm, so the animals live where you visit them. Bring a camera and some patience for the llamas.</p>
+    <div class="animals in"><span>Llamas</span><span>Alpacas</span><span>Donkeys</span><span>Goats</span><span>Pot-bellied pigs</span><span>Peacocks</span></div>
   </div>
 </section>
 
-<section class="party">
+<section class="csa" id="party">
   <div class="wrap split">
     <div class="intro in">
       <h2 class="h2">Summer parties</h2>
-      <p>Birthdays, graduations and field trips. A picnic pavilion, restrooms and the animals. Dates go fast.</p>
+      <p>Birthdays, graduations and field trips, with a picnic pavilion, restrooms and the animals. Dates go fast.</p>
     </div>
-    <form class="in" id="party" novalidate>
-      <label>Party date<input type="date" id="pdate"></label>
-      <label>How many guests?<input type="number" id="pguests" value="20" min="1" max="80"></label>
-      <button class="go press" type="submit">Request this date</button>
+    <form class="panel in" id="partyForm" novalidate>
+      <label class="field">Party date<input type="date" id="pdate"></label>
+      <label class="field">How many guests?<input type="number" id="pguests" value="20" min="1" max="80"></label>
+      <button class="go pill press" type="submit">Request this date</button>
       <p class="note" id="pnote" aria-live="polite">Hold it with a $50 deposit online, or call and pay in person.</p>
     </form>
   </div>
 </section>
 
-<section class="hours">
-  <div class="wrap"><h2 class="h2 in" style="margin-bottom:22px">Fall hours</h2></div>
+<section class="visit">
+  <div class="wrap"><h2 class="h2 in" style="margin-bottom:24px">Fall hours</h2></div>
   <div class="rows">
-    <div><span>Mon to Thu</span><b>4 to 7 pm</b></div>
-    <div><span>Friday</span><b>3 to 7 pm</b></div>
-    <div><span>Sat and Sun</span><b>10 am to 6 pm</b></div>
-    <a class="phone" href="tel:+16125550163">(612) 555-0163</a>
+    <div>Mon to Thu, 4 to 7 pm</div>
+    <div>Friday, 3 to 7 pm</div>
+    <div>Sat and Sun, 10 to 6</div>
+    <a class="call press" href="tel:+16125550163">(612) 555-0163<span class="arrow" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
   </div>
 </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <p>Open late September through Halloween. Summer parties by request.</p>
-    <div class="mark">Crooked<br><span>Gourd Farm</span></div>
+    <div class="display mark">Crooked<br>Gourd</div>
     <p class="credits">Photos from Wikimedia Commons, shown for illustration under their licenses: <a href="https://commons.wikimedia.org/w/index.php?curid=16004809">Pumpkin Field</a>, Rodney Campbell, CC BY 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=93493574">Pumpkin Field, Ladner, British Columbia</a>, Judy Gallagher, CC BY 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=130939662">Pumpkin Field - geograph.org.uk - 4664357</a>, John M, CC BY-SA 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=175411276">Pumpkin harvest at Clumber Park - geograph.org.uk - 3598303</a>, Barbara Carr, CC BY-SA 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=101320358">Llama (Lama glama) (19692833269)</a>, Peter O&#x27;Connor aka anemoneprojectors, CC BY-SA 2.0.</p>
     <div class="legal"><span>Demo site. Crooked Gourd Farm, its prices and phone number are made up.</span><span>Designed and built by <a href="../../">Cynthia Rico Cook</a>. Want one? <a href="sms:+16123852211">Text (612) 385-2211</a></span></div>
   </div>
@@ -255,33 +282,24 @@ footer .mark span{color:#E7B48C}
 
 <script>
 (function(){
-  var now = new Date(), m = now.getMonth(), d = now.getDate(), day = now.getDay();
-  var h = now.getHours() + now.getMinutes()/60;
-  var inSeason = (m === 8 && d >= 20) || m === 9;
-  var hours = {0:[10,18],1:[16,19],2:[16,19],3:[16,19],4:[16,19],5:[15,19],6:[10,18]};
-  function fmt(x){ return x === 12 ? 'noon' : (x > 12 ? (x-12) + ' pm' : x + ' am'); }
-  var s, c;
-  if (!inSeason){ s='Opens late September'; c='#D9C9A4'; }
-  else if (h >= hours[day][0] && h < hours[day][1]){ s='Open now until ' + fmt(hours[day][1]); c='#7BC86C'; }
-  else if (h < hours[day][0]){ s='Opens today at ' + fmt(hours[day][0]); c='#F2C14E'; }
-  else { s='Opens tomorrow at ' + fmt(hours[(day+1)%7][0]); c='#F2C14E'; }
-  document.getElementById('status').textContent = s;
-  document.getElementById('dot').style.background = c;
-
-  var n = 4;
-  function draw(){
-    document.getElementById('people').textContent = n === 1 ? '1 person' : n + ' people';
-    document.getElementById('total').textContent = '$' + (n*6);
-  }
-  document.getElementById('minus').addEventListener('click', function(){ n = Math.max(1, n-1); draw(); });
-  document.getElementById('plus').addEventListener('click', function(){ n = Math.min(30, n+1); draw(); });
-
-  document.getElementById('party').addEventListener('submit', function(e){
-    e.preventDefault();
-    var note = document.getElementById('pnote');
-    if (!document.getElementById('pdate').value){ note.className='note'; note.textContent='Pick a date first.'; return; }
-    note.className='note done';
-    note.textContent='Demo: on a real farm site, this holds your date and the farmer texts you to confirm.';
+  var now=new Date(), m=now.getMonth(), d=now.getDate(), day=now.getDay(), h=now.getHours()+now.getMinutes()/60;
+  var inSeason=(m===8&&d>=20)||m===9;
+  var hours={0:[10,18],1:[16,19],2:[16,19],3:[16,19],4:[16,19],5:[15,19],6:[10,18]};
+  function fmt(x){return x===12?'noon':(x>12?(x-12)+' pm':x+' am');}
+  var s,c;
+  if(!inSeason){s='Opens late September';c='#D9C9A4';}
+  else if(h>=hours[day][0]&&h<hours[day][1]){s='Open now until '+fmt(hours[day][1]);c='#7BC86C';}
+  else if(h<hours[day][0]){s='Opens today at '+fmt(hours[day][0]);c='#F2C14E';}
+  else{s='Opens tomorrow at '+fmt(hours[(day+1)%7][0]);c='#F2C14E';}
+  document.getElementById('status').textContent=s; document.getElementById('dot').style.background=c;
+  var n=4;
+  function draw(){document.getElementById('people').textContent=n===1?'1 person':n+' people';document.getElementById('total').textContent='$'+(n*6);}
+  document.getElementById('minus').addEventListener('click',function(){n=Math.max(1,n-1);draw();});
+  document.getElementById('plus').addEventListener('click',function(){n=Math.min(30,n+1);draw();});
+  document.getElementById('partyForm').addEventListener('submit',function(e){
+    e.preventDefault(); var note=document.getElementById('pnote');
+    if(!document.getElementById('pdate').value){note.className='note';note.textContent='Pick a date first.';return;}
+    note.className='note done'; note.textContent='Demo: on a real farm site, this holds your date and the farmer texts you to confirm.';
   });
 })();
 </script>

@@ -9,177 +9,198 @@
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@800&family=Onest:wght@400;500;600&display=swap">
 <style>
 :root{
-  --pasture:#2F5A2E; --pasture-2:#3E7038; --hay:#E9C46A; --hay-ink:#1F2A17;
-  --paper:#EFCFC4; --paper-2:#F7E3DC; --paper-ink:#3A1F17;
-  --barn:#7A2A22; --barn-2:#8C3329; --night:#1E2A3A; --night-2:#243347; --cream:#F6F1E4;
+  --bg:#FFFFFF; --surface:#F3F1EC; --field:#E6E2D8;
+  --ink:#13201A; --soft:#4E5A52; --night:#13201A; --on-night:#F4F1EA;
+  --plum:#5E2340; --plum-soft:#F1E3EA; --gold:#F0C85A; --berry:#C42A2F;
   --ease-out:cubic-bezier(0.23,1,0.32,1);
   --m:clamp(16px,3vw,40px);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--pasture);color:var(--cream);font:400 18px/1.5 'Schibsted Grotesk',system-ui,sans-serif}
-h1,h2,p{margin:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 'Onest',system-ui,sans-serif}
+h1,h2,h3,p{margin:0}
 a{color:inherit}
 button,input{font:inherit}
-:focus-visible{outline:3px solid var(--hay);outline-offset:3px}
+:focus-visible{outline:3px solid var(--plum);outline-offset:3px}
 .wrap{width:100%;max-width:1240px;margin:0 auto;padding-inline:var(--m)}
-.big{font-weight:800;letter-spacing:-0.035em;line-height:0.92}
-.h2{font-weight:800;letter-spacing:-0.035em;line-height:0.95;font-size:clamp(44px,7vw,110px)}
-.press{transition:transform 160ms var(--ease-out),background-color 200ms ease,color 200ms ease}
+.display{font-family:'Unbounded',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.92}
+.h2{font-family:'Unbounded',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:1;font-size:clamp(30px,4.2vw,56px)}
+.press{transition:transform 160ms var(--ease-out),background-color 200ms ease,color 200ms ease,border-color 200ms ease}
 .press:active{transform:scale(0.97)}
+.pill{border-radius:999px}
 
-.demo-bar{background:var(--hay);color:var(--hay-ink);font-size:15px}
-.demo-bar .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;padding-block:10px}
-.demo-bar a{font-weight:700}
+.demo-bar{background:var(--plum);color:#fff;font-size:15px}
+.demo-bar .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;align-items:center;padding-block:10px}
+.demo-bar a{font-weight:600}
 
-.hero{min-height:calc(100svh - 44px);display:flex;flex-direction:column}
-.hero .top{display:flex;justify-content:space-between;align-items:center;padding-block:18px}
-.hero .cta{background:var(--hay);color:var(--hay-ink);text-decoration:none;font-weight:700;padding:12px 20px;border-radius:999px;min-height:44px;display:inline-flex;align-items:center;font-size:16px}
-.hero .scene{width:100%;aspect-ratio:16/8;object-fit:cover;margin-top:auto;display:block}
+.hero{position:relative;min-height:calc(100svh - 44px);background:var(--night);color:#fff;overflow:hidden;display:flex}
+.hero .scene-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;animation:drift 24s ease-in-out infinite alternate}
+.hero .scrim{position:absolute;left:0;right:0;bottom:0;height:46%;background:rgba(10,16,12,.72)}
+.hero .top .brand{color:#fff}
+@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.09)}}
 figure{margin:0}
 figure img{display:block;width:100%;height:100%;object-fit:cover}
-figcaption{font-size:14px;margin-top:8px;opacity:.85}
-.bleed{background:var(--pasture)}
-.bleed img{aspect-ratio:21/8}
-.bleed figcaption{padding:10px var(--m) 0;color:var(--cream)}
-.how .grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,60px);align-items:start}
-.how .calf{aspect-ratio:4/5;margin-top:34px}
-.credits{font-size:13px;color:#D7E2CF;padding-top:16px;max-width:110ch}
-.credits a{color:#fff}
-@media (max-width:860px){.how .grid{grid-template-columns:1fr}.bleed img{aspect-ratio:4/3}}
-.hero .bottom{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:end;padding-block:24px 34px}
-.hero h1{font-size:clamp(72px,15vw,240px)}
-.hero h1 .gold{color:var(--hay)}
-.hero p{max-width:30ch;font-size:clamp(17px,1.5vw,20px)}
-.mask{display:block;overflow:hidden}
-.mask > span{display:block;transform:translateY(105%);animation:up 900ms var(--ease-out) forwards}
-.m2 > span{animation-delay:120ms}
-@keyframes up{to{transform:none}}
-.scene{animation:drift 24s ease-in-out infinite alternate}
-@keyframes drift{from{transform:scale(1)}to{transform:scale(1.04)}}
-@keyframes roll{from{transform:translateX(-8px) rotate(-8deg)}to{transform:translateX(8px) rotate(8deg)}}
+figcaption{font-size:14px;color:var(--soft);margin-top:8px}
+.strip{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin-top:30px}
+.strip figure:nth-child(1){grid-column:1/8;aspect-ratio:4/3}
+.strip figure:nth-child(2){grid-column:8/13;aspect-ratio:4/5;margin-top:60px}
+.strip figure:nth-child(3){grid-column:2/7;aspect-ratio:1/1;margin-top:-40px}
+.strip figure:nth-child(4){grid-column:7/13;aspect-ratio:4/3}
+.strip figure{display:flex;flex-direction:column}
+.strip figure img{flex:1;min-height:0}
+.credits{font-size:13px;color:#AFB9B1;padding-bottom:28px;max-width:110ch}
+.credits a{color:#D7DED9}
+.about .grid2{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,60px);align-items:start}
+.about .tree{aspect-ratio:4/5}
+@media (max-width:860px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}.strip figure:nth-child(n){grid-column:auto;margin-top:0;aspect-ratio:4/5}.about .grid2{grid-template-columns:1fr}}
+.hero .top{position:absolute;top:0;left:0;right:0;z-index:2}
+.hero .top .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:18px}
+.hero .brand{font-weight:600;font-size:16px;color:var(--ink)}
+.hero .cta{background:#fff;color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;padding:12px 20px;min-height:44px;display:inline-flex;align-items:center}
+.hero .bottom{position:relative;z-index:2;margin-top:auto;width:100%}
+.hero .bottom .wrap{padding-bottom:clamp(20px,3vw,34px);display:flex;flex-direction:column;gap:18px}
+.hero p.lede{max-width:34ch;font-size:clamp(16px,1.4vw,19px);line-height:1.45}
+.hero h1{font-size:clamp(68px,17.5vw,280px)}
+.hero h1 span{display:block}
+.rise{opacity:0;transform:translateY(22px);animation:rise 800ms var(--ease-out) forwards}
+.d1{animation-delay:120ms}.d2{animation-delay:240ms}
+@keyframes rise{to{opacity:1;transform:none}}
+.sun{transform-box:fill-box;transform-origin:center;animation:sunup 2600ms var(--ease-out) both}
+@keyframes sunup{from{transform:translateY(60px);opacity:.6}to{transform:none;opacity:1}}
+.cloud{animation:drift 60s linear infinite}
+.cloud2{animation:drift 85s linear infinite;animation-delay:-40s}
+@keyframes drift{from{transform:translateX(-20%)}to{transform:translateX(110%)}}
+.sway{transform-box:fill-box;transform-origin:top center;animation:sway 4.5s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}
 
-.chapter{padding-block:clamp(72px,10vw,150px)}
+section{padding-block:clamp(72px,10vw,150px)}
 .split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,80px);align-items:start}
-.split .intro{display:flex;flex-direction:column;gap:18px}
-.split .intro p{max-width:36ch}
+.split .intro{display:flex;flex-direction:column;gap:18px;position:sticky;top:24px}
+.split .intro p{max-width:40ch;font-size:18px}
+.panel{display:flex;flex-direction:column;gap:14px}
 
-.freezer{background:var(--hay);color:var(--hay-ink)}
+.updated{display:flex;align-items:center;gap:10px;color:var(--soft);font-size:15px}
+.dot{width:10px;height:10px;border-radius:50%;background:#3F8A3A;animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:center;background:var(--surface);border-radius:18px;padding:18px 20px;font-size:17px}
+.row strong{font-weight:600}
+.row.big{background:var(--night);color:var(--on-night);flex-direction:column;align-items:flex-start;gap:4px}
+.row.big .now{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(20px,2.2vw,26px);letter-spacing:-0.02em;text-transform:uppercase}
+
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{background:transparent;color:var(--hay-ink);border:2px solid var(--hay-ink);border-radius:999px;padding:12px 18px;min-height:48px;font-weight:700;font-size:16px;cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--hay-ink);color:var(--cream)}
-.chip.pay[aria-pressed="true"]{background:var(--barn);border-color:var(--barn)}
-.panel{display:flex;flex-direction:column;gap:16px}
-.result{background:var(--hay-ink);color:var(--cream);border-radius:26px;padding:26px;display:grid;grid-template-columns:1fr auto;gap:14px 22px;align-items:end}
-.result .lbs{font-weight:800;font-size:clamp(34px,4vw,54px);letter-spacing:-0.03em;line-height:1}
-.result .what{font-size:17px}
-.box{grid-column:2;grid-row:1/3;width:70px;height:130px;border-radius:12px;background:rgba(255,255,255,.12);display:flex;align-items:flex-end;overflow:hidden}
-.box span{display:block;width:100%;background:var(--hay);border-radius:10px;transition:height 360ms var(--ease-out)}
-.result .space{grid-column:1/3;font-size:15px;color:#D7DCCF}
-.go{background:var(--hay-ink);color:var(--cream);border:0;border-radius:999px;padding:17px 24px;min-height:56px;font-weight:700;font-size:18px;cursor:pointer;width:100%}
-.note{font-size:15px;min-height:1.5em}
-.note.done{font-weight:700;color:var(--barn)}
+.chip{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:10px 16px;min-height:44px;cursor:pointer;font-size:15px;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff}
+.chip.plum[aria-pressed="true"]{background:var(--plum);border-color:var(--plum)}
+label.field{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:500}
+label.field input{font-size:17px;padding:12px 16px;border:2px solid var(--ink);border-radius:14px;min-height:50px;background:#fff}
+.go{background:var(--plum);color:#fff;border:0;padding:16px 22px;min-height:54px;font-weight:600;font-size:17px;cursor:pointer;width:100%}
+.note{font-size:15px;color:var(--soft);min-height:1.5em}
+.note.done{color:var(--plum);font-weight:600}
 
-.how{background:var(--paper);color:var(--paper-ink)}
-.steps{display:flex;flex-direction:column;gap:12px;max-width:760px;margin-top:34px}
-.step{background:var(--paper-2);border-radius:24px;padding:22px 24px;font-size:clamp(18px,1.6vw,21px);line-height:1.4}
-.step:nth-child(2){padding-block:30px;margin-left:clamp(0px,4vw,60px)}
-.step:nth-child(3){background:var(--paper-ink);color:var(--paper-2);padding-block:40px;margin-left:clamp(0px,8vw,120px);font-size:clamp(20px,2vw,26px)}
-.step b{font-weight:700}
+.freezer{background:var(--field)}
+.result{background:var(--night);color:var(--on-night);border-radius:24px;padding:24px;display:grid;grid-template-columns:1fr auto;gap:14px 20px;align-items:end}
+.result .lbs{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,3.6vw,46px);letter-spacing:-0.03em;line-height:1;text-transform:uppercase}
+.result .what{grid-column:1/2;font-size:17px;line-height:1.45}
+.box{grid-column:2/3;grid-row:1/3;width:64px;height:120px;border-radius:10px;background:rgba(255,255,255,.12);display:flex;align-items:flex-end;overflow:hidden}
+.box span{display:block;width:100%;background:var(--gold);border-radius:8px;transition:height 360ms var(--ease-out)}
+.result .space{grid-column:1/3;font-size:15px;color:#C9D1CB}
 
-.farm{background:var(--barn)}
-.farm .card{background:var(--barn-2);border-radius:30px;padding:clamp(18px,3vw,36px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center;margin-top:34px}
-.farm svg{width:100%;height:auto;border-radius:999px 999px 18px 18px;display:block}
-.farm p{font-size:clamp(19px,1.8vw,24px);line-height:1.4}
-.farm p + p{margin-top:16px;color:#F2C8B8}
+.csa{background:var(--plum-soft)}
+.shares{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.share{text-align:left;background:#fff;border:2px solid transparent;border-radius:22px;padding:20px;cursor:pointer;display:flex;flex-direction:column;gap:4px;color:var(--ink)}
+.share[aria-pressed="true"]{border-color:var(--plum)}
+.share .t{font-weight:600}
+.share .p{font-family:'Unbounded',sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.03em}
+.share .d{font-size:15px;color:var(--soft)}
 
-.visit{background:var(--night);padding-bottom:0}
-.rows > *{display:flex;align-items:flex-end;padding:0 var(--m) 16px;min-height:clamp(84px,9vw,130px);font-weight:700;font-size:clamp(28px,4.4vw,64px);letter-spacing:-0.02em;text-decoration:none}
-.rows > :nth-child(odd){background:var(--night-2)}
-.rows .call{background:var(--hay)!important;color:var(--hay-ink);justify-content:space-between;align-items:center;padding-bottom:0}
-.arrow{width:clamp(52px,6vw,80px);height:clamp(52px,6vw,80px);border-radius:50%;background:var(--hay-ink);color:var(--hay);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.season h2{font-size:clamp(64px,13vw,190px)}
+.season .list{display:flex;flex-direction:column;gap:6px;margin-top:28px;max-width:760px}
+details{background:var(--surface);border-radius:18px}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:0 20px;min-height:58px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.plus{display:inline-block;font-size:22px;transition:transform 220ms var(--ease-out)}
+details[open] .plus{transform:rotate(45deg)}
+details p{padding:0 20px 20px;max-width:60ch}
 
-footer{background:var(--pasture);padding-top:40px}
-.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.tiles div{background:var(--pasture-2);border-radius:20px;padding:18px;font-size:16px}
-.tiles div:last-child{background:var(--hay);color:var(--hay-ink);font-weight:700}
-footer .mark{font-size:clamp(64px,15vw,240px);margin-top:clamp(80px,12vw,180px)}
-footer .mark span{color:var(--hay)}
-.legal{padding-block:20px 28px;font-size:14px;color:#D7E2CF;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.about .text{font-size:clamp(22px,2.4vw,34px);line-height:1.25;max-width:30ch}
+.about .text svg{float:left;width:3.6em;height:3.6em;margin:.1em .45em .1em 0}
+.about .soft{color:var(--soft);margin-top:1em}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
+.facts span{background:var(--surface);border-radius:999px;padding:10px 16px;font-size:15px}
 
+.visit{padding-bottom:0}
+.rows a,.rows div{display:flex;align-items:flex-end;padding:0 var(--m) 16px;min-height:clamp(84px,9vw,130px);font-weight:500;font-size:clamp(28px,4.4vw,64px);letter-spacing:-0.02em;text-decoration:none;max-width:none}
+.rows > :nth-child(odd){background:var(--surface)}
+.rows > :nth-child(even){background:var(--field)}
+.rows .call{background:var(--plum)!important;color:#fff;justify-content:space-between;align-items:center;padding-bottom:0}
+.arrow{width:clamp(52px,6vw,80px);height:clamp(52px,6vw,80px);border-radius:50%;background:#fff;color:var(--plum);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+footer{background:var(--night);color:var(--on-night);padding-top:48px}
+footer .cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;font-size:16px}
+footer .cols div span{display:block;color:#AFB9B1}
+footer .mark{font-size:clamp(64px,16vw,250px);margin-top:clamp(80px,14vw,200px)}
+footer .legal{padding-block:20px 28px;font-size:14px;color:#AFB9B1;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+footer .legal a{color:#fff}
+
+.in{opacity:1}
 @supports (animation-timeline: view()){
-  .in{animation:rise linear both;animation-timeline:view();animation-range:entry 0% cover 28%}
+  .in{animation:rise linear both;animation-timeline:view();animation-range:entry 5% cover 25%}
 }
-@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 @media (max-width:860px){
-  .split,.farm .card{grid-template-columns:1fr}
-  .hero .bottom{grid-template-columns:1fr}
-  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .split{grid-template-columns:1fr}
+  .split .intro{position:static}
+  footer .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rows .call .arrow{width:56px;height:56px}
+}
+@media (max-width:480px){
+  .shares{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion: reduce){
-  .mask > span,.in{animation:none;opacity:1;transform:none}
-  .scene{animation:none}.press:active{transform:none}
+  .rise,.sun,.in{animation:none;opacity:1;transform:none}
+  .cloud,.cloud2,.sway,.dot,.scene-photo{animation:none}
+  .press:active{transform:none}
   html{scroll-behavior:auto}
 }
 
-/* Calm palette: one oat ground, a sand step, deep green ink, one muted rust accent */
-:root{--oat:#F4F1EA;--sand:#E9E4D8;--sand-2:#E1DACB;--ink2:#22301F;--soft2:#5B6458;--rust:#8A4B32}
-body{background:var(--oat);color:var(--ink2)}
-:focus-visible{outline-color:var(--ink2)}
-.demo-bar{background:var(--sand);color:var(--ink2)}
-.hero h1 .gold{color:var(--rust)}
-.hero .cta{background:var(--ink2);color:var(--oat)}
-.freezer{background:var(--sand);color:var(--ink2)}
-.chip{color:var(--ink2);border-color:var(--ink2)}
-.chip[aria-pressed="true"]{background:var(--ink2);color:var(--oat)}
-.chip.pay[aria-pressed="true"]{background:var(--rust);border-color:var(--rust);color:#fff}
-.result{background:var(--ink2);color:var(--oat)}
-.box span{background:#D9C08A}
-.go{background:var(--ink2);color:var(--oat)}
-.note.done{color:var(--rust)}
-.how{background:var(--oat);color:var(--ink2)}
-.step{background:#FBF9F4}
-.step:nth-child(3){background:var(--ink2);color:var(--oat)}
-.bleed{background:var(--oat)}
-.bleed figcaption{color:var(--soft2)}
-.farm{background:var(--sand);color:var(--ink2)}
-.farm .card{background:var(--sand-2)}
-.farm p + p{color:var(--soft2)}
-.visit{background:var(--oat);color:var(--ink2)}
-.rows > :nth-child(odd){background:var(--sand)}
-.rows .call{background:var(--ink2)!important;color:var(--oat)}
-.arrow{background:var(--oat);color:var(--ink2)}
-footer{background:var(--ink2);color:var(--oat)}
-.tiles div{background:#2C3B28}
-.tiles div:last-child{background:var(--oat);color:var(--ink2)}
-footer .mark span{color:#C9B27A}
+/* Calm palette tweaks: neutral demo bar and a soft sage CSA section */
+.demo-bar{background:var(--surface);color:var(--ink)}
+.demo-bar a{color:var(--plum)}
+.csa{background:#EEF0E8}
+
+
+
+:root{--plum:#8A4B32;--plum-soft:#F3E7E0}
+.hero .top .brand{color:#fff}
+.steps{display:flex;flex-direction:column;gap:6px}
 
 </style>
 </head>
 <body>
 
-<div class="demo-bar"><div class="wrap">
-  <span>This is a demo site. Long Fence Farm is made up.</span>
-  <span>Want one for your farm? <a href="sms:+16123852211">Text Cynthia</a> or <a href="../">see other farm types</a></span>
-</div></div>
-
-<header class="hero wrap">
-  <div class="top">
-    <div style="font-weight:500">Beef and pork by the share</div>
-    <a class="cta press" href="#freezer">Order beef</a>
+<div class="demo-bar">
+  <div class="wrap">
+    <span>This is a demo site. Long Fence Farm is made up.</span>
+    <span>Want one for your farm? <a href="sms:+16123852211">Text Cynthia</a> or <a href="../">see other farm types</a></span>
   </div>
-  <img class="scene" src="../../img/farm-demo/beef-hero.jpg" alt="Hereford cattle standing in snow on a sunny winter day" width="960" height="576" fetchpriority="high">
-  <div class="bottom">
-    <h1 class="big"><span class="mask"><span>Long</span></span><span class="mask m2"><span class="gold">Fence</span></span></h1>
-    <p>Grass-fed beef and pork from our family farm in central Minnesota. Fill your freezer once a year.</p>
-  </div>
+</div>
+<header class="hero">
+  <img class="scene-photo" src="../../img/farm-demo/beef-hero.jpg" alt="Hereford cattle standing in snow on a sunny winter day" width="960" height="576" fetchpriority="high">
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="top"><div class="wrap">
+    <div class="brand">Long Fence Farm</div>
+    <a class="cta pill press rise" href="#freezer">Order beef</a>
+  </div></div>
+  <div class="bottom"><div class="wrap">
+    <p class="lede rise">Grass-fed beef and pork by the share, from our family farm in central Minnesota.</p>
+    <h1 class="display"><span class="rise d1">Long</span><span class="rise d2">Fence</span></h1>
+  </div></div>
 </header>
 
 <main>
-<section class="chapter freezer" id="freezer">
+<section class="freezer" id="freezer">
   <div class="wrap split">
     <div class="intro in">
       <h2 class="h2">Fill your freezer</h2>
@@ -187,10 +208,10 @@ footer .mark span{color:#C9B27A}
     </div>
     <form class="panel in" id="order" novalidate>
       <div class="chips" role="group" aria-label="Share size">
-        <button type="button" class="chip press" data-share="quarter" aria-pressed="true">Quarter beef</button>
-        <button type="button" class="chip press" data-share="half" aria-pressed="false">Half beef</button>
-        <button type="button" class="chip press" data-share="whole" aria-pressed="false">Whole beef</button>
-        <button type="button" class="chip press" data-share="pork" aria-pressed="false">Half pork</button>
+        <button type="button" class="chip pill press" data-share="quarter" aria-pressed="true">Quarter beef</button>
+        <button type="button" class="chip pill press" data-share="half" aria-pressed="false">Half beef</button>
+        <button type="button" class="chip pill press" data-share="whole" aria-pressed="false">Whole beef</button>
+        <button type="button" class="chip pill press" data-share="pork" aria-pressed="false">Half pork</button>
       </div>
       <div class="result" aria-live="polite">
         <div class="lbs" id="lbs">About 100 lbs</div>
@@ -198,68 +219,71 @@ footer .mark span{color:#C9B27A}
         <div class="what" id="what">Steaks, roasts and plenty of ground beef. A few months of dinners for a family of four.</div>
         <div class="space" id="space">Needs about 4 cubic feet of freezer space</div>
       </div>
-      <div style="font-weight:700;margin-top:6px">How do you want to pay?</div>
+      <div style="font-weight:600;margin-top:8px">How would you like to pay?</div>
       <div class="chips" role="group" aria-label="Payment">
-        <button type="button" class="chip pay press" data-pay="deposit" aria-pressed="true">Deposit now</button>
-        <button type="button" class="chip pay press" data-pay="card" aria-pressed="false">Card now</button>
-        <button type="button" class="chip pay press" data-pay="cash" aria-pressed="false">Cash or check</button>
-        <button type="button" class="chip pay press" data-pay="venmo" aria-pressed="false">Venmo</button>
+        <button type="button" class="chip plum pill press" data-pay="deposit" aria-pressed="true">Deposit now</button>
+        <button type="button" class="chip plum pill press" data-pay="card" aria-pressed="false">Card now</button>
+        <button type="button" class="chip plum pill press" data-pay="cash" aria-pressed="false">Cash or check</button>
+        <button type="button" class="chip plum pill press" data-pay="venmo" aria-pressed="false">Venmo</button>
       </div>
-      <p id="payNote">Hold your share with a $200 deposit by card. Pay the rest when you pick up.</p>
-      <button class="go press" type="submit" id="orderBtn">Reserve a quarter</button>
+      <p id="payNote" style="font-size:16px">Hold your share with a $200 deposit by card. Pay the rest when you pick up.</p>
+      <button class="go pill press" type="submit" id="orderBtn">Reserve a quarter</button>
       <p class="note" id="orderNote" aria-live="polite"></p>
     </form>
   </div>
 </section>
 
-<figure class="bleed"><img src="../../img/farm-demo/beef-land.jpg" alt="Green pasture and fields edged by forest under a big sky" width="960" height="640" loading="lazy"><figcaption>Pasture, fields and woods: where the herd spends the summer.</figcaption></figure>
-
-<section class="chapter how">
+<section class="field">
   <div class="wrap">
-    <h2 class="h2 in">How it works</h2>
-    <div class="grid"><div class="steps">
-      <div class="step in"><b>Reserve your share</b> with a deposit, or just your name if you're paying at pickup.</div>
-      <div class="step in"><b>We call when it's at the locker.</b> Tell the butcher how you like it: thick steaks, more ground, roasts or not.</div>
-      <div class="step in"><b>Pick it up and pay the rest.</b> Then you're set until next year.</div>
-    </div>
-    <figure class="calf in"><img src="../../img/farm-demo/beef-calf.jpg" alt="A young Hereford calf standing in green pasture" width="960" height="637" loading="lazy"><figcaption>Raised on grass from the start.</figcaption></figure>
+    <h2 class="h2 in">On the farm</h2>
+    <div class="strip">
+      <figure class="in"><img src="../../img/farm-demo/beef-land.jpg" alt="Green pasture and fields edged by forest under a big sky" width="960" height="640" loading="lazy"><figcaption>Summer pasture behind the long fence.</figcaption></figure>
+      <figure class="in"><img src="../../img/farm-demo/beef-calf.jpg" alt="A young Hereford calf standing in green pasture" width="960" height="637" loading="lazy"><figcaption>Raised on grass from the start.</figcaption></figure>
+      
     </div>
   </div>
 </section>
 
-<section class="chapter farm">
-  <div class="wrap">
-    <h2 class="h2 in">The farm</h2>
-    <div class="card in">
-      <img src="../../img/farm-demo/beef-bales.jpg" alt="Two round hay bales in a cut field" width="960" height="640" loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:999px 999px 18px 18px;display:block">
-      <div>
-        <p>Our cattle spend their lives on grass behind the long fence the farm is named for. Most of our families order every single year.</p>
-        <p>On a real site, this part is in the farmer's own words: how the herd lives, and why they still do it this way.</p>
-      </div>
+<section id="how">
+  <div class="wrap split">
+    <div class="intro in">
+      <h2 class="h2">How it works</h2>
+      <p>Most families order once a year. Here's what happens after you reserve.</p>
+    </div>
+    <div class="panel in steps">
+      <div class="row"><span><strong>Reserve your share</strong> with a deposit, or just your name if you're paying at pickup.</span></div>
+      <div class="row"><span><strong>We call when it's at the locker.</strong> Tell the butcher how you like it: thick steaks, more ground, roasts or not.</span></div>
+      <div class="row big"><span class="now">Pick it up, pay the rest</span><span>Then you're set until next year.</span></div>
     </div>
   </div>
 </section>
 
-<section class="chapter visit">
+<section class="about">
+  <div class="wrap">
+    <h2 class="h2 in" style="margin-bottom:28px">The farm</h2>
+    <div class="grid2"><div>
+    <p class="text in">Our cattle spend their lives on grass behind the long fence the farm is named for. Most of our families order every single year.</p>
+    <p class="text soft in">On a real site, this part is in the farmer's own words: how the herd lives, and why they still do it this way.</p>
+    <div class="facts in"><span>Central Minnesota</span><span>Family run</span><span>Beef and pork by the share</span><span>Card, cash, check or Venmo</span></div>
+    </div>
+    <figure class="tree in"><img src="../../img/farm-demo/beef-bales.jpg" alt="Two round hay bales in a cut field" width="960" height="640" loading="lazy"><figcaption>Hay for the winter.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="visit">
   <div class="wrap"><h2 class="h2 in" style="margin-bottom:24px">Call to order</h2></div>
   <div class="rows">
-    <a href="tel:+16125550147">(612) 555-0147</a>
     <div>Weekdays after 5</div>
     <div>Saturdays 8 to noon</div>
+    <a href="tel:+16125550147">(612) 555-0147</a>
     <a class="call press" href="tel:+16125550147">Call or text<span class="arrow" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
   </div>
 </section>
 </main>
-
 <footer>
   <div class="wrap">
-    <div class="tiles">
-      <div>Beef by the quarter, half or whole</div>
-      <div>Pork halves</div>
-      <div>Ground beef by the pound</div>
-      <div>Card, cash, check or Venmo</div>
-    </div>
-    <div class="big mark">Long<br><span>Fence</span></div>
+    <div class="display mark">Long<br>Fence</div>
     <p class="credits">Photos from Wikimedia Commons, shown for illustration under their licenses: <a href="https://commons.wikimedia.org/w/index.php?curid=182965224">Hereford cattle in Quebec (cropped)</a>, Quintin Soloviev, CC BY 4.0; <a href="https://commons.wikimedia.org/w/index.php?curid=87531283">Round hay bales in Brodalen 1</a>, W.carter, CC0; <a href="https://commons.wikimedia.org/w/index.php?curid=35473229">CSIRO ScienceImage 2462 Hereford Cattle in a Pasture</a>, division, CSIRO, CC BY 3.0; <a href="https://commons.wikimedia.org/w/index.php?curid=16436724">Savijärvi, Millola, Nummi</a>, Abc10, CC BY-SA 3.0.</p>
     <div class="legal"><span>Demo site. Long Fence Farm, its prices and phone number are made up. Amounts are rough estimates.</span><span>Designed and built by <a href="../../">Cynthia Rico Cook</a>. Want one? <a href="sms:+16123852211">Text (612) 385-2211</a></span></div>
   </div>
