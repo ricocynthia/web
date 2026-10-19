@@ -19,7 +19,7 @@ PAGES = {
         "url": SITE,
         "locale": "en_US",
         "title": "Cynthia Rico Cook | Websites and web tools for your business",
-        "desc": "I build websites and web tools for your business: sites that get you found, apps that replace the paperwork, and fixes for what you already have. English y español. Twin Cities, Minnesota.",
+        "desc": "I build websites and web tools for your business: sites that get you found, tools built around how you work, and fixes for what you already have. English y español. Twin Cities, Minnesota.",
         "ogalt": "A chaga mushroom shaped like a heart, growing on a birch tree",
         "alt1": "A chaga mushroom shaped like a heart, growing on a birch tree",
         "alt2": "A harvest of dandelions",
@@ -27,7 +27,7 @@ PAGES = {
         "alt4": "The quote calculator showing a price estimate",
         "alt5": "Rows of strawberry beds under a low sunset",
         "alt6": "Cynthia smiling outdoors with a yellow flower in her hair",
-        "services": ["Websites", "Web apps for small business paperwork", "Website fixes and upkeep"],
+        "services": ["Websites", "Custom web tools for small businesses", "Website fixes and upkeep"],
     },
     "es": {
         "out": "es/index.html",
@@ -35,7 +35,7 @@ PAGES = {
         "url": SITE + "es/",
         "locale": "es_US",
         "title": "Cynthia Rico Cook | Sitios web y herramientas para tu negocio",
-        "desc": "Hago sitios web y herramientas para tu negocio: sitios para que te encuentren, apps que reemplazan el papeleo y arreglos para lo que ya tienes. Español e inglés. Twin Cities, Minnesota.",
+        "desc": "Hago sitios web y herramientas para tu negocio: sitios para que te encuentren, herramientas hechas a la medida de tu negocio y arreglos para lo que ya tienes. Español e inglés. Twin Cities, Minnesota.",
         "ogalt": "Un hongo chaga con forma de corazón en un abedul",
         "alt1": "Un hongo chaga con forma de corazón en un abedul",
         "alt2": "Una cosecha de dientes de león",
@@ -43,7 +43,7 @@ PAGES = {
         "alt4": "La calculadora mostrando un precio estimado",
         "alt5": "Hileras de fresas bajo el sol de la tarde",
         "alt6": "Cynthia sonriendo al aire libre con una flor amarilla en el pelo",
-        "services": ["Sitios web", "Apps para el papeleo de negocios pequeños", "Arreglos y mantenimiento de sitios web"],
+        "services": ["Sitios web", "Herramientas web a la medida para negocios pequeños", "Arreglos y mantenimiento de sitios web"],
     },
 }
 
