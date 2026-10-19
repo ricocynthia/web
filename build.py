@@ -25,6 +25,8 @@ PAGES = {
         "alt2": "A harvest of dandelions",
         "alt3": "Foraged wild plants",
         "alt4": "The quote calculator showing a price estimate",
+        "alt5": "Rows of strawberry beds under a low sunset",
+        "alt6": "Cynthia smiling outdoors with a yellow flower in her hair",
         "services": ["Websites", "Web apps for small business paperwork", "Website fixes and upkeep"],
     },
     "es": {
@@ -39,6 +41,8 @@ PAGES = {
         "alt2": "Una cosecha de dientes de león",
         "alt3": "Plantas silvestres recolectadas",
         "alt4": "La calculadora mostrando un precio estimado",
+        "alt5": "Hileras de fresas bajo el sol de la tarde",
+        "alt6": "Cynthia sonriendo al aire libre con una flor amarilla en el pelo",
         "services": ["Sitios web", "Apps para el papeleo de negocios pequeños", "Arreglos y mantenimiento de sitios web"],
     },
 }
@@ -78,7 +82,7 @@ def build(lang, page):
     fills = {
         "LANG": lang, "TITLE": page["title"], "DESC": page["desc"], "URL": page["url"],
         "SITE": SITE, "BASE": page["base"], "LOCALE": page["locale"], "OGALT": page["ogalt"],
-        "ALT1": page["alt1"], "ALT2": page["alt2"], "ALT3": page["alt3"], "ALT4": page["alt4"],
+        "ALT1": page["alt1"], "ALT2": page["alt2"], "ALT3": page["alt3"], "ALT4": page["alt4"], "ALT5": page["alt5"], "ALT6": page["alt6"],
         "JSONLD": json_ld(lang, page), "LANGLINKS": lang_links(lang),
     }
     for key, value in fills.items():

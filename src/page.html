@@ -109,7 +109,7 @@ section{padding-block:clamp(56px,8vw,104px)}
 .stop p{color:var(--soil);max-width:28ch}
 
 /* work */
-.work{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px;margin-top:44px;align-items:start}
+.work{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:44px;align-items:start}
 .card{display:flex;flex-direction:column;gap:14px}
 .shot{display:block;position:relative;border-radius:var(--r-photo);overflow:hidden;background:var(--oat)}
 .shot img{width:100%;aspect-ratio:16/10;object-fit:cover}
@@ -133,6 +133,9 @@ section{padding-block:clamp(56px,8vw,104px)}
 .contact{background:var(--forest);color:var(--morning);border-radius:var(--r-panel);padding:clamp(40px,6vw,80px) clamp(28px,5vw,72px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center;overflow:hidden;position:relative}
 .contact h2{font-size:clamp(2.6rem,6vw,4.8rem);line-height:1}
 .contact p{color:#D9E3D3;margin-top:14px;font-size:1.12rem;max-width:40ch}
+.contact .reach{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.contact .reach .btn.ghost{background:transparent;color:var(--morning);box-shadow:inset 0 0 0 2px rgba(251,248,243,.45)}
+.contact .reach .btn.ghost:hover{background:rgba(251,248,243,.1)}
 .contact .soon{display:inline-block;margin-top:24px;background:rgba(251,248,243,.12);color:var(--morning);border-radius:999px;padding:10px 18px;font-weight:600;font-size:15px}
 .contact svg{width:clamp(120px,16vw,190px);height:auto}
 
@@ -300,10 +303,16 @@ footer{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;color:v
 <section class="wrap" id="work">
   <div class="head">
     <h2 data-es="Pruébalo tú">Try it yourself</h2>
-    <p class="lead" data-es="Un par de cosas que he hecho. Las dos funcionan de verdad.">A couple of things I've made. Both of them really work.</p>
+    <p class="lead" data-es="Algunas cosas que he hecho. Todas funcionan de verdad.">A few things I've made. They all really work.</p>
   </div>
   <div class="work">
     <article class="card feature">
+      <a class="shot" href="{{BASE}}farm-demo/"><span class="tag" data-es="Demostración">Demo</span><img src="{{BASE}}img/farm-demo/berries-hero.jpg" alt="{{ALT5}}" loading="lazy"></a>
+      <h3 data-es="Sitios de muestra para granjas">Sample farm websites</h3>
+      <p data-es="Escoge una granja de carne, una de moras para recoger o un huerto de calabazas. Los pedidos, registros y contadores funcionan de verdad.">Pick a beef farm, a u-pick berry farm or a pumpkin patch. The ordering, signups and counters really work.</p>
+      <a class="link" href="{{BASE}}farm-demo/" data-es="Ver las granjas de muestra">See the farm samples</a>
+    </article>
+    <article class="card">
       <a class="shot" href="{{BASE}}quote-demo/"><span class="tag" data-es="Demostración">Demo</span><img src="{{BASE}}img/quote-calculator.jpg" alt="{{ALT4}}" loading="lazy"></a>
       <h3 data-es="Calculadora de cotizaciones">Instant quote calculator</h3>
       <p data-es="Tus clientes contestan unas preguntas y ven un precio al instante. Hecha para negocios de limpieza, y fácil de adaptar al tuyo.">Customers answer a few questions and see a price right away. Built for cleaning businesses, and easy to adapt to yours.</p>
@@ -320,11 +329,11 @@ footer{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;color:v
 
 <section class="wrap" id="about">
   <div class="about">
-    <div class="round"><img src="{{BASE}}img/chaga-heart.jpg" alt="{{ALT1}}" loading="lazy"></div>
+    <div class="round"><img src="{{BASE}}img/cynthia.jpg" alt="{{ALT6}}" loading="lazy"></div>
     <div>
       <h2 data-es="Un poco sobre mí">A little about me</h2>
       <p data-es="De día construyo los sistemas de check-in de una aerolínea grande, software que tiene que funcionar siempre. Los negocios locales casi nunca reciben ese cuidado. Yo creo que deberían.">By day I build check-in systems for a major airline, software that has to work every single time. Local businesses almost never get that kind of care. I think they should.</p>
-      <p data-es="En mi tiempo libre me apasiona la sanación natural, y comparto lo que aprendo en Earthy Mujer.">Off the clock I'm into natural healing, and I share what I learn at Earthy Mujer.</p>
+      <p data-es="En mi tiempo libre me apasiona la sanación natural, y comparto lo que aprendo en Earthy Mujer. También soy coautora de &lt;i&gt;Nature's Cookbook&lt;/i&gt;, un libro sobre cocinar, cultivar y sanar con lo que nos da la naturaleza.">Off the clock I'm into natural healing, and I share what I learn at Earthy Mujer. I also co-wrote <i>Nature's Cookbook</i>, a book about cooking, gardening and healing with the gifts of nature.</p>
       <ul class="chips">
         <li>Twin Cities, Minnesota</li>
         <li>English y español</li>
@@ -339,7 +348,7 @@ footer{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;color:v
     <div>
       <h2 data-es="Hablemos.">Let's talk.</h2>
       <p data-es="Cuéntame qué necesitas. La primera llamada es gratis y sin presión.">Tell me what you need. First call's free, no pressure.</p>
-      <span class="soon" data-es="Datos de contacto muy pronto">Contact details coming soon</span>
+      <div class="reach"><a class="btn sun" href="sms:+16123852211" data-es="Mándame un texto: (612) 385-2211">Text (612) 385-2211</a><a class="btn ghost" href="mailto:hello.cynthiaricocook@gmail.com">hello.cynthiaricocook@gmail.com</a></div>
     </div>
     <svg viewBox="0 0 190 190" aria-hidden="true">
       <path d="M30 60c0-17 13-30 30-30h70c17 0 30 13 30 30v40c0 17-13 30-30 30H86l-34 28v-28h-2c-11 0-20-9-20-20Z" fill="#FBF8F3"/>
