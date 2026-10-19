@@ -4,165 +4,354 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>U-pick berry farm demo | Cynthia Rico Cook</title>
-<meta name="description" content="A demo website for a u-pick berry farm: a daily picking board, text alerts and CSA signups. Wild Plum Farm is made up.">
+<meta name="description" content="A demo website for a u-pick berry farm: a daily picking report, text alerts and CSA signups. Wild Plum Farm is made up.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..700,0..100,0..1&family=Karla:wght@400;500;600&family=Caveat:wght@500;600&display=swap">
-<link rel="stylesheet" href="../rustic.css">
-<style>:root{--accent:#6E2F4A}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@800&family=Onest:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#F3F1EC; --field:#E6E2D8;
+  --ink:#13201A; --soft:#4E5A52; --night:#13201A; --on-night:#F4F1EA;
+  --plum:#5E2340; --plum-soft:#F1E3EA; --gold:#F0C85A; --berry:#C42A2F;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  --m:clamp(16px,3vw,40px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 'Onest',system-ui,sans-serif}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+button,input{font:inherit}
+:focus-visible{outline:3px solid var(--plum);outline-offset:3px}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding-inline:var(--m)}
+.display{font-family:'Unbounded',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.92}
+.h2{font-family:'Unbounded',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:1;font-size:clamp(30px,4.2vw,56px)}
+.press{transition:transform 160ms var(--ease-out),background-color 200ms ease,color 200ms ease,border-color 200ms ease}
+.press:active{transform:scale(0.97)}
+.pill{border-radius:999px}
+
+.demo-bar{background:var(--plum);color:#fff;font-size:15px}
+.demo-bar .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;align-items:center;padding-block:10px}
+.demo-bar a{font-weight:600}
+
+.hero{position:relative;min-height:calc(100svh - 44px);background:var(--night);color:#fff;overflow:hidden;display:flex}
+.hero .scene-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;animation:drift 24s ease-in-out infinite alternate}
+.hero .scrim{position:absolute;left:0;right:0;bottom:0;height:46%;background:rgba(10,16,12,.72)}
+.hero .top .brand{color:#fff}
+@keyframes drift{from{transform:scale(1.02)}to{transform:scale(1.09)}}
+figure{margin:0}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
+figcaption{font-size:14px;color:var(--soft);margin-top:8px}
+.strip{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin-top:30px}
+.strip figure:nth-child(1){grid-column:1/8;aspect-ratio:4/3}
+.strip figure:nth-child(2){grid-column:8/13;aspect-ratio:4/5;margin-top:60px}
+.strip figure:nth-child(3){grid-column:2/7;aspect-ratio:1/1;margin-top:-40px}
+.strip figure:nth-child(4){grid-column:7/13;aspect-ratio:4/3}
+.strip figure{display:flex;flex-direction:column}
+.strip figure img{flex:1;min-height:0}
+.credits{font-size:13px;color:#AFB9B1;padding-bottom:28px;max-width:110ch}
+.credits a{color:#D7DED9}
+.about .grid2{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,60px);align-items:start}
+.about .tree{aspect-ratio:4/5}
+@media (max-width:860px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}.strip figure:nth-child(n){grid-column:auto;margin-top:0;aspect-ratio:4/5}.about .grid2{grid-template-columns:1fr}}
+.hero .top{position:absolute;top:0;left:0;right:0;z-index:2}
+.hero .top .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:18px}
+.hero .brand{font-weight:600;font-size:16px;color:var(--ink)}
+.hero .cta{background:#fff;color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;padding:12px 20px;min-height:44px;display:inline-flex;align-items:center}
+.hero .bottom{position:relative;z-index:2;margin-top:auto;width:100%}
+.hero .bottom .wrap{padding-bottom:clamp(20px,3vw,34px);display:flex;flex-direction:column;gap:18px}
+.hero p.lede{max-width:34ch;font-size:clamp(16px,1.4vw,19px);line-height:1.45}
+.hero h1{font-size:clamp(68px,17.5vw,280px)}
+.hero h1 span{display:block}
+.rise{opacity:0;transform:translateY(22px);animation:rise 800ms var(--ease-out) forwards}
+.d1{animation-delay:120ms}.d2{animation-delay:240ms}
+@keyframes rise{to{opacity:1;transform:none}}
+.sun{transform-box:fill-box;transform-origin:center;animation:sunup 2600ms var(--ease-out) both}
+@keyframes sunup{from{transform:translateY(60px);opacity:.6}to{transform:none;opacity:1}}
+.cloud{animation:drift 60s linear infinite}
+.cloud2{animation:drift 85s linear infinite;animation-delay:-40s}
+@keyframes drift{from{transform:translateX(-20%)}to{transform:translateX(110%)}}
+.sway{transform-box:fill-box;transform-origin:top center;animation:sway 4.5s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}
+
+section{padding-block:clamp(72px,10vw,150px)}
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,80px);align-items:start}
+.split .intro{display:flex;flex-direction:column;gap:18px;position:sticky;top:24px}
+.split .intro p{max-width:40ch;font-size:18px}
+.panel{display:flex;flex-direction:column;gap:14px}
+
+.updated{display:flex;align-items:center;gap:10px;color:var(--soft);font-size:15px}
+.dot{width:10px;height:10px;border-radius:50%;background:#3F8A3A;animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:center;background:var(--surface);border-radius:18px;padding:18px 20px;font-size:17px}
+.row strong{font-weight:600}
+.row.big{background:var(--night);color:var(--on-night);flex-direction:column;align-items:flex-start;gap:4px}
+.row.big .now{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(20px,2.2vw,26px);letter-spacing:-0.02em;text-transform:uppercase}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:10px 16px;min-height:44px;cursor:pointer;font-size:15px;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff}
+.chip.plum[aria-pressed="true"]{background:var(--plum);border-color:var(--plum)}
+label.field{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:500}
+label.field input{font-size:17px;padding:12px 16px;border:2px solid var(--ink);border-radius:14px;min-height:50px;background:#fff}
+.go{background:var(--plum);color:#fff;border:0;padding:16px 22px;min-height:54px;font-weight:600;font-size:17px;cursor:pointer;width:100%}
+.note{font-size:15px;color:var(--soft);min-height:1.5em}
+.note.done{color:var(--plum);font-weight:600}
+
+.freezer{background:var(--field)}
+.result{background:var(--night);color:var(--on-night);border-radius:24px;padding:24px;display:grid;grid-template-columns:1fr auto;gap:14px 20px;align-items:end}
+.result .lbs{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,3.6vw,46px);letter-spacing:-0.03em;line-height:1;text-transform:uppercase}
+.result .what{grid-column:1/2;font-size:17px;line-height:1.45}
+.box{grid-column:2/3;grid-row:1/3;width:64px;height:120px;border-radius:10px;background:rgba(255,255,255,.12);display:flex;align-items:flex-end;overflow:hidden}
+.box span{display:block;width:100%;background:var(--gold);border-radius:8px;transition:height 360ms var(--ease-out)}
+.result .space{grid-column:1/3;font-size:15px;color:#C9D1CB}
+
+.csa{background:var(--plum-soft)}
+.shares{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.share{text-align:left;background:#fff;border:2px solid transparent;border-radius:22px;padding:20px;cursor:pointer;display:flex;flex-direction:column;gap:4px;color:var(--ink)}
+.share[aria-pressed="true"]{border-color:var(--plum)}
+.share .t{font-weight:600}
+.share .p{font-family:'Unbounded',sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.03em}
+.share .d{font-size:15px;color:var(--soft)}
+
+.season h2{font-size:clamp(64px,13vw,190px)}
+.season .list{display:flex;flex-direction:column;gap:6px;margin-top:28px;max-width:760px}
+details{background:var(--surface);border-radius:18px}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:0 20px;min-height:58px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.plus{display:inline-block;font-size:22px;transition:transform 220ms var(--ease-out)}
+details[open] .plus{transform:rotate(45deg)}
+details p{padding:0 20px 20px;max-width:60ch}
+
+.about .text{font-size:clamp(22px,2.4vw,34px);line-height:1.25;max-width:30ch}
+.about .text svg{float:left;width:3.6em;height:3.6em;margin:.1em .45em .1em 0}
+.about .soft{color:var(--soft);margin-top:1em}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
+.facts span{background:var(--surface);border-radius:999px;padding:10px 16px;font-size:15px}
+
+.visit{padding-bottom:0}
+.rows a,.rows div{display:flex;align-items:flex-end;padding:0 var(--m) 16px;min-height:clamp(84px,9vw,130px);font-weight:500;font-size:clamp(28px,4.4vw,64px);letter-spacing:-0.02em;text-decoration:none;max-width:none}
+.rows > :nth-child(odd){background:var(--surface)}
+.rows > :nth-child(even){background:var(--field)}
+.rows .call{background:var(--plum)!important;color:#fff;justify-content:space-between;align-items:center;padding-bottom:0}
+.arrow{width:clamp(52px,6vw,80px);height:clamp(52px,6vw,80px);border-radius:50%;background:#fff;color:var(--plum);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+footer{background:var(--night);color:var(--on-night);padding-top:48px}
+footer .cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;font-size:16px}
+footer .cols div span{display:block;color:#AFB9B1}
+footer .mark{font-size:clamp(64px,16vw,250px);margin-top:clamp(80px,14vw,200px)}
+footer .legal{padding-block:20px 28px;font-size:14px;color:#AFB9B1;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+footer .legal a{color:#fff}
+
+.in{opacity:1}
+@supports (animation-timeline: view()){
+  .in{animation:rise linear both;animation-timeline:view();animation-range:entry 5% cover 25%}
+}
+@media (max-width:860px){
+  .split{grid-template-columns:1fr}
+  .split .intro{position:static}
+  footer .cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rows .call .arrow{width:56px;height:56px}
+}
+@media (max-width:480px){
+  .shares{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){
+  .rise,.sun,.in{animation:none;opacity:1;transform:none}
+  .cloud,.cloud2,.sway,.dot,.scene-photo{animation:none}
+  .press:active{transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* Calm palette tweaks: neutral demo bar and a soft sage CSA section */
+.demo-bar{background:var(--surface);color:var(--ink)}
+.demo-bar a{color:var(--plum)}
+.csa{background:#EEF0E8}
+
+</style>
 </head>
 <body>
 
-<div class="demo-bar"><div class="wrap">
-  <span>Demo site. Wild Plum Farm is made up.</span>
-  <span>Want one for your farm? <a href="sms:+16123852211">Text Cynthia</a> · <a href="../">Other farm types</a></span>
-</div></div>
-
-<nav class="top"><div class="wrap">
-  <div class="serif name">Wild Plum Farm</div>
-  <div class="links"><a href="#today">Today</a><a href="#csa">CSA</a><a href="#visit">Visit</a></div>
-</div></nav>
-
-<header class="hero"><div class="wrap grid">
-  <div class="copy">
-    <h1 class="serif">Berries, plums, and a box every week.</h1>
-    <p class="lede">A small family farm in central Minnesota. Pick your own in June and July, or join the CSA and let us do the picking.</p>
-    <p class="hand note">Gate opens at 7 when the berries are in!</p>
-    <div><a class="btn" href="#today">See what's ripe today</a></div>
+<div class="demo-bar">
+  <div class="wrap">
+    <span>This is a demo site. Wild Plum Farm is made up.</span>
+    <span>Want one for your farm? <a href="sms:+16123852211">Text Cynthia</a> or <a href="../">see other farm types</a></span>
   </div>
-  <figure class="print"><img src="../../img/farm-demo/berries-hero.jpg" alt="Rows of strawberry beds at sunset" width="960" height="713" fetchpriority="high"><figcaption>The strawberry rows, just before the first pick.</figcaption></figure>
-</div></header>
+</div>
+
+<header class="hero">
+  <img class="scene-photo" src="../../img/farm-demo/berries-hero.jpg" alt="Rows of strawberry beds under a low sunset" width="960" height="713" fetchpriority="high">
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="top"><div class="wrap">
+    <div class="brand">Wild Plum Farm</div>
+    <a class="cta pill press rise" href="#ripe">What's ripe today?</a>
+  </div></div>
+  <div class="bottom"><div class="wrap">
+    <p class="lede rise">U-pick berries, wild plums and a weekly CSA box from our family farm in central Minnesota.</p>
+    <h1 class="display"><span class="rise d1">Wild</span><span class="rise d2">Plum</span></h1>
+  </div></div>
+</header>
 
 <main>
-<section id="today"><div class="wrap two">
-  <div class="copy reveal">
-    <h2 class="serif">What's ripe this morning</h2>
-    <p>We write this on the board before the gate opens. Hours change with the weather and the berries, so give it a look before you drive out.</p>
-    <figure class="print"><img src="../../img/farm-demo/berries-stand.jpg" alt="A farm stand with crates of produce and a chalkboard sign" width="960" height="540" loading="lazy" style="aspect-ratio:16/10"><figcaption>Flats go fast on Saturdays.</figcaption></figure>
-  </div>
-  <div class="reveal" style="display:flex;flex-direction:column;gap:18px">
-    <div class="board">
-      <div class="when">Updated 6:40 this morning</div>
-      <ul>
-        <li><span>Strawberries</span><span>picking 7 to noon</span></li>
-        <li><span>Pre-picked flats</span><span>after 10</span></li>
-        <li><span>Raspberries</span><span>early July</span></li>
-        <li><span>Wild plums</span><span>August</span></li>
-      </ul>
+<section id="ripe">
+  <div class="wrap split">
+    <div class="intro in">
+      <h2 class="h2">What's ripe this morning</h2>
+      <p>We update this before the gate opens. Hours move with the weather and the berries, so check here before you drive out.</p>
+      <figure style="aspect-ratio:16/9;margin-top:10px"><img src="../../img/farm-demo/berries-stand.jpg" alt="A farm stand with crates of produce and a chalkboard sign" width="960" height="540" loading="lazy"></figure>
     </div>
-    <form class="form" id="alert" novalidate>
-      <div style="font-weight:600">Get a text the morning it's ready</div>
-      <div class="chips" role="group" aria-label="Crop">
-        <button type="button" class="chip" data-crop="strawberries" aria-pressed="true">Strawberries</button>
-        <button type="button" class="chip" data-crop="raspberries" aria-pressed="false">Raspberries</button>
-        <button type="button" class="chip" data-crop="plums" aria-pressed="false">Plums</button>
+    <div class="panel in">
+      <div class="updated"><span class="dot" aria-hidden="true"></span>Updated this morning at 6:40</div>
+      <div class="row big"><span>Strawberries</span><span class="now">Picking 7 am to noon</span></div>
+      <div class="row"><span>Pre-picked flats</span><strong>Ready after 10</strong></div>
+      <div class="row"><span>Raspberries</span><strong>Early July</strong></div>
+      <div class="row"><span>Wild plums and jam</span><strong>August</strong></div>
+      <form id="alert" class="panel" style="margin-top:18px" novalidate>
+        <div style="font-weight:600">Get a text when it's ready</div>
+        <div class="chips" role="group" aria-label="Crop">
+          <button type="button" class="chip pill press" data-crop="strawberries" aria-pressed="true">Strawberries</button>
+          <button type="button" class="chip pill press" data-crop="raspberries" aria-pressed="false">Raspberries</button>
+          <button type="button" class="chip pill press" data-crop="plums" aria-pressed="false">Plums</button>
+        </div>
+        <label class="field">Your cell number<input id="cell" type="tel" inputmode="tel" placeholder="612 555 0142" autocomplete="tel"></label>
+        <button class="go pill press" type="submit" id="alertBtn">Text me when strawberries are ready</button>
+        <p class="note" id="alertNote" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="field">
+  <div class="wrap">
+    <h2 class="h2 in">From the field</h2>
+    <div class="strip">
+      <figure class="in"><img src="../../img/farm-demo/berries-wild.jpg" alt="Wild strawberries ripening among green leaves" width="960" height="721" loading="lazy"><figcaption>June: the first berries turn red.</figcaption></figure>
+      <figure class="in"><img src="../../img/farm-demo/berries-flower.jpg" alt="A white strawberry flower beside ripe and green berries" width="960" height="720" loading="lazy"><figcaption>Flowers and fruit on the same plant.</figcaption></figure>
+      <figure class="in"><img src="../../img/farm-demo/berries-raspberries.jpg" alt="A bowl of raspberries with cream and sugar" width="960" height="720" loading="lazy"><figcaption>July: raspberries, best with cream.</figcaption></figure>
+      <figure class="in"><img src="../../img/farm-demo/berries-blackraspberry.jpg" alt="A black raspberry bush along a wooden fence" width="960" height="720" loading="lazy"><figcaption>Black raspberries along the fence line.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="csa" id="csa">
+  <div class="wrap split">
+    <div class="intro in">
+      <h2 class="h2">A box every week</h2>
+      <p>Sixteen weeks of whatever is best that week, June through September. Pick up at the farm or our Saturday market stand.</p>
+    </div>
+    <form class="panel in" id="csaForm" novalidate>
+      <div class="shares" role="group" aria-label="Share size">
+        <button type="button" class="share press" data-csa="half" aria-pressed="true"><span class="t">Half share</span><span class="p">$330</span><span class="d">Good for one or two people</span></button>
+        <button type="button" class="share press" data-csa="full" aria-pressed="false"><span class="t">Full share</span><span class="p">$560</span><span class="d">Feeds a family of four</span></button>
       </div>
-      <label class="field">Your cell number<input id="cell" type="tel" inputmode="tel" placeholder="612 555 0142" autocomplete="tel"></label>
-      <button class="btn full" type="submit" id="alertBtn">Text me when strawberries are ready</button>
-      <p class="note-out" id="alertNote" aria-live="polite"></p>
+      <div style="font-weight:600;margin-top:8px">How would you like to pay?</div>
+      <div class="chips" role="group" aria-label="CSA payment">
+        <button type="button" class="chip plum pill press" data-csapay="full" aria-pressed="true">All now</button>
+        <button type="button" class="chip plum pill press" data-csapay="three" aria-pressed="false">3 payments</button>
+        <button type="button" class="chip plum pill press" data-csapay="cash" aria-pressed="false">Cash at first pickup</button>
+      </div>
+      <p id="csaNote" style="font-size:16px">One payment of $330 by card.</p>
+      <button class="go pill press" type="submit">Join the CSA</button>
+      <p class="note" id="csaDone" aria-live="polite"></p>
     </form>
   </div>
-</div></section>
+</section>
 
-<section><div class="wrap">
-  <h2 class="serif reveal">From the field</h2>
-  <div class="prints">
-    <figure class="print reveal"><img src="../../img/farm-demo/berries-wild.jpg" alt="Wild strawberries ripening among green leaves" width="960" height="721" loading="lazy"><figcaption>June, the first ones turn red.</figcaption></figure>
-    <figure class="print reveal"><img src="../../img/farm-demo/berries-flower.jpg" alt="A white strawberry flower beside ripe and green berries" width="960" height="720" loading="lazy"><figcaption>Flowers and fruit on one plant.</figcaption></figure>
-    <figure class="print reveal"><img src="../../img/farm-demo/berries-raspberries.jpg" alt="A bowl of raspberries with cream and sugar" width="960" height="720" loading="lazy"><figcaption>July raspberries, best with cream.</figcaption></figure>
-  </div>
-</div></section>
-
-<section id="csa"><div class="wrap two">
-  <div class="copy reveal">
-    <h2 class="serif">A box every week</h2>
-    <p>Sixteen weeks of whatever's best, June through September. Pick it up at the farm or at our Saturday market stand.</p>
-  </div>
-  <form class="form reveal" id="csaForm" novalidate>
-    <div class="cards" role="group" aria-label="Share size">
-      <button type="button" class="card" data-csa="half" aria-pressed="true"><span class="t">Half share</span><span class="p">$330</span><span class="d">One or two people</span></button>
-      <button type="button" class="card" data-csa="full" aria-pressed="false"><span class="t">Full share</span><span class="p">$560</span><span class="d">A family of four</span></button>
+<section class="season">
+  <div class="wrap">
+    <h2 class="display in">Season</h2>
+    <div class="list in">
+      <details open><summary>Strawberries, mid-June<span class="plus" aria-hidden="true">+</span></summary><p>Pick your own or take home a flat already picked. The season runs about three weeks, so come early.</p></details>
+      <details><summary>Raspberries, early July<span class="plus" aria-hidden="true">+</span></summary><p>Pick-your-own summer raspberries, right as the strawberries wind down.</p></details>
+      <details><summary>Wild plums, August<span class="plus" aria-hidden="true">+</span></summary><p>The tart little plums the farm is named for. Sold by the quart, and as jam at the stand.</p></details>
+      <details><summary>Pumpkins, October<span class="plus" aria-hidden="true">+</span></summary><p>A small patch for carving and pie, weekends only.</p></details>
+      <details><summary>Fall CSA add-on, September<span class="plus" aria-hidden="true">+</span></summary><p>Squash, apples and storage onions for members who want a few extra weeks.</p></details>
     </div>
-    <div style="font-weight:600">How would you like to pay?</div>
-    <div class="chips" role="group" aria-label="CSA payment">
-      <button type="button" class="chip" data-csapay="full" aria-pressed="true">All now</button>
-      <button type="button" class="chip" data-csapay="three" aria-pressed="false">3 payments</button>
-      <button type="button" class="chip" data-csapay="cash" aria-pressed="false">Cash at first pickup</button>
-    </div>
-    <p id="csaNote">One payment of $330 by card.</p>
-    <button class="btn full" type="submit">Join the CSA</button>
-    <p class="note-out" id="csaDone" aria-live="polite"></p>
-  </form>
-</div></section>
-
-<section><div class="wrap">
-  <h2 class="serif reveal">How the season goes</h2>
-  <ul class="season">
-    <li class="reveal"><div class="m">Mid-June</div><div class="w">Strawberries</div><div class="x">About three weeks. Come early.</div></li>
-    <li class="reveal"><div class="m">Early July</div><div class="w">Raspberries</div><div class="x">Right as strawberries wind down.</div></li>
-    <li class="reveal"><div class="m">August</div><div class="w">Wild plums</div><div class="x">By the quart, and as jam.</div></li>
-    <li class="reveal"><div class="m">September</div><div class="w">Fall add-on</div><div class="x">Squash, apples, onions.</div></li>
-    <li class="reveal"><div class="m">October</div><div class="w">Pumpkins</div><div class="x">A small patch, weekends only.</div></li>
-  </ul>
-</div></section>
-
-<section class="story"><div class="wrap two">
-  <figure class="print reveal"><img src="../../img/farm-demo/berries-plumtree.jpg" alt="A young wild plum tree in a grassy clearing" width="960" height="720" loading="lazy"><figcaption>The wild plum by the road.</figcaption></figure>
-  <div class="reveal" style="align-self:center">
-    <h2 class="serif" style="margin-bottom:18px">About the farm</h2>
-    <p class="big">Three generations have worked this ground, and the wild plum thicket by the road was here before any of us. We grow what this land is good at and sell it straight to the families who eat it.</p>
-    <p class="sign">The family at Wild Plum</p>
-    <p class="soft">On a real site, this part is in the farmer's own words.</p>
   </div>
-</div></section>
+</section>
 
-<section id="visit" class="visit"><div class="wrap">
-  <div class="box reveal">
-    <div>
-      <h2 class="serif" style="margin-bottom:14px">Come see us</h2>
-      <div class="lines">Friday to Sunday<br>8 am to 1 pm in season<br>(612) 555-0142</div>
-      <p class="hand" style="font-size:26px;color:var(--accent);margin-top:12px">Call or text first on hot days.</p>
+<section class="about">
+  <div class="wrap">
+    <h2 class="h2 in" style="margin-bottom:28px">The farm</h2>
+    <div class="grid2"><div><p class="text in"><img src="../../img/farm-demo/berries-plumbranch.jpg" alt="" width="110" height="110" style="float:left;width:3.6em;height:3.6em;object-fit:cover;margin:.1em .45em .1em 0">Three generations have farmed this ground, and the wild plum thicket by the road has been here longer than any of us. We grow what this land is good at and sell it straight to the families who eat it.</p>
+    <p class="text soft in">On a real site, this part is in the farmer's own words: why they farm, and what a good morning here looks like.</p>
+    <div class="facts in"><span>Central Minnesota</span><span>Family run</span><span>U-pick and CSA</span><span>Card, cash, check or Venmo</span></div>
     </div>
-    <a class="btn" href="tel:+16125550142">Call the farm</a>
+    <figure class="tree in"><img src="../../img/farm-demo/berries-plumtree.jpg" alt="A young wild plum tree in a grassy clearing" width="960" height="720" loading="lazy"><figcaption>A wild plum, Prunus americana, the tree the farm is named for.</figcaption></figure>
+    </div>
   </div>
-</div></section>
+</section>
+
+<section class="visit">
+  <div class="wrap"><h2 class="h2 in" style="margin-bottom:24px">Come see us</h2></div>
+  <div class="rows">
+    <div>Open Friday to Sunday</div>
+    <div>8 am to 1 pm in season</div>
+    <a href="tel:+16125550142">(612) 555-0142</a>
+    <a class="call press" href="tel:+16125550142">Call or text first<span class="arrow" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+  </div>
+</section>
 </main>
 
-<footer><div class="wrap">
-  <div class="serif name">Wild Plum Farm</div>
-  <p class="credits">Photos from Wikimedia Commons, shown for illustration under their licenses: <a href="https://commons.wikimedia.org/w/index.php?curid=78807046">Strawberry Field For... next year (28481298324)</a>, Johan Neven from Borgloon-Gotem, Belgium, CC BY 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=10129205">Fragaria vesca 003</a>, H. Zell, CC BY-SA 3.0; <a href="https://commons.wikimedia.org/w/index.php?curid=70756740">Fragaria vesca (41503723130)</a>, xulescu_g, CC BY-SA 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=33740073">Prunus americana Syrets1</a>, Аимаина хикари, CC0; <a href="https://commons.wikimedia.org/w/index.php?curid=4099308">Raspberries with crème fraîche and sugar</a>, Jef Poskanzer from Berkeley, CA, USA, CC BY 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=42542646">Siena Farms stand at Boston Public Market</a>, NewtonCourt, CC BY-SA 4.0.</p>
-  <div class="legal"><span>Demo site. Wild Plum Farm, its people, prices and phone number are made up.</span><span>Built by <a href="../../">Cynthia Rico Cook</a>. Want one? <a href="sms:+16123852211">Text (612) 385-2211</a></span></div>
-</div></footer>
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>Picking<span>Mid-June to August</span></div>
+      <div>Wild plums<span>August, by the quart</span></div>
+      <div>CSA<span>16 weeks, June to September</span></div>
+      <div>Pay how you like<span>Card, cash, check or Venmo</span></div>
+    </div>
+    <div class="display mark">Wild<br>Plum</div>
+    <p class="credits">Photos from Wikimedia Commons, shown for illustration under their licenses: <a href="https://commons.wikimedia.org/w/index.php?curid=78807046">Strawberry Field For... next year (28481298324)</a>, Johan Neven from Borgloon-Gotem, Belgium, CC BY 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=10129205">Fragaria vesca 003</a>, H. Zell, CC BY-SA 3.0; <a href="https://commons.wikimedia.org/w/index.php?curid=70756740">Fragaria vesca (41503723130)</a>, xulescu_g, CC BY-SA 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=33740073">Prunus americana Syrets1</a>, Аимаина хикари, CC0; <a href="https://commons.wikimedia.org/w/index.php?curid=33740072">Prunus americana Syrets2</a>, Аимаина хикари, CC0; <a href="https://commons.wikimedia.org/w/index.php?curid=4099308">Raspberries with crème fraîche and sugar</a>, Jef Poskanzer from Berkeley, CA, USA, CC BY 2.0; <a href="https://commons.wikimedia.org/w/index.php?curid=42542646">Siena Farms stand at Boston Public Market</a>, NewtonCourt, CC BY-SA 4.0; <a href="https://commons.wikimedia.org/w/index.php?curid=133131152">2023-06-15 10 39 15 Black Raspberry bush with ripening fruit along Terrace Boulevard in the Parkway Village section of Ewing Township, Mercer County, New Jersey</a>, Famartin, CC BY-SA 4.0.</p>
+    <div class="legal"><span>Demo site. Wild Plum Farm, its people, prices and phone number are made up.</span><span>Designed and built by <a href="../../">Cynthia Rico Cook</a>. Want one? <a href="sms:+16123852211">Text (612) 385-2211</a></span></div>
+  </div>
+</footer>
 
 <script>
 (function(){
   function group(sel, attr, onPick){
     var btns = Array.prototype.slice.call(document.querySelectorAll(sel));
-    btns.forEach(function(b){ b.addEventListener('click', function(){
-      btns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      onPick(b.getAttribute(attr));
-    }); });
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        onPick(b.getAttribute(attr));
+      });
+    });
   }
-  var crop='strawberries', alertBtn=document.getElementById('alertBtn');
-  group('[data-crop]','data-crop',function(v){ crop=v; alertBtn.textContent='Text me when '+v+' are ready'; document.getElementById('alertNote').textContent=''; });
-  document.getElementById('alert').addEventListener('submit',function(e){
+
+  var crop = 'strawberries';
+  var alertBtn = document.getElementById('alertBtn');
+  group('[data-crop]', 'data-crop', function(v){ crop = v; alertBtn.textContent = 'Text me when ' + v + ' are ready'; document.getElementById('alertNote').textContent=''; });
+  document.getElementById('alert').addEventListener('submit', function(e){
     e.preventDefault();
-    var cell=document.getElementById('cell').value.replace(/\D/g,''), n=document.getElementById('alertNote');
-    if(cell.length<10){ n.className='note-out'; n.textContent='Enter a 10-digit cell number first.'; return; }
-    n.className='note-out done'; n.textContent='Demo: on a real farm site, you would get a text the morning '+crop+' are ready.';
+    var cell = document.getElementById('cell').value.replace(/\D/g,'');
+    var note = document.getElementById('alertNote');
+    if (cell.length < 10){ note.className='note'; note.textContent='Enter a 10-digit cell number first.'; return; }
+    note.className='note done';
+    note.textContent='Demo: on a real farm site, you would get a text the morning ' + crop + ' are ready.';
   });
-  var csa='half', csapay='full', price={half:330,full:560};
+
+
+  var csa='half', csapay='full';
+  var csaPrice={half:330, full:560};
   function drawCsa(){
-    var p=price[csa];
-    document.getElementById('csaNote').textContent={full:'One payment of $'+p+' by card.',three:'Three payments of $'+Math.round(p/3)+', in March, April and May.',cash:'Nothing today. Bring $'+p+' in cash or a check to your first pickup.'}[csapay];
+    var p=csaPrice[csa];
+    document.getElementById('csaNote').textContent = {
+      full:'One payment of $' + p + ' by card.',
+      three:'Three payments of $' + Math.round(p/3) + ', in March, April and May.',
+      cash:'Nothing today. Bring $' + p + ' in cash or a check to your first pickup.'
+    }[csapay];
     document.getElementById('csaDone').textContent='';
   }
-  group('[data-csa]','data-csa',function(v){ csa=v; drawCsa(); });
-  group('[data-csapay]','data-csapay',function(v){ csapay=v; drawCsa(); });
-  document.getElementById('csaForm').addEventListener('submit',function(e){
-    e.preventDefault(); var n=document.getElementById('csaDone'); n.className='note-out done'; n.textContent='Demo: on a real farm site, this signs you up and sends a welcome email.';
+  group('[data-csa]', 'data-csa', function(v){ csa=v; drawCsa(); });
+  group('[data-csapay]', 'data-csapay', function(v){ csapay=v; drawCsa(); });
+  document.getElementById('csaForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var n=document.getElementById('csaDone');
+    n.className='note done';
+    n.textContent='Demo: on a real farm site, this signs you up and sends a welcome email.';
   });
 })();
 </script>
