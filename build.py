@@ -9,7 +9,7 @@ import json
 from pathlib import Path
 from bs4 import BeautifulSoup
 
-SITE = "https://ricocynthia.github.io/web/"
+SITE = "https://cynthiaricocook.com/"
 ROOT = Path(__file__).parent
 
 PAGES = {
